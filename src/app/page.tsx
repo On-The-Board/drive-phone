@@ -4,7 +4,7 @@ import bp from "@/img/brokenPhone.png"
 export default function Home() {
   return (
     <main>
-      <div className="px-5 z-10 bg-[url('../img/background.jpg')] h-screen bg-cover">
+      <div className="px-5 z-10 bg-[url('../img/background.jpg')] h-screen bg-cover flex flex-col">
         <div className="w-full flex flex-row">
           <Image src={bp} alt="tel cassé" className="w-56 absolute" />
           <div className="flex flex-col pt-20 ml-40">
@@ -15,7 +15,9 @@ export default function Home() {
             </button>
           </div>
         </div>
-
+        <div className="w-full bg-white h-80 rounded-md mt-20 mx-24 opacity-45 self-center">
+          <h1 className="text-white absolute">test</h1>
+        </div>
       </div>
     </main>
   );
