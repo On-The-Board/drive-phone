@@ -4,6 +4,9 @@ import Image from "next/image";
 import bp from "@/img/brokenPhone.png"
 import rp from "@/img/Reparateur.png"
 import random from "@/img/random.jpg"
+import insta from "@/icons/instagram.png"
+import snap from "@/icons/snapchat.png"
+import fb from "@/icons/facebook.png"
 
 import { v4 as uuidv4 } from "uuid";
 import Carousel_testimonials from "../components/carousel_testimonials";
@@ -91,7 +94,21 @@ export default function Home() {
             offset={200}
             showArrows={false}
           />
-          <p className="pt-5 leading-5 text-blue-600">Suivez-nous <br />sur les réseaux sociaux</p>
+          <p className="pt-8 leading-5 text-blue-600">Suivez-nous <br />sur les réseaux sociaux</p>
+          <div className="flex flex-row justify-between pt-16">
+            <a href="" className="text-blue-600 text-sm w-full flex flex-col text-center">
+              <Image src={insta} alt="" width={40} className="self-center pb-2"/>
+              @drivephone
+            </a>
+            <a href="" className="text-blue-600 text-sm w-full flex flex-col text-center">
+              <Image src={snap} alt="" width={40} className="self-center pb-2"/>
+              @drivephone
+            </a>
+            <a href="" className="text-blue-600 text-sm w-full flex flex-col text-center">
+              <Image src={fb} alt="" width={40} className="self-center pb-2"/>
+              @drivephone
+            </a>
+          </div>
         </div>
       </div>
     </main>
