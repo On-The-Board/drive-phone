@@ -19,7 +19,7 @@ export default function Navbar(props: NavbarProps) {
   return (
     <nav className="p-2 h-12 w-full bg-white flex justify-between overflow-hidden items-center">
       {Backward(props)}
-      <a href="/" className="uppercase font-extrabold text-2xl text-blue-600">
+      <a href="/" className="uppercase font-extrabold text-xl text-blue-600">
         Drive Phone
       </a>
       <Image src={hamburger} alt="Hamburger Menu" className="h-6 w-6" />
