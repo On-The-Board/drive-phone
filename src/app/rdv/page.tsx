@@ -14,7 +14,7 @@ export default function RDV (){
     const plugin = React.useRef(
         Autoplay({ delay: 4000, stopOnInteraction: true })
       )
-    const tab = ["https://images.daisycon.io/mobile-device/?width=1000&height=1000&color=ffffff&mobile_device_brand=apple&mobile_device_model=iphone+14+128gb&mobile_device_color=silver", "https://images.daisycon.io/mobile-device/?width=1000&height=1000&color=ffffff&mobile_device_brand=google&mobile_device_model=pixel+7+128gb&mobile_device_color=silver", "https://images.daisycon.io/mobile-device/?width=1000&height=1000&color=ffffff&mobile_device_brand=samsung&mobile_device_model=galaxy+s20+ultra+128gb&mobile_device_color=silver"]
+    const tab = ["https://images.daisycon.io/mobile-device/?width=2000&height=2000&color=ffffff&mobile_device_brand=apple&mobile_device_model=iphone+14+128gb&mobile_device_color=silver", "https://images.daisycon.io/mobile-device/?width=2000&height=2000&color=ffffff&mobile_device_brand=google&mobile_device_model=pixel+7+128gb&mobile_device_color=silver", "https://images.daisycon.io/mobile-device/?width=2000&height=2000&color=ffffff&mobile_device_brand=samsung&mobile_device_model=galaxy+s20+ultra+128gb&mobile_device_color=silver"]
     return(
         <main className="bg-white flex justify-center">
             <Carousel
@@ -28,8 +28,8 @@ export default function RDV (){
                     <CarouselItem key={index}>
                         <div className="">
                         <Card>
-                            <CardContent className="flex aspect-square items-center justify-center p-2">
-                                <Image src={tab[index]} alt="phone" width={800} height={800}/>
+                            <CardContent className="flex aspect-square items-center justify-center ">
+                                <Image src={tab[index]} alt="phone" width={2000} height={2000} className="w-full"/>
                             </CardContent>
                         </Card>
                         </div>

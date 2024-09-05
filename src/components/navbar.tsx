@@ -17,7 +17,7 @@ function Backward(props: NavbarProps) {
 }
 export default function Navbar(props: NavbarProps) {
   return (
-    <nav className="p-2 h-12 w-full bg-white flex justify-between overflow-hidden items-center">
+    <nav className="p-2 h-12 w-full bg-white flex justify-between overflow-hidden items-center fixed top-0 z-30">
       {Backward(props)}
       <a href="/" className="uppercase font-extrabold text-xl text-blue-600">
         Drive Phone
