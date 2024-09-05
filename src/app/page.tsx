@@ -1,10 +1,50 @@
+import * as React from "react"
+
 import Image from "next/image";
 import bp from "@/img/brokenPhone.png"
 import rp from "@/img/Reparateur.png"
+import random from "@/img/random.jpg"
+
+import { v4 as uuidv4 } from "uuid";
+import Carousel_testimonials from "../components/carousel_testimonials";
+import Card_testimonials from "../components/card";
+
 
 export default function Home() {
+  let cards = [
+    {
+      key: uuidv4(),
+      content: (
+        <Card_testimonials img={random} text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+      )
+    },
+    {
+      key: uuidv4(),
+      content: (
+        <Card_testimonials img={random}  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+      )
+    },
+    {
+      key: uuidv4(),
+      content: (
+        <Card_testimonials img={random}  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+      )
+    },
+    {
+      key: uuidv4(),
+      content: (
+        <Card_testimonials img={random}  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+      )
+    },
+    {
+      key: uuidv4(),
+      content: (
+        <Card_testimonials img={random}  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+      )
+    }
+  ];
   return (
-    <main>
+    <main className="text-white">
       <div className="px-5 z-10 bg-[url('../img/background.jpg')] h-screen bg-cover flex flex-col">
         <div className="w-full flex flex-row mt-16">
           <Image src={bp} alt="tel cassé" className="w-56 absolute" />
@@ -43,6 +83,15 @@ export default function Home() {
         </div>
         <div className="bg-[url('../img/Rectangle_40.png')] bg-no-repeat bg-contain h-full px-5">
           <p className="pt-14 leading-5">Lisez <br />les avis des <br />précédents clients </p>
+          <Carousel_testimonials
+            cards={cards}
+            height="250px"
+            width="100%"
+            margin="0 auto"
+            offset={200}
+            showArrows={false}
+          />
+          <p className="pt-5 leading-5 text-blue-600">Suivez-nous <br />sur les réseaux sociaux</p>
         </div>
       </div>
     </main>
