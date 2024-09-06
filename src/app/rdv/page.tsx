@@ -9,6 +9,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel"
+import Search from "@/components/search"
 
 export default function RDV (){
     const plugin = React.useRef(
@@ -16,10 +17,11 @@ export default function RDV (){
       )
     const tab = ["https://images.daisycon.io/mobile-device/?width=2000&height=2000&color=ffffff&mobile_device_brand=apple&mobile_device_model=iphone+14+128gb&mobile_device_color=silver", "https://images.daisycon.io/mobile-device/?width=2000&height=2000&color=ffffff&mobile_device_brand=google&mobile_device_model=pixel+7+128gb&mobile_device_color=silver", "https://images.daisycon.io/mobile-device/?width=2000&height=2000&color=ffffff&mobile_device_brand=samsung&mobile_device_model=galaxy+s20+ultra+128gb&mobile_device_color=silver"]
     return(
-        <main className="bg-white flex justify-center">
+        <main className="bg-white flex flex-col justify-center pt-16 px-5">
+            <Search placeholder="Rechercher un SmartPhone"/>
             <Carousel
                 plugins={[plugin.current]}
-                className="w-full max-w-xs"
+                className="w-full max-w-xs self-center h-full pt-40"
                 onMouseEnter={plugin.current.stop}
                 onMouseLeave={plugin.current.reset}
                 >
