@@ -2,23 +2,33 @@ import { useState, useEffect } from "react"
 import cross from "@/icons/cross.png"
 import Image from "next/image";
 import gsmarena from "gsmarena-api"
+import util from "util"
 
 export default function Search(props){
     const [input, setInput] = useState("")
     const [placeholder, setPlaceholder] = useState(props.placeholder)
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const result = await gsmarena.catalog.getBrands();
+    //         setData(result);
+    //         console.log(result)
+    //         try {
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
+    //     fetchData()
+    // }, [data, setData])
+    // console.log(data);
+
     const [data, setData] = useState()
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const result = await gsmarena.search.search("casio");
-            setData(result);
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
-        fetchData()
-    }, [input])
-    console.log(data);
+    const result = async() =>{
+        const data = await gsmarena.catalog.getBrands();
+        console.log(util.inspect(data, { maxArrayLength: null }))
+        setData(data);
+    } 
+    result();
+
     return(
         <div className={`w-full border-b border-b-blue-600 flex flex-row ${input != "" ? "pl-6" : null}`}>
             <input type="text"
