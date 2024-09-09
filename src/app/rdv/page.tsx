@@ -1,7 +1,9 @@
 "use client"
 import * as React from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import Autoplay from "embla-carousel-autoplay"
+import { PrismaClient } from "@prisma/client"
  
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -12,7 +14,17 @@ import {
 import Search from "@/components/searchbar"
 
 export default function RDV () {
-    const [search, setSearch] = React.useState("");
+    const [search, setSearch] = useState("");
+    const [data, setData] = useState<any>([])
+
+    const fetchData = async () => {
+        const result = await fetch(`/api/devices`).then((response) => response.json());
+        setData(result)
+    }
+    useEffect(() => {
+        fetchData()
+    }, [])
+
     const plugin = React.useRef(
         Autoplay({ delay: 4000, stopOnInteraction: true })
     )
@@ -20,6 +32,13 @@ export default function RDV () {
     return(
         <main className="bg-white flex flex-col justify-center pt-16 px-5">
             <Search value={search} setValue={setSearch} placeholder="Rechercher un SmartPhone"/>
+            <div className="grid grid-cols-2 hidden">
+                {data.map((device: any) => (
+                    <div className="text-black">
+                        <img src={device.img} alt="" className="p-5" />
+                    </div>
+                ))}
+            </div>
             <Carousel
                 plugins={[plugin.current]}
                 className="w-full max-w-xs self-center h-full pt-40"
@@ -40,6 +59,6 @@ export default function RDV () {
                     ))}
                 </CarouselContent>
             </Carousel>
-        </main>
+        </main> 
     )
 }

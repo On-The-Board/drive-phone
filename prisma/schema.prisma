@@ -18,3 +18,11 @@ model Brand{
   name  String?
   devices Int
 }
+
+model Device{
+  id   String   @id @unique
+  brand_id  String
+  name  String
+  img   String
+  description String
+}
