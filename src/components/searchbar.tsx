@@ -6,6 +6,7 @@ interface SearchbarProps {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   callback?: Function;
+  placeholder?: string;
 }
 
 export default function Searchbar(props: SearchbarProps) {
@@ -14,6 +15,7 @@ export default function Searchbar(props: SearchbarProps) {
       <input
         value={props.value}
         onChange={(e) => props.setValue(e.target.value)}
+        placeholder={props.placeholder}
         className="h-full w-full rounded-full bg-white border-2 shadow-xl text-black p-5 pr-12"
       />
       <Image

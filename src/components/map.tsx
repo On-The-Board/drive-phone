@@ -1,6 +1,6 @@
 "use client";
-import Openrouteservice from "openrouteservice-js";
-import Leaflet from "leaflet";
+// import Openrouteservice from "openrouteservice-js";
+// import Leaflet from "leaflet";
 import * as ReactLeaflet from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -15,8 +15,8 @@ export default function Map(props: MapProps) {
   return (
     <MapContainer
       className="aspect-square w-full h-full rounded-lg"
-      attributionControl={false /* Type didn't exist but it work */}
     >
+      {/* TO DO type attributionControl={false} */}
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {/* DrivePhone Marker */}
       <Marker position={props.start}>
