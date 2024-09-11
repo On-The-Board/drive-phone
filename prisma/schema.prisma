@@ -26,3 +26,18 @@ model Device{
   img   String
   description String
 }
+
+model Admin {
+  id       String  @id @unique
+  username String
+  password String
+  owner    Boolean @default(false)
+}
+
+model Repair {
+  id       String   @id @unique
+  date     DateTime
+  position String   @unique
+  active   Boolean  @default(true)
+  // reparation type... phone...
+}
