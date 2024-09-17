@@ -51,7 +51,7 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                     </details>
                 </div>
             </div>
-            <a href="" className="text-blue-600 self-center align-middle h-full flex text-lg font-semibold">
+            <a href={`/pieces/${deviceId}`} className="text-blue-600 self-center align-middle h-full flex text-lg font-semibold">
                 <button>
                     Valider
                     <img src="/icons/arrow_left.png" alt="" />
