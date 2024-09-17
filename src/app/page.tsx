@@ -54,7 +54,7 @@ export default function Home() {
           <div className="flex flex-col pt-16 ml-40">
             <h1 className="font-bold text-lg text-end">TÉLÉPHONE CASSÉ ?</h1>
             <p className="text-sm text-end leading-5 font-light">On se déplace chez vous <br />pour le réparer en toute <br />tranquilité</p>
-            <a href="/rdv" className="self-end">
+            <a href="/devices" className="self-end">
               <button className="w-20 rounded-sm bg-white h-6 mt-4 text-blue-600 text-xs hover:bg-blue-600 hover:border hover:border-white hover:text-white active:bg-blue-600 active:border active:border-white active:text-white">
                 Réserver
               </button>

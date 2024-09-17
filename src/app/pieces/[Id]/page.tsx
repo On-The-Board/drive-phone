@@ -43,30 +43,37 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         "Contour",
         "Intérieur"
     ]
+
+    const [view, setView] = useState(focus[0])
     return(
         <main className="h-screen flex flex-col">
             <img src={device.img} alt=""  className="p-20 pb-16 pt-36"/>
-            <div className="flex flex-row">
-                {focus.map((view) => (
-                    <p className="text-black px-5">
-                        {view}
+            <div className="flex flex-row overflow-x-auto whitespace-nowrap w-full px-36">
+                {/* {focus.map((title) => (
+                    <p className="text-black">
+                        {focus[0]}
+                    </p>
+                ))} */}
+                {focus.map((title) => (
+                    <p id={title} className={`text-black px-5 ${view == title ? "font-semibold justify-center" : "text-gray-500 text-sm"}`} onClick={() => {setView(title)}}>
+                        {title}
                     </p>
                 ))}
             </div>
-            <div className="text-black px-5 pt-5 overflow-auto">
-                {pieces.map((piece) => (
+            <div className="text-black px-5 pt-5 overflow-auto h-40">
+                {pieces.filter((piece) => piece.category == view).map((piece) => (
                     <div className="flex flex-row border-b h-10 items-center justify-between">
                         <div>
                             <p>{piece.name}</p>
                         </div>
                         <div className="flex flex-row">
                             <p>{piece.price}€</p>
-                            <input type="checkbox" className="ml-2 bg-white"/>
+                            <input type="checkbox" className="ml-2 accent-blue-600"/>
                         </div>
                     </div>
                 ))}
             </div>
-            <a href={`/pieces/${deviceId}`} className="text-blue-600 self-center align-middle h-36 flex text-lg font-semibold">
+            <a href={`/calendar`} className="text-blue-600 self-center align-middle h-36 flex text-lg font-semibold">
                 <button>
                     Valider
                     <img src="/icons/arrow_left.png" alt="" />

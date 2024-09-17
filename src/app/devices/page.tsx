@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/carousel"
 import Search from "@/components/searchbar"
 
-export default function RDV () {
+export default function Devices () {
     const [search, setSearch] = useState("");
     const [data, setData] = useState<any>([])
 
@@ -34,7 +34,7 @@ export default function RDV () {
             <Search value={search} setValue={setSearch} placeholder="Rechercher un SmartPhone"/>
             <div className={`grid grid-cols-2 justify-center pt-8 ${search == "" ? " transition delay-200 hidden" : null}`}>
                 {search != "" ? data.filter((device: any) => device.name.toLowerCase().includes(search.toLowerCase())).map((device: any) => (
-                    <a className="text-black justify-center flex flex-col p-8" href={`/rdv/${device.id}`}>
+                    <a className="text-black justify-center flex flex-col p-8" href={`/devices/${device.id}`}>
                         <img src={device.img} alt={device.name} className=""/>
                         <h2 className="text-center pt-5">{device.name}</h2>
                     </a>
