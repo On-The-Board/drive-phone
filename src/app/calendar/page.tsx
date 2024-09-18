@@ -31,12 +31,33 @@ export default function Calendar(){
     let today = startOfToday()
     let [selectedDay, setSelectedDay] = useState(today)
     let [selectedMeet, setSelectedMeet] = useState("")
+    let [endMeet, setEndMeet] = useState(addMinutes(selectedDay, 30))
     let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
     let firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())
+    
     let days = eachDayOfInterval({
         start: firstDayCurrentMonth,
         end: endOfMonth(firstDayCurrentMonth),
     })
+    let mornings = eachHourOfInterval({
+        start: addHours(selectedDay, 10),
+        end: addHours(selectedDay, 12),
+    })
+    mornings.forEach((morning) => mornings.push(addMinutes(morning, 30)))
+    mornings.sort()
+    let afternoons = eachHourOfInterval({
+        start: addHours(selectedDay, 14),
+        end: addHours(selectedDay, 16),
+    })
+    afternoons.forEach((afternoon) => afternoons.push(addMinutes(afternoon, 30)))
+    afternoons.sort()
+    let evenings = eachHourOfInterval({
+        start: addHours(selectedDay, 17),
+        end: addHours(selectedDay, 18),
+    })
+    evenings.forEach((evening) => evenings.push(addMinutes(evening, 30)))
+    evenings.sort()
+
     function previousMonth() {
         let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 })
         setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
@@ -45,6 +66,11 @@ export default function Calendar(){
     function nextMonth() {
         let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 })
         setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
+    }
+
+    function setMeetHours(time: any){
+        setSelectedMeet(time)
+        setEndMeet(addMinutes(time, 90))
     }
     return(
         <main className='px-10 w-full h-screen content-center'>
@@ -99,7 +125,7 @@ export default function Calendar(){
                                     !isEqual(day, selectedDay) &&
                                     !isToday(day) &&
                                     isSameMonth(day, firstDayCurrentMonth) &&
-                                    'text-black',
+                                    'text-black font-normal',
                                     !isEqual(day, selectedDay) &&
                                     !isToday(day) &&
                                     !isSameMonth(day, firstDayCurrentMonth) &&
@@ -121,6 +147,101 @@ export default function Calendar(){
                         </div>
                     ))}
                 </div>
+                {selectedDay < today?(<></>):(
+                        isMonday(selectedDay)?(<p className='font-semibold text-petrole text-center'>fermé le Lundi</p>):(
+                        isSunday(selectedDay)?(<p className='font-semibold text-petrole text-center'>fermé le Dimanche</p>):(
+                    <section className=" pt-5 ">
+                        <div className='flex w-full justify-center'>
+                                <div className="grid grid-cols-3 gap-10 lg:gap-36 w-full">
+                                    <div className=''>
+                                        {mornings.map((morning) => (
+                                            <div
+                                                key={morning.toString()}
+                                                className='py-2 flex'
+                                            
+                                            >
+                                                {
+                                                    <button
+                                                    type="button"
+                                                    onClick={() => setMeetHours(morning) }
+                                                    className={classNames(
+                                                        isEqual(morning, selectedMeet) ? ('btn btn-sm text-white bg-blue-600 border-none font-semibold rounded-md lg:px-10 self-center w-full'):
+                                                        ('btn btn-sm rounded-md text-black bg-white Shadow hover:text-white border-none lg:px-10 self-center w-full font-normal')
+                                                        
+                                                    )}
+                                                >
+                                                    <time dateTime={format(morning, 'dd-MM-yyyy')}>
+                                                        {format(morning, 'h:mm')}
+                                                    </time>
+                                                </button>
+                                                }
+                                                
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className=''>
+                                        {afternoons.map((afternoon) => (
+                                            <div
+                                                key={afternoon.toString()}
+                                                className='py-2'
+
+                                            >
+                                                {
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setMeetHours(afternoon)}
+                                                        className={classNames(
+                                                            isEqual(afternoon, selectedMeet) ? ('btn btn-sm text-white bg-blue-600 border-none font-semibold rounded-md lg:px-10 self-center w-full'):
+                                                            ('btn btn-sm rounded-md text-black bg-white Shadow hover:text-white border-none lg:px-10 self-center w-full font-normal')
+
+                                                        )}
+                                                    >
+                                                        <time dateTime={format(afternoon, 'dd-MM-yyyy')}>
+                                                            {format(afternoon, 'HH:mm')}
+                                                        </time>
+                                                    </button>
+                                                }
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className=''>
+                                        {evenings.map((evening) => (
+                                            <div
+                                                key={evening.toString()}
+                                                className='py-2'
+
+                                            >
+                                                {
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setMeetHours(evening)}
+                                                        className={classNames(
+                                                            isEqual(evening, selectedMeet) ? ('btn btn-sm text-white bg-blue-600 border-none font-semibold rounded-md lg:px-10 self-center w-full'):
+                                                            ('btn btn-sm rounded-md text-black bg-white Shadow hover:text-white border-none lg:px-10 self-center w-full font-normal')
+
+                                                        )}
+                                                    >
+                                                        <time dateTime={format(evening, 'dd-MM-yyyy')}>
+                                                            {format(evening, 'HH:mm')}
+                                                        </time>
+                                                    </button>
+                                                }
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                        </div>
+                        
+                    </section>
+                    )))}
+            <div className='w-full flex justify-center items-center pt-16'>
+                <a href={`/gps`} className={selectedMeet == "" ?("text-gray-500 self-center align-middle flex text-lg font-semibold"):("text-blue-600 self-center align-middle flex text-lg font-semibold")}>
+                    <button disabled={selectedMeet == "" ? (true) : (false)}>
+                        Valider
+                        <img src="/icons/arrow_left.png" alt="" />
+                    </button>
+                </a>
+            </div>
             </div>
         </main>
     )
