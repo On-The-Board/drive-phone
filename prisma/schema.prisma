@@ -28,7 +28,7 @@ model Device {
 }
 
 model User {
-  id       String  @id @unique
+  id       Int     @id @unique @default(autoincrement())
   email    String
   username String
   password String
@@ -36,7 +36,7 @@ model User {
 }
 
 model Repair {
-  id       String   @id @unique
+  id       Int      @id @unique @default(autoincrement())
   date     DateTime
   position String
   active   Boolean  @default(true)

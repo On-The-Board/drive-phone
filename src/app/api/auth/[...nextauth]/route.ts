@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import "next-auth/jwt";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { createHash } from "crypto";
 import { prisma } from "@/lib/prisma";
 
 const authOptions: NextAuthOptions = {
@@ -9,23 +10,26 @@ const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "email", type: "text" },
-        password: { label: "password", type: "password" },
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
-        if (!credentials?.password || !credentials?.username) return null;
-        const user = prisma.admin.findFirst({
+
+      async authorize(credentials, req) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+        const password = createHash('sha256').update(credentials.password).digest('hex');
+        const user = await prisma.user.findFirst({
           where: {
-            username: {
-              equals: credentials?.username,
-            },
-            password: {
-              equals: credentials?.password, // TO DO: Hash password using SHA-512 + Salt
-            },
-          },
+            password: password,
+            email: credentials.email
+          }
         });
-        if (user) return user;
-        return null;
+        const userFinal = user ? {
+          ...user,
+          id: user?.id.toString()
+        } : null;
+        return userFinal;
       },
     }),
   ],
