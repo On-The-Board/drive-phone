@@ -11,6 +11,7 @@ import fb from "@/icons/facebook.png"
 import { v4 as uuidv4 } from "uuid";
 import Carousel_testimonials from "../components/carousel_testimonials";
 import Card_testimonials from "../components/card";
+import Navbar from "@/components/navbar/navbar";
 
 
 export default function Home() {
@@ -48,6 +49,7 @@ export default function Home() {
   ];
   return (
     <main className="text-white">
+      <Navbar/>
       <div className="px-5 z-10 bg-[url('../img/background.jpg')] h-screen bg-cover flex flex-col">
         <div className="w-full flex flex-row mt-16">
           <Image src={bp} alt="tel cassé" className="w-56 absolute" />
