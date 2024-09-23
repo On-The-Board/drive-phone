@@ -4,6 +4,7 @@ import Image from "next/image"
 import Navbar from "@/components/navbar/navbar"
 
 export default function Checkout(){
+    const deviceId = localStorage.getItem("deviceId")
     interface iDevice {
         id: string
         brand_id: string
@@ -13,7 +14,7 @@ export default function Checkout(){
     }
     const [device, setDevice] = useState<iDevice>({id: "", brand_id: "", name: "", img: "", description: ""})
     const fetchDevice = async() => {
-        const response = await fetch(`/api/devices/${device.id}`).then((response) => response.json())
+        const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
         setDevice(response)
     }
     useEffect(() => {
@@ -22,10 +23,10 @@ export default function Checkout(){
     return(
         <>
             <Navbar back={true}/>
-            <main className="h-screen">
+            <main className="h-screen pt-16">
                 <div className="" id="service">
                     <div className="flex flex-row" id="device">
-                        <Image src={device.img} alt=""/>
+                        <img src={device.img} alt="" width={230} height={304}/>
                         <p></p>
                     </div>
                     <div className="flex flex-row" id="date">

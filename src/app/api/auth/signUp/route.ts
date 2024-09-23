@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import {uuid} from "uuidv4"
 
 interface UserParams {
     username: string,
@@ -16,6 +17,7 @@ export async function POST(request: Request, { params }: { params: UserParams })
         return NextResponse.json({ error: 'Email déja utilisée' });
     const user = await prisma.user.create({
         data: {
+            id: uuid(),
             email: params.email,
             username: params.username,
             password: params.password

@@ -54,7 +54,7 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                 { device.img == "" ? <div className="p-20 pb-16 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <img src={device.img} alt=""  className="p-20 pb-16 pt-36"/>}
                 <div className="flex flex-row overflow-x-auto whitespace-nowrap w-full px-36 h-fit">
                     {focus.map((title) => (
-                        <p id={title} className={`text-black px-5 ${view == title ? "font-semibold justify-center" : "text-gray-500 text-sm"}`} onClick={() => {setView(title)}}>
+                        <p key={title} id={title} className={`text-black px-5 ${view == title ? "font-semibold justify-center" : "text-gray-500 text-sm"}`} onClick={() => {setView(title)}}>
                             {title}
                         </p>
                     ))}
