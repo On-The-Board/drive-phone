@@ -10,7 +10,6 @@ if (typeof window === 'undefined') {
   }
 
 export default function Checkout(){
-    const deviceId = window.localStorage.getItem("deviceId")
     // const fetchInfo = async() =>{
     //     const result = await 
     //     setDeviceId(result ? result : "")
@@ -28,6 +27,7 @@ export default function Checkout(){
     }
     const [device, setDevice] = useState<iDevice>({id: "", brand_id: "", name: "", img: "", description: ""})
     const fetchDevice = async() => {
+        const deviceId = localStorage.getItem("deviceId")
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
         setDevice(response)
     }
