@@ -1,10 +1,24 @@
 "use client"
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import Image from "next/image"
 import Navbar from "@/components/navbar/navbar"
 
+if (typeof window === 'undefined') {
+    console.log('The window object is not available in this environment.');
+  } else {
+    console.log(window.localStorage); // This will throw an error on the server side
+  }
+
 export default function Checkout(){
-    const deviceId = localStorage.getItem("deviceId")
+    const deviceId = window.localStorage.getItem("deviceId")
+    // const fetchInfo = async() =>{
+    //     const result = await 
+    //     setDeviceId(result ? result : "")
+    // }
+    // useEffect(() => {
+    //     fetchInfo()
+    // }, [deviceId])
+
     interface iDevice {
         id: string
         brand_id: string
