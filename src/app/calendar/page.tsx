@@ -31,7 +31,8 @@ function classNames(...classes: any) {
 export default function Calendar(){
     let today = startOfToday()
     let [selectedDay, setSelectedDay] = useState(today)
-    let [selectedMeet, setSelectedMeet] = useState("")
+    let [selectedMeet, setSelectedMeet] = useState<Date>(new Date("05 October 2011 14:48 UTC"))
+    console.log(selectedMeet.toISOString())
     let [endMeet, setEndMeet] = useState(addMinutes(selectedDay, 30))
     let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
     let firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())
@@ -238,8 +239,8 @@ export default function Calendar(){
                         </section>
                         )))}
                     <div className='w-full flex justify-center items-center pt-16 fixed bottom-16 left-0'>
-                        <a href={`/gps`} className={selectedMeet == "" ?("text-gray-500 self-center align-middle flex text-lg font-semibold"):("text-blue-600 self-center align-middle flex text-lg font-semibold")}>
-                            <button disabled={selectedMeet == "" ? (true) : (false)}>
+                        <a href={`/gps`} className={selectedMeet.toISOString() == "2011-10-05T14:48:00.000Z" ? ("text-gray-500 self-center align-middle flex text-lg font-semibold"):("text-blue-600 self-center align-middle flex text-lg font-semibold")}>
+                            <button disabled={selectedMeet.toISOString() == "2011-10-05T14:48:00.000Z" ? (true) : (false)} onClick={() => localStorage.setItem("dateRes", selectedMeet.toISOString())}>
                                 Valider
                                 <img src="/icons/arrow_left.png" alt="" />
                             </button>
