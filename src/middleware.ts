@@ -1,5 +1,16 @@
-export { default } from "next-auth/middleware";
+import { withAuth } from "next-auth/middleware"
+
+export default withAuth(
+  function middleware(req) {
+    console.log(req.nextauth.token)
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => token?.admin === true,
+    },
+  },
+)
 
 export const config = {
-  matcher: ["/api/repairs/:path*"],
+  matcher: ["/admin/:path*"],
 };
