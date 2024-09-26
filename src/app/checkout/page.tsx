@@ -1,5 +1,6 @@
 "use client"
 import { use, useEffect, useState } from "react"
+import axios from "axios"
 import Image from "next/image"
 import Apple from "@/icons/apple-logo.svg"
 import Card from "@/icons/credit-card.svg"
@@ -29,18 +30,14 @@ export default function Checkout(){
           "payment_intent_client_secret"
         ) ? true : false);
       });
+    const fetchData = async() => {
+        const {data} = await axios.post("/api/stripe/create-payment-intent", {
+            data: { amount: 89 },})
+            setClientSecret(data)
+    }
     useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-        const fetchData = async() => {
-            const response = await fetch("/api/stripe/create-payment-intent", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ data: [{ amount: 700 }] }),
-            })
-            .then((res) => res.json())
-            setClientSecret(response)
-        }
         fetchData()
+    // Create PaymentIntent as soon as the page loads
     }, []);
 
     const appearance = {
@@ -221,24 +218,10 @@ export default function Checkout(){
                     </div>
                     <div className={`${paymentStyle()} mt-10 flex flex-col`} id="payment">
                         {clientSecret && (
-                            <Elements  stripe={stripePromise}>
+                            <Elements options={options} stripe={stripePromise}>
                             {confirmed ? <CompletePage /> : <CheckoutForm dpmCheckerLink={dpmCheckerLink} />}
                             </Elements>
                         )}
-                        {/* <div className="flex flex-row justify-between w-full px-3">
-                            <button className="rounded-md bg-white shadow-md flex flex-row items-center text-md px-4 py-1 border" onClick={() => setPaymentMethod("Apple Pay")}>
-                                <Image src={Apple} alt="apple logo" className="w-4"/>
-                                <p className="ml-1">Pay</p> 
-                            </button>
-                            <button className="rounded-md bg-white shadow-md flex flex-row items-center text-md px-2 py-1 border active:bg-blue-600" onClick={() => setPaymentMethod("Card")} >
-                                <Image src={Card} alt="apple logo" className="w-5"/>
-                                <p className="ml-1">Carte</p>
-                            </button>
-                            <button className="rounded-md bg-white shadow-md flex flex-row items-center text-md px-4 border" onClick={() => setPaymentMethod("Paypal")}>
-                                <Image src={Paypal} alt="apple logo" className="w-12 h-8"/>
-                            </button>
-                        </div>
-                        {pay()} */}
                     </div>
                 </div>
                 {btn()}
