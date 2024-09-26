@@ -7,6 +7,7 @@ import random from "@/img/random.jpg"
 import insta from "@/icons/instagram.png"
 import snap from "@/icons/snapchat.png"
 import fb from "@/icons/facebook.png"
+import arrowD from "@/icons/arrow_down.svg"
 
 import { v4 as uuidv4 } from "uuid";
 import Carousel_testimonials from "../components/carousel_testimonials";
@@ -68,8 +69,8 @@ export default function Home() {
           <h1 className="self-center py-4">Réparation Smartphone</h1>
           <p className="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati ipsum expedita omnis optio molestiae laboriosam mollitia ea, eligendi excepturi amet, repellat sed natus in neque vero vitae, disti...</p>
         </div>
-        <div className="rounded-t-full bg-white w-16 h-8 self-center mt-12">
-          {/* flèche vers le bas */}
+        <div className="rounded-t-full bg-white w-16 h-8 self-center mt-12 flex align-middle">
+          <Image src={arrowD} alt="" className="m-auto pt-1"/>
         </div>
       </div>
       <div className="h-screen bg-white overflow-hidden">

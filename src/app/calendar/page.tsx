@@ -32,7 +32,6 @@ export default function Calendar(){
     let today = startOfToday()
     let [selectedDay, setSelectedDay] = useState(today)
     let [selectedMeet, setSelectedMeet] = useState<Date>(new Date("05 October 2011 14:48 UTC"))
-    console.log(selectedMeet.toISOString())
     let [endMeet, setEndMeet] = useState(addMinutes(selectedDay, 30))
     let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
     let firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())

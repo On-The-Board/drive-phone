@@ -59,7 +59,22 @@ const config: Config = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		keyframes: {
+			slidein: {
+				from: {
+					opacity: "0",
+					display: "hidden",
+					transform: "translateY(-100vw)",
+				},
+				to: {
+					opacity: "1",
+					display: "flex",
+					transform: "translateY(0)",
+				},
+			}
+		}
+
   	}
   },
   plugins: [require('daisyui'), 
