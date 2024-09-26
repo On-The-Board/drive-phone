@@ -6,6 +6,7 @@ import { createHash } from "crypto";
 import { prisma } from "@/lib/prisma";
 
 const authOptions: NextAuthOptions = {
+  session: { strategy: "jwt" },
   providers: [
     CredentialsProvider({
       name: "Credentials",
