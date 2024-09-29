@@ -1,20 +1,19 @@
 import Navbar from "@/components/navbar/navbar";
 import { MapProps } from "@/components/MapCard";
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
 
 export default function GPS(){
-    const MapCard = useMemo(() => dynamic(
+    const MapCard = dynamic(
         () => import('@/components/MapCard'),
         {
             ssr: false,
             loading: () => <p>Loading map...</p>
         }
-    ), []);
+    );
 
     const mapPosition: MapProps = {
-        startPoint: [45.7580950620, 4.8336065221],
-        endPoint: [45.7626429025, 4.8292450576]
+        startPoint: { lat: 43.952597866362154, lon: 4.952597866362154 },
+        endPoint: { lat: 43.952597866362154, lon: 4.985059116210714 }
     }
 
     return (
