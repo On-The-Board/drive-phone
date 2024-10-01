@@ -16,7 +16,7 @@ export default function Searchbar(props: SearchbarProps) {
         value={props.value}
         onChange={(e) => props.setValue(e.target.value)}
         placeholder={props.placeholder}
-        className="h-full w-full rounded-full bg-white border-2 shadow-xl text-black p-5 pr-12 outline-none"
+        className="h-full w-full rounded-full bg-white border-2 shadow-md text-black p-5 pr-12 outline-none"
       />
       <Image
         src={props.value ? circle_cross : magnifier}
