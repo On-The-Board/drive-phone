@@ -35,17 +35,17 @@ export default function Devices () {
             <Navbar back={true}/>
             <main className="bg-white flex flex-col justify-center pt-16 px-5">
                 <Search value={search} setValue={setSearch} placeholder="Rechercher un SmartPhone"/>
-                <div className={`grid grid-cols-2 justify-center pt-8 ${search == "" ? " transition delay-200 hidden" : null}`}>
+                <div className={`grid grid-cols-2 lg:grid-cols-3 justify-center pt-8 lg:mx-[20vw] ${search == "" ? " transition delay-200 hidden" : null}`}>
                     {search != "" ? data.filter((device: any) => device.name.toLowerCase().includes(search.toLowerCase())).map((device: any) => (
                         <a className="text-black justify-center flex flex-col p-8" href={`/devices/${device.id}`}>
-                            <img src={device.img} alt={device.name} className=""/>
+                            <img src={device.img} alt={device.name} className="lg:w-56 lg:mx-auto"/>
                             <h2 className="text-center pt-5">{device.name}</h2>
                         </a>
                     )) : null}
                 </div>
                 <Carousel
                     plugins={[plugin.current]}
-                    className={`w-full max-w-xs self-center h-full pt-40 ${search != "" ? " transition delay-200 hidden" : null}`}
+                    className={`w-full max-w-xs lg:max-w-[30vw] self-center h-full pt-40 ${search != "" ? " transition delay-200 hidden" : null}`}
                     onMouseEnter={plugin.current.stop}
                     onMouseLeave={plugin.current.reset}
                     >

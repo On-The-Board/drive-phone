@@ -29,9 +29,9 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
     return(
         <>
             <Navbar back={true}/>
-            <main className="h-screen flex flex-col">
-                { device.img == "" ? <div className="p-20 pb-16 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <img src={device.img} alt=""  className="p-20 pb-16 pt-36"/>}
-                <div className="px-12 text-black text-lg font-semibold grid grid-cols-3">
+            <main className="h-screen flex flex-col lg:flex-row lg:mx-[20vw]">
+                { device.img == "" ? <div className="p-20 pb-16 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <img src={device.img} alt=""  className="p-20 pb-16 pt-36 lg:w-[20vw] lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/>}
+                <div className="px-12 text-black text-lg font-semibold grid grid-cols-3 lg:self-center">
                     <div className="col-start-1 col-end-2">
                         <p className="py-[1rem]">Model :</p>
                         <p className="py-[1rem]">Stockage :</p>

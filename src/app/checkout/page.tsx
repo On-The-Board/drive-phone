@@ -133,21 +133,9 @@ export default function Checkout(){
         if(step == 0){
             return (
                 <div className='w-full flex justify-center items-center pt-16 fixed bottom-16 left-0'>
-                    <div className={`${!isIdentified ? "text-gray-500 self-center align-middle flex text-lg font-semibold" : "text-blue-600 self-center align-middle flex text-lg font-semibold"}`}>
+                    <a href="/checkout/payment" className={`${!isIdentified ? "text-gray-500 self-center align-middle flex text-lg font-semibold" : "text-blue-600 self-center align-middle flex text-lg font-semibold"}`}>
                         <button onClick={() => setStep(step + 1)} disabled={!isIdentified}>
                             Valider
-                            <img src="/icons/arrow_left.png" alt="" />
-                        </button>
-                    </div>
-                </div>
-            )
-        }
-        if(step == 1){
-            return (
-                <div className='w-full flex justify-center items-center pt-16 fixed bottom-16 left-0'>
-                    <a href={`/gps`} className={("text-red-600 self-center align-middle flex text-lg font-semibold")}>
-                        <button>
-                            Payer
                             <img src="/icons/arrow_left.png" alt="" />
                         </button>
                     </a>
@@ -215,13 +203,6 @@ export default function Checkout(){
                             <p className="font-semibold">Total</p>
                             <p></p>
                         </div>
-                    </div>
-                    <div className={`${paymentStyle()} mt-10 flex flex-col`} id="payment">
-                        {clientSecret && (
-                            <Elements options={options} stripe={stripePromise}>
-                            {confirmed ? <CompletePage /> : <CheckoutForm dpmCheckerLink={dpmCheckerLink} />}
-                            </Elements>
-                        )}
                     </div>
                 </div>
                 {btn()}

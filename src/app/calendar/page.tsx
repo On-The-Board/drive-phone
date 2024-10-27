@@ -76,8 +76,8 @@ export default function Calendar(){
     return(
         <>
             <Navbar back={true}/>
-            <main className='px-10 w-full h-screen content-center'>
-                <div className="flex flex-col">
+            <main className='px-10 w-full h-screen lg:w-[60vw] lg:mx-auto content-center'>
+                <div className="flex flex-col lg:mx-[15vw]">
                     <div className="flex items-center ">
                         <button
                             type="button"
@@ -88,7 +88,7 @@ export default function Calendar(){
                             <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
                         </button>
                         <h2 className="flex-auto font-semibold text-black text-center">
-                            {format(firstDayCurrentMonth, 'MMMM', {locale: fr})}
+                            {format(firstDayCurrentMonth, 'MMMM yyyy', {locale: fr})}
                         </h2>
                         <button
                             onClick={nextMonth}
@@ -168,8 +168,8 @@ export default function Calendar(){
                                                         type="button"
                                                         onClick={() => setMeetHours(morning) }
                                                         className={classNames(
-                                                            isEqual(morning, selectedMeet) ? ('btn btn-sm text-white bg-blue-600 border-none font-semibold rounded-md lg:px-10 self-center w-full'):
-                                                            ('btn btn-sm rounded-md text-black bg-white Shadow hover:text-white border-none lg:px-10 self-center w-full font-normal')
+                                                            isEqual(morning, selectedMeet) ? ('btn btn-sm text-white bg-blue-600  hover:bg-blue-200 hover:text-black  border-none font-semibold rounded-md lg:px-10 self-center w-full'):
+                                                            ('btn btn-sm rounded-md text-black bg-white Shadow hover:bg-gray-200 border-none lg:px-10 self-center w-full font-normal')
                                                             
                                                         )}
                                                     >
@@ -194,8 +194,8 @@ export default function Calendar(){
                                                             type="button"
                                                             onClick={() => setMeetHours(afternoon)}
                                                             className={classNames(
-                                                                isEqual(afternoon, selectedMeet) ? ('btn btn-sm text-white bg-blue-600 border-none font-semibold rounded-md lg:px-10 self-center w-full'):
-                                                                ('btn btn-sm rounded-md text-black bg-white Shadow hover:text-white border-none lg:px-10 self-center w-full font-normal')
+                                                                isEqual(afternoon, selectedMeet) ? ('btn btn-sm text-white bg-blue-600  hover:bg-blue-200 hover:text-black  border-none font-semibold rounded-md lg:px-10 self-center w-full'):
+                                                                ('btn btn-sm rounded-md text-black bg-white Shadow hover:bg-gray-200 border-none lg:px-10 self-center w-full font-normal')
 
                                                             )}
                                                         >
@@ -219,8 +219,8 @@ export default function Calendar(){
                                                             type="button"
                                                             onClick={() => setMeetHours(evening)}
                                                             className={classNames(
-                                                                isEqual(evening, selectedMeet) ? ('btn btn-sm text-white bg-blue-600 border-none font-semibold rounded-md lg:px-10 self-center w-full'):
-                                                                ('btn btn-sm rounded-md text-black bg-white Shadow hover:text-white border-none lg:px-10 self-center w-full font-normal')
+                                                                isEqual(evening, selectedMeet) ? ('btn btn-sm text-white bg-blue-600 hover:bg-blue-200 hover:text-black border-none font-semibold rounded-md lg:px-10 self-center w-full'):
+                                                                ('btn btn-sm rounded-md text-black bg-white Shadow hover:bg-gray-200 border-none lg:px-10 self-center w-full font-normal')
 
                                                             )}
                                                         >

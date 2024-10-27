@@ -6,7 +6,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <main className="bg-white flex flex-col justify-center pt-16 px-5">
+    <main className="bg-white flex flex-col justify-center pt-16 px-5 text-black">
       <form className="flex flex-col gap-2">
         <input
           type="text"

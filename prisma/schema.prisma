@@ -29,10 +29,11 @@ model Device {
 
 model User {
   id       String  @id @unique
-  email    String
+  email    String @unique
+  phone    String @unique
   username String
   password String
-  admin    Boolean @default(false)
+  role    String @default("client")
 }
 
 model Repair {
@@ -41,4 +42,27 @@ model Repair {
   position Float[]
   active   Boolean  @default(true)
   // reparation type... phone...
+}
+
+model Piece {
+  id        String  @id @unique
+  name      String
+  category  String
+  phoneIds  String[]
+  price     Float
+}
+
+model Order {
+  id        String  @id @unique
+  userId    String
+  name      String
+  date      DateTime
+  phoneId   String
+  piecesId  String[]
+  address   String
+  city      String
+  zipCode   String
+  status    String
+  total     Float
+  subtotal  Float
 }
