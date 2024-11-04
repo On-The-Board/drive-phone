@@ -9,7 +9,7 @@ export default async function OrdersList() {
     const session = await getServerSession(authOptions)
     const userSession = await prisma.user.findUnique(
         {
-            where : {id: session?.account.id || "undefined"}
+            where : {id: session?.user.id || "undefined"}
         }
     )
 

@@ -33,7 +33,7 @@ export default function Navbar(props: NavbarProps) {
   const [user, setUser] = useState<UserProps>()
   async function getUserSession() {
     const session = await getSession()
-    const userSession = await fetch(`/api/user/${session?.account.id}`).then((response) => response.json())
+    const userSession = await fetch(`/api/user/${session?.user.id}`).then((response) => response.json())
     setUser(userSession)
   }
   useEffect(() => {
