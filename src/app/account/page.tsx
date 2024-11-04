@@ -7,7 +7,7 @@ import { redirect } from "next/navigation"
 export default async function Compte() {
     const session = await getServerSession(authOptions)
     const userSession = await prisma.user.findUnique({
-        where: {id: session?.account?.id || "undefined"}
+        where: {id: session?.account?.id}
     })
 
     if(userSession?.role == "client"){
