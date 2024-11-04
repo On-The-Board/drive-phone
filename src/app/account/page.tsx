@@ -6,9 +6,8 @@ import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
 export default async function Compte() {
     const session = await getServerSession(authOptions)
-    const account = session ? session.account : null;
     const userSession = await prisma.user.findUnique({
-        where: {id: account?.id}
+        where: {id: session?.account?.id || "undefined"}
     })
 
     if(userSession?.role == "client"){
