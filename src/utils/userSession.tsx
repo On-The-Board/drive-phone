@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma"
 
 export async function userSession() {
     const session = await getServerSession(authOptions)
-    const sessionId = session ? (session?.user.id):("undefined")
+    const sessionId = session ? (session?.account.id):("undefined")
     const getSession = async () => {
         try{
             const data = await prisma.user.findUnique({

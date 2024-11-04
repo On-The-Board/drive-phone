@@ -39,7 +39,7 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
     const [user, setUser] = useState<UserProps>()
     async function getUserSession() {
         const session = await getSession()
-        const userSession = await fetch(`/api/user/${session?.user.id}`).then((response) => response.json())
+        const userSession = await fetch(`/api/user/${session?.account.id}`).then((response) => response.json())
         setUser(userSession)
     }
     useEffect(() => {
