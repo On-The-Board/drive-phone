@@ -41,7 +41,6 @@ model Repair {
   date     DateTime
   position Float[]
   active   Boolean  @default(true)
-  // reparation type... phone...
 }
 
 model Piece {
@@ -54,11 +53,11 @@ model Piece {
 
 model Order {
   id        String  @id @unique
-  userId    String
+  userId    String?
   name      String
   date      DateTime
   phoneId   String
-  piecesId  String[]
+  piecesId  String?
   address   String
   city      String
   zipCode   String

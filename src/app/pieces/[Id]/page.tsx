@@ -51,8 +51,8 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         <>
             <Navbar back={true}/>
             <main className="h-screen flex flex-col lg:flex-row lg:mx-[20vw]">
-                { device.img == "" ? <div className="p-20 pb-16 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <div className="w-[70%] flex"><img src={device.img} alt=""  className="p-20 pb-16 pt-36 lg:w-[20vw] lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/></div>}
-                <div className="flex flex-row lg:flex-col lg:self-center lg:w-[30%]">
+                { device.img == "" ? <div className="p-20 pb-16 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <div className="w-full lg:w-[70%] flex"><img src={device.img} alt=""  className="p-20 pb-16 pt-36 lg:w-[20vw] w-full lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/></div>}
+                <div className="flex flex-col w-full lg:flex-col lg:self-center lg:w-[30%]">
                     <div className="flex flex-row overflow-x-auto whitespace-nowrap w-full px-36 h-fit self-center">
                         {focus.map((title) => (
                             <p key={title} id={title} className={`text-black px-5 ${view == title ? "font-semibold justify-center" : "text-gray-500 text-sm"}`} onClick={() => {setView(title)}}>
@@ -60,7 +60,7 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                             </p>
                         ))}
                     </div>
-                    <div className="text-black px-5 pt-5 overflow-auto h-fit pb-16 self-center lg:w-full">
+                    <div className="text-black px-5 pt-5 overflow-auto h-fit pb-16 self-center lg:w-full w-full">
                         {pieces.filter((piece) => piece.category == view).map((piece) => (
                             <div className="flex flex-row border-b h-10 items-center justify-between" key={piece.name}>
                                 <div>

@@ -89,3 +89,110 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.StartRow-1{
+  grid-row-start: 1;
+}
+
+.StartRow-2{
+  grid-row-start: 2;
+}
+
+.StartRow-3{
+  grid-row-start: 3;
+}
+
+.StartRow-4{
+  grid-row-start: 4;
+}
+
+.StartRow-5{
+  grid-row-start: 5;
+}
+
+.StartRow-6{
+  grid-row-start: 6;
+}
+.StartRow-7{
+  grid-row-start: 7;
+}
+.StartRow-8{
+  grid-row-start: 8;
+}
+.StartRow-9{
+  grid-row-start: 9;
+}
+.StartRow-10{
+  grid-row-start: 10;
+}
+.StartRow-11{
+  grid-row-start: 11;
+}
+.StartRow-12{
+  grid-row-start: 12;
+}
+.StartRow-13{
+  grid-row-start: 13;
+}
+.StartRow-14{
+  grid-row-start: 14;
+}
+.StartRow-15{
+  grid-row-start: 15;
+}
+.StartRow-16{
+  grid-row-start: 16;
+}
+
+.EndRow-1{
+  grid-row-end: 1;
+}
+.EndRow-2{
+  grid-row-end: 2;
+}
+.EndRow-3{
+  grid-row-end: 3;
+}
+.EndRow-4{
+  grid-row-end: 4;
+}
+.EndRow-5{
+  grid-row-end: 5;
+}
+.EndRow-6{
+  grid-row-end: 6;
+}
+.EndRow-7{
+  grid-row-end: 7;
+}
+.EndRow-8{
+  grid-row-end: 8;
+}
+.EndRow-9{
+  grid-row-end: 9;
+}
+.EndRow-10{
+  grid-row-end: 10;
+}
+.EndRow-11{
+  grid-row-end: 11;
+}
+.EndRow-12{
+  grid-row-end: 12;
+}
+.EndRow-13{
+  grid-row-end: 13;
+}
+.EndRow-14{
+  grid-row-end: 14;
+}
+.EndRow-15{
+  grid-row-end: 15;
+}
+.EndRow-16{
+  grid-row-end: 16;
+}
+.EndRow-17{
+  grid-row-end: 17;
+}

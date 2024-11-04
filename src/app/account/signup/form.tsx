@@ -44,19 +44,19 @@ export const SignUpForm = () => {
                         <div className="rounded-lg Shadow mt-5 flex flex-col p-8 gap-y-3 justify-self-center w-full lg:w-1/2 items-center">
                             <div className="w-full">
                                 <p>Nom:</p>
-                                <input type="text" name="name" onChange={(e) => setName(e.target.value)} className="border rounded-lg w-full p-2" required />
+                                <input type="text" name="name" onChange={(e) => setName(e.target.value)} className="border rounded-lg w-full p-2 bg-white" required />
                             </div>
                             <div className="w-full">
                                 <p>Telephone:</p>
-                                <input type="phone" name="phone" onChange={(e) => setPhone(e.target.value)} className="border rounded-lg w-full p-2" required />
+                                <input type="phone" name="phone" onChange={(e) => setPhone(e.target.value)} className="border rounded-lg w-full p-2 bg-white" required />
                             </div>
                             <div className="w-full">
                                 <p>Email:</p>
-                                <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} className="border rounded-lg w-full p-2" required />
+                                <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} className="border rounded-lg w-full p-2 bg-white" required />
                             </div>
                             <div className="w-full">
                                 <p>Mot de passe:</p>
-                                <input type="password" name="password" onChange={(e) => setPass(e.target.value)} className="border rounded-lg w-full p-2" required />
+                                <input type="password" name="password" onChange={(e) => setPass(e.target.value)} className="border rounded-lg w-full p-2 bg-white" required />
                             </div>
                             <div className="pt-5">
                                 <button type="submit" value="" onClick={() => submitPost()} className="btn btn-sm lg:btn-md bg-petrole text-white border-petrole hover:bg-white hover:text-petrole hover:border hover:border-petrole" >S'inscrire</button>

@@ -7,7 +7,7 @@ import Card from "@/icons/credit-card.svg"
 import Paypal from "@/icons/paypal.svg"
 import Navbar from "@/components/navbar/navbar"
 import { format, parseISO } from "date-fns"
-import { is } from "date-fns/locale"
+import { is, fr } from "date-fns/locale"
 
 import {CardElement, Elements} from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js";
@@ -56,16 +56,22 @@ export default function Checkout(){
         description: string
     }
     const [device, setDevice] = useState<iDevice>({id: "", brand_id: "", name: "", img: "", description: ""})
-    const [adress, setAdress] = useState("")
     const [date, setDate] = useState("")
+    const [adress, setAdress] = useState("")
+    const [zip, setZip] = useState("")
+    const [town, setTown] = useState("")
     const fetchDevice = async() => {
         const deviceId = localStorage.getItem("deviceId")
-        const adressRes = localStorage.getItem("adressRes") || ""
+        const adressRes = localStorage.getItem("address") || ""
         const dateRes = localStorage.getItem("dateRes") || ""
+        const zipRes = localStorage.getItem("zipcode") || ""
+        const townRes = localStorage.getItem("city") || ""
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
         setDevice(response)
         setAdress(adressRes)
         setDate(dateRes)
+        setZip(zipRes)
+        setTown(townRes)
     }
     useEffect(() => {
         fetchDevice()
@@ -169,19 +175,19 @@ export default function Checkout(){
                     <div className="grid grid-cols-2 gap-5">
                         <div className="flex flex-col">
                             <label htmlFor="">Nom *</label>
-                            <input type="text" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setName(e.target.value); Identify()}}/>
+                            <input type="text" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setName(e.target.value); Identify(); localStorage.setItem("name", e.target.value)}}/>
                         </div>
                         <div className="flex flex-col">
                             <label htmlFor="">Prenom *</label>
-                            <input type="text" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setSurname(e.target.value); Identify()}}/>
+                            <input type="text" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setSurname(e.target.value); Identify(); localStorage.setItem("surname", e.target.value)}}/>
                         </div>
                         <div className="col-span-2 flex flex-col pt-5">
                             <label htmlFor="">Telephone *</label>
-                            <input type="phone" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setPhone(e.target.value); Identify()}}/>
+                            <input type="phone" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setPhone(e.target.value); Identify(); localStorage.setItem("phone", e.target.value)}}/>
                         </div>
                         <div className="col-span-2 flex flex-col pt-5">
                             <label htmlFor="">Email</label>
-                            <input type="email" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setMail(e.target.value); Identify()}}/>
+                            <input type="email" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setMail(e.target.value); Identify(); localStorage.setItem("mail", e.target.value)}}/>
                         </div>
                     </div>
                 </div>
@@ -193,11 +199,11 @@ export default function Checkout(){
                         </div>
                         <div className="flex flex-row py-3 justify-between" id="date">
                             <p className="font-semibold">Date</p>
-                            <p>{date ? format(date, "dd MMMM, HH:mm") : null}</p>
+                            <p>{date ? format(date, "dd MMMM, HH:mm", {locale: fr}) : null}</p>
                         </div>
-                        <div className="flex flex-row py-3" id="adress">
+                        <div className="flex flex-row py-3 justify-between" id="adress">
                             <p className="font-semibold">Adresse</p>
-                            <p></p>
+                            <p className="text-end">{adress}<br />{zip + ", " + town}</p>
                         </div>
                         <div className="flex flex-row py-3  border-b border-b-black" id="pricing">
                             <p className="font-semibold">Total</p>

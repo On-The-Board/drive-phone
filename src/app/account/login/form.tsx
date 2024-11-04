@@ -61,11 +61,11 @@ export const LoginForm = () => {
                         <div className="rounded-lg Shadow mt-5 flex flex-col p-8 gap-y-3 justify-self-center w-full lg:w-1/2 items-center">
                             <div className="w-full">
                                 <p>Email:</p>
-                                <input type="email" name="email" value={formValues.email} onChange={handleChange} className="border rounded-lg w-full p-2" required />
+                                <input type="email" name="email" value={formValues.email} onChange={handleChange} className="border rounded-lg w-full p-2 bg-white" required />
                             </div>
                             <div className="w-full">
                                 <p>Mot de passe:</p>
-                                <input type="password" name="password" value={formValues.password} onChange={handleChange} className="border rounded-lg w-full p-2" required />
+                                <input type="password" name="password" value={formValues.password} onChange={handleChange} className="border rounded-lg w-full p-2 bg-white" required />
                             </div>
                             <div className="self-start"> 
                                 <a href="#">Mot de passe oublié ?</a>

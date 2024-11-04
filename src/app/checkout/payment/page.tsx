@@ -8,8 +8,8 @@ import {CardElement, Elements} from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "@/components/stripe/CheckoutForm.jsx";
 import CompletePage from "@/components/stripe/CompletePage.jsx";
+import { fr } from "date-fns/locale"
 
-import Check from "@/icons/check-circle.svg"
 const SuccessIcon =
 <svg width="96px" height="96px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
   <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -26,6 +26,7 @@ export default function Payment(){
     const [clientSecret, setClientSecret] = useState("");
     const [dpmCheckerLink, setDpmCheckerLink] = useState("");
     const [confirmed, setConfirmed] = useState(false);
+    const [posted, setPosted] = useState(false)
 
     const fetchData = async() => {
         const {data} = await axios.post("/api/stripe/create-payment-intent", {
@@ -47,7 +48,7 @@ export default function Payment(){
     };
     const options = {
         clientSecret,
-        appearance,
+
     };
 
     interface iDevice {
@@ -59,19 +60,73 @@ export default function Payment(){
     }
     const [device, setDevice] = useState<iDevice>({id: "", brand_id: "", name: "", img: "", description: ""})
     const [adress, setAdress] = useState("")
+    const [city, setCity] = useState("")
+    const [zipcode, setZipcode] = useState("")
     const [date, setDate] = useState("")
     const fetchDevice = async() => {
         const deviceId = localStorage.getItem("deviceId")
-        const adressRes = localStorage.getItem("adressRes") || ""
+        const adressRes = localStorage.getItem("address") || ""
+        const cityRes = localStorage.getItem("city") || ""
+        const zipRes = localStorage.getItem("zipcode") || ""
         const dateRes = localStorage.getItem("dateRes") || ""
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
         setDevice(response)
         setAdress(adressRes)
         setDate(dateRes)
+        setCity(cityRes)
+        setZipcode(zipRes)
     }
     useEffect(() => {
         fetchDevice()
     }, [])
+
+    const postOrder = async () => {
+        let body = {
+            userId: "4b6255cd-a38f-45bf-bb67-73e39b478d74",
+            name: localStorage.getItem("name") + " " + localStorage.getItem("surname"),
+            date: localStorage.getItem("dateRes"),
+            phoneId: localStorage.getItem("deviceId"),
+            piecesId: "à",
+            address: localStorage.getItem("address"),
+            city: localStorage.getItem("city"),
+            zipCode: localStorage.getItem("zipcode"),
+            status: "in process",
+            total: 120.00,
+            subtotal: 90.00
+
+        }
+        try {
+            await fetch(`/api/orders/post`, {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+            // await prisma.order.create({
+            //     data: {
+            //         id: "test",
+            //         userId: "4b6255cd-a38f-45bf-bb67-73e39b478d74",
+            //         name: localStorage.getItem("name") + " " + localStorage.getItem("surname"),
+            //         date: localStorage.getItem("dateRes") || "",
+            //         phoneId: localStorage.getItem("deviceId") || "",
+            //         piecesId: ["à"],
+            //         address: localStorage.getItem("address") || "",
+            //         zipCode: localStorage.getItem("zipcode") || "",
+            //         city: localStorage.getItem("city") || "",
+            //         status: "in process",
+            //         total: 120.00,
+            //         subtotal: 90.00
+            //     },
+            // })
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    if(confirmed && !posted) {
+        postOrder()
+        setPosted(true)
+    }
+
     return(
         <>{confirmed ? null :
             <Navbar back={true}/>}
@@ -95,23 +150,29 @@ export default function Payment(){
                             </div>
                             <div className="flex flex-row py-3 justify-between" id="date">
                                 <p className="font-semibold">Date</p>
-                                <p>{date ? format(date, "dd MMMM, HH:mm") : null}</p>
+                                <p>{date ? format(date, "dd MMMM, HH:mm", {locale: fr}) : null}</p>
                             </div>
-                            <div className="flex flex-row py-3" id="adress">
+                            <div className="flex flex-row py-3 justify-between" id="adress">
                                 <p className="font-semibold">Adresse</p>
-                                <p></p>
+                                <p className="text-end">{adress}<br /> {zipcode}, {city}</p>
                             </div>
                             <div className={`flex flex-row py-3  ${confirmed ? "border-t border-t-white" : " border-b border-b-black"}`} id="pricing">
                                 <p className="font-semibold">Total</p>
                                 <p></p>
                             </div>
                         </div>
-                        <div className={`mt-10 flex flex-col`} id="payment">
+                        <div className={`mt-5 flex flex-col`} id="payment">
                             {clientSecret && confirmed ? 
                                 null : clientSecret == "" ? <></> : (
-                                <Elements options={options} stripe={stripePromise}>
-                                    <CheckoutForm dpmCheckerLink={dpmCheckerLink} />
-                                </Elements>
+                                    <>
+                                        <div className="flex flex-row py-3 justify-between">
+                                            <p className="font-semibold">Accompte</p>
+                                            <p></p>
+                                        </div>
+                                        <Elements options={options} stripe={stripePromise}>
+                                            <CheckoutForm dpmCheckerLink={dpmCheckerLink} />
+                                        </Elements>
+                                    </>
                             )}
                         </div>
                     </div>

@@ -50,6 +50,7 @@ export default function Home() {
   ];
   return (
     <main className="text-white">
+      <Navbar/>
       <section className="px-5 z-10 bg-[url('../img/background.jpg')] h-screen bg-cover flex flex-col">
         <div className="w-full lg:w-fit lg:mx-auto lg:h-full flex flex-row mt-16 lg:items-center">
           <Image src={bp} alt="tel cassé" className="w-56 lg:w-fit lg:h-[70vh] lg:mt-24 absolute lg:relative" />
@@ -89,10 +90,20 @@ export default function Home() {
         <div className="bg-[url('../img/Rectangle_40.png')] lg:bg-[url('../img/Rectangle_80.png')] bg-no-repeat  h-full px-5 lg:px-64">
           <p className="pt-14 leading-5 lg:hidden">Lisez <br />les avis des <br />précédents clients </p>
           <p className="hidden lg:block text-blue-600 text-2xl text-center mt-6 pt-10">Lisez les avis des précédents clients</p>
-          <div className="hidden lg:block lg:px-64">
+          <div className="hidden xl:block xl:px-64">
             <Carousel_testimonials
               cards={cards}
               height="550px"
+              width="100%"
+              margin="0 auto"
+              offset={200}
+              showArrows={false}
+            />
+          </div>
+          <div className="hidden lg:block xl:hidden">
+            <Carousel_testimonials
+              cards={cards}
+              height="300px"
               width="100%"
               margin="0 auto"
               offset={200}

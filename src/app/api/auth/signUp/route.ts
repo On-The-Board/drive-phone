@@ -6,6 +6,7 @@ interface UserParams {
     username: string,
     email: string,
     password: string
+    phone:      string
 }
 
 export async function POST(request: Request, { params }: { params: UserParams }) {
@@ -20,6 +21,7 @@ export async function POST(request: Request, { params }: { params: UserParams })
             id: uuid(),
             email: params.email,
             username: params.username,
+            phone: params.phone,
             password: params.password
         }
     });
