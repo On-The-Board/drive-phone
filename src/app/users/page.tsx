@@ -7,7 +7,7 @@ import Navbar from "@/components/navbar/navbar";
 export default async function Clients(){
     const session = await getServerSession(authOptions)
     const userSession = await prisma.user.findUnique({
-        where: {id: session?.user.id}
+        where: {id: session?.account.id || "undefined"}
     })
     if(userSession?.role == "master"){
         return(

@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 export default async function Settings() {
     const session = await getServerSession(authOptions)
     const userSession = await prisma.user.findUnique({
-        where: {id: session?.user.id}
+        where: {id: session?.account.id || "undefined"}
     })
     if (userSession?.role == "master") {
         return (
