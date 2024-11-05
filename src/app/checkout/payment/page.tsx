@@ -9,6 +9,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "@/components/stripe/CheckoutForm.jsx";
 import CompletePage from "@/components/stripe/CompletePage.jsx";
 import { fr } from "date-fns/locale"
+import emailjs from "@emailjs/browser"
+
+
 
 const SuccessIcon =
 <svg width="96px" height="96px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
@@ -122,15 +125,39 @@ export default function Payment(){
         }
     }
 
+    const sendEmail = () => {
+        const serviceId = "service_6tywyep";
+        const templateId = "template_ma19u8t";
+        const publicKey = "QVOsrAGVv4ZGCPv77";
+        
+        // Create a new object that contains dynamic template params
+        const templateParams = {
+          to_name: "habib.hadjadj89@gmail.com",
+          from_name: "digitaldashotb@gmail.com",
+          message: "test",
+        };
+        
+        // Send the email using EmailJS
+        emailjs
+          .send(serviceId, templateId, templateParams, publicKey)
+          .then((response) => {
+            console.log("Email sent successfully!", response);
+          })
+          .catch((error) => {
+            console.error("Error sending email:", error);
+          });
+      }
+
     if(confirmed && !posted) {
         postOrder()
+        sendEmail()
         setPosted(true)
     }
 
     return(
         <>{confirmed ? null :
             <Navbar back={true}/>}
-            <main className={`${confirmed ? "bg-blue-600 h-screen text-white px-5" : "h-screen px-5 text-black"}`}>
+            <main className={`${confirmed ? "bg-blue-600 h-screen text-white px-5 xl:px-[40vw]" : "h-screen px-5 xl:px-[40vw] text-black"}`}>
                     <div>
                         {confirmed ? 
                             <div className="w-full flex flex-col items-center pt-16">

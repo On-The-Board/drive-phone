@@ -49,6 +49,7 @@ model Piece {
   category  String
   phoneIds  String[]
   price     Float
+  stock     Int     @default(0)
 }
 
 model Order {

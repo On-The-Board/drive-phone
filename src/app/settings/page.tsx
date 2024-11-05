@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar/navbar";
+import Params from "@/components/params";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
@@ -14,7 +15,7 @@ export default async function Settings() {
             <main>
                 <Navbar back={true}/>
                 <section className="h-screen">
-                    
+                    <Params/>
                 </section>
             </main>
         )
