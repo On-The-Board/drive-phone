@@ -58,6 +58,7 @@ model Order {
   name      String
   date      DateTime
   phoneId   String
+  phoneName String  @default("undefined")
   piecesId  String?
   address   String
   city      String
@@ -65,4 +66,12 @@ model Order {
   status    String
   total     Float
   subtotal  Float
+}
+
+model Data {
+  id  String @id @unique
+  name  String @unique
+  text  String?
+  num   Int?
+  decimal Float?
 }

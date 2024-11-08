@@ -10,6 +10,9 @@ import CheckoutForm from "@/components/stripe/CheckoutForm.jsx";
 import CompletePage from "@/components/stripe/CompletePage.jsx";
 import { fr } from "date-fns/locale"
 import emailjs from "@emailjs/browser"
+import { getSession, useSession } from "next-auth/react"
+import { redirect } from "next/navigation"
+import { Router } from "next/router"
 
 
 
@@ -26,6 +29,23 @@ if(typeof process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY === 'undefined'){
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 export default function Payment(){
+    interface UserProps {
+        id: string,
+        phone: string,
+        email?: string,
+        username: string,
+        role: string,
+      }
+    const [user, setUser] = useState<UserProps>()
+    async function getUserSession() {
+        const session = await getSession()
+        const userSession = await fetch(`/api/user/${session?.user.id}`).then((response) => response.json())
+        setUser(userSession)
+    }
+    useEffect(() => {
+        getUserSession()
+    }, [])
+
     const [clientSecret, setClientSecret] = useState("");
     const [dpmCheckerLink, setDpmCheckerLink] = useState("");
     const [confirmed, setConfirmed] = useState(false);
@@ -154,6 +174,11 @@ export default function Payment(){
         setPosted(true)
     }
 
+    const noDeposit = async () => {
+        setConfirmed(true)
+        redirect(`/nodeposit`)
+    }
+
     return(
         <>{confirmed ? null :
             <Navbar back={true}/>}
@@ -170,7 +195,7 @@ export default function Payment(){
                             </div> : null
                         }
 
-                        <div className={`${confirmed ? "pt-16" : "pt-16"}`} id="service">
+                        <div className={`${confirmed ? "pt-16 lg:pt-24" : "pt-16 lg:pt-24"}`} id="service">
                             <div className="flex flex-row justify-between w-full text-center pb-3" id="device">
                                 <img src={device.img} alt="" className="w-9 h-12 rounded-sm"/>
                                 <p className="text-center my-auto font-semibold">{device.name}</p>
@@ -199,6 +224,7 @@ export default function Payment(){
                                         <Elements options={options} stripe={stripePromise}>
                                             <CheckoutForm dpmCheckerLink={dpmCheckerLink} />
                                         </Elements>
+                                        {user?.role == "master" ? <a href="/checkout/nodeposit" className="w-full text-center mt-10 text-blue-600 font-semibold" onClick={() => noDeposit()}>Continuer sans accompte</a> : null}
                                     </>
                             )}
                         </div>

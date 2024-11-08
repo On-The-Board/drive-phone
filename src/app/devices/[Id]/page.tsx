@@ -74,7 +74,7 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                 </div>
                 <div className='w-full flex justify-center items-center pt-16 fixed bottom-16 left-0'>
                     <a href={`/pieces/${deviceId}`} className="text-blue-600 self-center align-middle flex text-lg font-semibold">
-                        <button onClick={() => localStorage.setItem("deviceId", deviceId)}>
+                        <button onClick={() => {localStorage.setItem("deviceId", deviceId); localStorage.setItem("deviceName", device.name)}}>
                             Valider
                             <img src="/icons/arrow_left.png" alt="" />
                         </button>

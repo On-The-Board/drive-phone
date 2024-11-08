@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Orders from "@/components/Orders";
+import Navbar from "@/components/navbar/navbar";
 
 
 export default async function OrdersList() {
@@ -16,6 +17,7 @@ export default async function OrdersList() {
     if (userSession?.role == "master"){
         return(
             <>
+                <Navbar back={true}/>
                 <Orders/>
             </>
         )

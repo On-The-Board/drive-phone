@@ -141,7 +141,7 @@ export default function Plan() {
         <div className='grid grid-rows-16 col-start-3 col-end-13 '>
             {selectedDayMeetings.length > 0 ? (
                 selectedDayMeetings.map((meet) => (
-                    <div className={classHour(meet.date, meet.endDatetime)}>
+                    <div className={classHour(meet.date, meet.endDatetime) + "bg-blue-600"}>
                         <DrawMeeting meeting={meet} key={meet.id} />
                     </div>
                 ))
@@ -737,9 +737,9 @@ export default function Plan() {
     }
 
     return (
-        <div className=" text-black px-3 lg:px-36 max-w-screen bg-white rounded-tl-lg min-h-screen">
+        <div className=" text-black px-3 lg:px-36 max-w-screen bg-white rounded-tl-lg min-h-screen content-center">
 
-            <div className="w-full mx-auto Shadow rounded-lg p-5 mt-12">
+            <div className="w-full mx-auto Shadow rounded-lg p-5 mt-12 lg:mt-0">
                 <div className='hidden lg:flex w-full justify-end pb-5'>
                     
                 </div>
@@ -788,7 +788,7 @@ export default function Plan() {
                                         type="button"
                                         onClick={() => setSelectedDay(day)}
                                         className={classNames(
-                                            isEqual(day, selectedDay) && 'text-white bg-petrole',
+                                            isEqual(day, selectedDay) && 'text-white bg-blue-600',
                                             !isEqual(day, selectedDay) &&
                                             isToday(day) &&
                                             'text-blue-500',
@@ -800,10 +800,10 @@ export default function Plan() {
                                             !isToday(day) &&
                                             !isSameMonth(day, firstDayCurrentMonth) &&
                                             'text-gray-400',
-                                            isEqual(day, selectedDay) && isToday(day) && 'bg-red-500',
+                                            isEqual(day, selectedDay) && isToday(day) && 'bg-blue-500',
                                             isEqual(day, selectedDay) &&
                                             !isToday(day) &&
-                                            'bg-gray-900',
+                                            'bg-blue-600',
                                             !isEqual(day, selectedDay) && 'hover:bg-gray-200',
                                             (isEqual(day, selectedDay) || isToday(day)) &&
                                             'font-semibold',
@@ -862,7 +862,7 @@ function DrawMeeting({ meeting }) {
     let date = parseISO(meeting.date)
     let endDateTime = addMinutes(parseISO(meeting.date), 90)
     const deletePost = async (id) => {
-            await fetch(`/api/meetings/delete`, {
+            await fetch(`/api/orders/delete`, {
                 method: 'DELETE',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(id)
@@ -871,7 +871,7 @@ function DrawMeeting({ meeting }) {
 
     }
     const updatePost = async (id) => {
-        await fetch(`/api/meetings/valide`, {
+        await fetch(`/api/orders/valide`, {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(id)
@@ -899,11 +899,11 @@ function DrawMeeting({ meeting }) {
         }
     }
     return (
-        <li className="flex items-center h-full">
-            <button className="btn w-full h-full flex flex-col rounded-lg bg-petrole border-petrole text-white hover:bg-white hover:text-petrole hover:border-petrole hover:border" onClick={() => document.getElementById(meeting.id).showModal()}>
+        <li className="flex items-center h-full text-black">
+            <button className="btn w-full h-full flex flex-col rounded-lg bg-blue-600 border-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border-petrole hover:border" onClick={() => document.getElementById(meeting.id).showModal()}>
                 {meeting.name}
                 <time className='hidden lg:flex'>
-                    {format(date, "HH:mm")} - {format(endDateTime, "HH:mm")}
+                    {format(date, "HH:mm")} - {format(addMinutes(date, 90), "HH:mm")}
                 </time>
                 <time className='lg:hidden flex'>
                     {format(date, "HH:mm")}
@@ -912,17 +912,17 @@ function DrawMeeting({ meeting }) {
             <dialog id={meeting.id} className="modal">
                 <div className="modal-box bg-white">
                     <h3 className="font-bold text-lg">Informations :</h3>
-                    <p className="py-4 text-xl">Nom: {meeting.name}<br /><br />Tel: {meeting.phone}<br /><br />Réparation: {meeting.phoneId}<br /><br />Prix: {meeting.total}€</p>
+                    <p className="py-4 text-xl">Nom: {meeting.name}<br /><br />Tel: {meeting.phone}<br /><br />Réparation: {meeting.phoneId}<br /><br />Adresse: {meeting.address}<br /> {meeting.zipCode}, {meeting.city} <br /><br />Prix: {meeting.total}€</p>
                     <div className="modal-action justify-between align-center">
-                        {meeting.valide === false ? (
-                            <></>
+                        {meeting.status != "finalized" ? (
+                            <button className='btn bg-green-600 border-none text-white' onClick={() => updatePost(meeting.id)}>Valider</button>
                         ):(
                             <div className='self-center'>
                                 <img src="https://img.icons8.com/?size=100&id=11695&format=png&color=3DC451" width={30} alt="" />
                             </div>
                         )}
                             
-                            <button className='btn bg-red-600 text-white' onClick={() => deletePost(meeting.id)}>Supprimer</button>
+                            <button className='btn bg-red-600 text-white border-none' onClick={() => deletePost(meeting.id)}>Supprimer</button>
                     </div>
                 </div>
                 <form method="dialog" className="modal-backdrop">

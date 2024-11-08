@@ -45,7 +45,7 @@ export default function Navbar(props: NavbarProps) {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" checked={hamburgerActive}/>
       <div className="drawer-content flex flex-row w-full h-full justify-between items-center overflow-hidden z-[100]">
         {props.back == true ? (<a href="javascript:history.back()" className="text-black lg:ml-3"><Image src={backward} className="w-6 h-6 lg:w-8 lg:h-8" alt=""/></a>): (<p className="w-6 h-6"></p>)}
-        <a href="/" className="uppercase font-extrabold text-xl lg:text-2xl text-blue-600 mx-auto">
+        <a href="/" className={`${props.back == true? "uppercase font-extrabold text-xl lg:text-2xl text-blue-600 mx-auto" : "uppercase font-extrabold text-xl lg:text-2xl text-blue-600 mx-auto lg:pl-5"}`}>
           Drive Phone
         </a>
         <label htmlFor="my-drawer-4"></label>
@@ -67,8 +67,9 @@ export default function Navbar(props: NavbarProps) {
                 <a href="/devices/params" className="btn btn-ghost hover:bg-petrole"><li>Appareils</li></a>
                 <a href="/users" className="btn btn-ghost hover:bg-petrole mt-5"><li>Clients</li></a>
                 <a href="/notices" className="btn btn-ghost hover:bg-petrole"><li>Avis Clients</li></a>
+                <a href="/accounting" className="btn btn-ghost hover:bg-petrole mt-5"><li>Compta</li></a>
                 <a href="/settings" className="btn btn-ghost hover:bg-petrole mt-auto"><li>Parametres</li></a>
-                <a onClick={() => signOut()} className="btn btn-ghost hover:bg-petrole text-red-600"><li>Deconnexion</li></a>
+                <a onClick={() => signOut()} className="btn btn-ghost hover:bg-petrole text-red-600"><li>Déconnexion</li></a>
 
               </> : <>
                 <a href="/api/auth/signin" className="btn btn-ghost bg-blue-600 text-white hover:text-blue-600 hover:bg-white hover:border-blue-600"><li>Connexion</li></a>

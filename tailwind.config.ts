@@ -8,6 +8,35 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+	gridTemplateRows: {
+		// Simple 16 row grid
+		'16': 'repeat(16, minmax(0, 1fr))',
+  
+		// Complex site-specific row configuration
+		'layout': '200px minmax(900px, 1fr) 100px',
+	  },
+	  gridRowStart: {
+		'8': '8',
+		'9': '9',
+		'10': '10',
+		'11': '11',
+		'12': '12',
+		'13': '13',
+		'14': '14',
+		'15': '15',
+		'16': '16'
+	  },
+	  gridRowEnd: {
+		'8': '8',
+		'9': '9',
+		'10': '10',
+		'11': '11',
+		'12': '12',
+		'13': '13',
+		'14': '14',
+		'15': '15',
+		'16': '16'
+	  },
   	extend: {
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
