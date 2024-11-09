@@ -912,7 +912,7 @@ function DrawMeeting({ meeting }) {
             <dialog id={meeting.id} className="modal">
                 <div className="modal-box bg-white">
                     <h3 className="font-bold text-lg">Informations :</h3>
-                    <p className="py-4 text-xl">Nom: {meeting.name}<br /><br />Tel: {meeting.phone}<br /><br />Réparation: {meeting.phoneId}<br /><br />Adresse: {meeting.address}<br /> {meeting.zipCode}, {meeting.city} <br /><br />Prix: {meeting.total}€</p>
+                    <p className="py-4 text-xl">Nom: {meeting.name}<br /><br />Tel: {meeting.phone}<br /><br />Réparation: {meeting.phoneName}<br /><br />Adresse: <span className=''> {meeting.address}<br /> {meeting.zipCode}, {meeting.city}</span> <br /><br />Prix: {meeting.total}€</p>
                     <div className="modal-action justify-between align-center">
                         {meeting.status != "finalized" ? (
                             <button className='btn bg-green-600 border-none text-white' onClick={() => updatePost(meeting.id)}>Valider</button>

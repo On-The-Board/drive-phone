@@ -25,6 +25,7 @@ model Device {
   name        String
   img         String
   description String
+  active      Boolean @default(true)
 }
 
 model User {
@@ -57,6 +58,7 @@ model Order {
   userId    String?
   name      String
   date      DateTime
+  phone     String?
   phoneId   String
   phoneName String  @default("undefined")
   piecesId  String?

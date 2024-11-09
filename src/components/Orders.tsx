@@ -2,7 +2,8 @@
 
 import { prisma } from "@/lib/prisma"
 import { format } from "date-fns";
-import { useEffect, useState } from "react"
+import { SetStateAction, useEffect, useState } from "react"
+import Search from "./searchbar";
 
 interface iDevice {
     id: string
@@ -14,9 +15,12 @@ interface iDevice {
 
 export default function Orders(){
     const [meetings, setMeetings] = useState<any>([]);
+    const [filteredMeetings, setFilteredMeetings] = useState<any>([]);
+
     const getMeetings = async () => {
         const response = await fetch(`/api/orders`).then((response) => response.json());
         setMeetings(response);
+        setFilteredMeetings(response)
     }
     useEffect(() => {
       getMeetings()
@@ -29,9 +33,12 @@ export default function Orders(){
         const response = await fetch(`/api/devices/${meet.phoneId}`).then((response) => response.json())
         setDevice(response)
     }
+
+    const [search, setSearch] = useState("");
+
     return(
         <main className="min-h-screen text-black pt-16 lg:pt-24 lg:px-[20vw]">
-            <div className={selectedMeet != "" ? "w-full h-[40vh] px-5 border-b border-b-black" : "hidden"}>
+            <div className={selectedMeet != "" ? "w-full h-[40vh] px-5 " : "hidden"}>
                 <div className="flex flex-row items-center justify-between">
                     <div className="flex flex-row items-center">
                         <img src={device.img} alt=""  className="w-10"/>
@@ -64,7 +71,10 @@ export default function Orders(){
 
                 </div>
             </div>
-            <div>
+            <div className="px-5">
+                <Search value={search} setValue={setSearch} placeholder="Rechercher une Commande"/>
+            </div>
+            <div className="pt-5">
                 <ul className="">
                     {meetings.map((meet: any) => (
                         <li className="w-full border-b grid grid-cols-4 h-fit py-2 px-5" onClick={() => selectMeet(meet)}>

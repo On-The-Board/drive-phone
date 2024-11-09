@@ -13,6 +13,7 @@ import {CardElement, Elements} from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "@/components/stripe/CheckoutForm.jsx";
 import CompletePage from "@/components/stripe/CompletePage.jsx";
+import { Skeleton } from "@/components/ui/skeleton"
 
 if(typeof process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY === 'undefined'){
     throw new Error("1")
@@ -60,6 +61,8 @@ export default function Checkout(){
     const [adress, setAdress] = useState("")
     const [zip, setZip] = useState("")
     const [town, setTown] = useState("")
+    const [workforce, setWorkforce] = useState<any>()
+    const [deposit, setDeposit] = useState<any>()
     const fetchDevice = async() => {
         const deviceId = localStorage.getItem("deviceId")
         const adressRes = localStorage.getItem("address") || ""
@@ -67,11 +70,16 @@ export default function Checkout(){
         const zipRes = localStorage.getItem("zipcode") || ""
         const townRes = localStorage.getItem("city") || ""
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
+        const wf = await fetch("/api/data/workforce").then((response) => response.json())
+        const dt = await fetch("/api/data/deposit").then((response) => response.json())
+
         setDevice(response)
         setAdress(adressRes)
         setDate(dateRes)
         setZip(zipRes)
         setTown(townRes)
+        setWorkforce(wf)
+        setDeposit(dt)
     }
     useEffect(() => {
         fetchDevice()
@@ -205,9 +213,9 @@ export default function Checkout(){
                             <p className="font-semibold">Adresse</p>
                             <p className="text-end">{adress}<br />{zip + ", " + town}</p>
                         </div>
-                        <div className="flex flex-row py-3  border-b border-b-black" id="pricing">
+                        <div className="flex flex-row py-3  border-b border-b-black justify-between" id="pricing">
                             <p className="font-semibold">Total</p>
-                            <p></p>
+                            <p className="flex flex-row">{workforce ? ( workforce.decimal ): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
                         </div>
                     </div>
                 </div>

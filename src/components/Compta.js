@@ -131,9 +131,9 @@ export default function Comptabilite() {
                 idx + 1,
                 pre.name,
                 pre.type,
-                format(parseISO(pre.time), 'dd MMM yyy, HH:mm' ),
+                format(parseISO(pre.date), 'dd MMM yyy, HH:mm' ),
                 pre.payment,
-                pre.price + "€"
+                pre.total + "€"
             ])),
             
             additionalRows: [{

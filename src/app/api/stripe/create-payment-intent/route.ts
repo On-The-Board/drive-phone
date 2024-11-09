@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   const { amount } = data;
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 1400,
+      amount: amount,
       currency: "eur",
     });
 

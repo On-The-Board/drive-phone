@@ -18,6 +18,7 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         name: string
         img: string
         description: string
+        active: boolean
     }
     interface UserProps {
         id: string,
@@ -27,7 +28,7 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         role: string,
       }
     const deviceId = params.Id
-    const [device, setDevice] = useState<iDevice>({id: "", brand_id: "", name: "", img: "", description: ""})
+    const [device, setDevice] = useState<iDevice>({id: "", brand_id: "", name: "", img: "", description: "", active: true})
     const fetchDevice = async() => {
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
         setDevice(response)
@@ -46,6 +47,8 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         getUserSession()
     }, [])
 
+    const [active, setActive] = useState(device.active)
+
         return(
         <>
             <Navbar back={true}/>
@@ -54,14 +57,10 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                 <div className="px-12 text-black text-lg font-semibold grid grid-cols-3 lg:self-center">
                     <div className="col-start-1 col-end-2">
                         <p className="py-[1rem]">Model :</p>
-                        <p className="py-[1rem]">Stockage :</p>
                         <p className="py-[1rem]">Couleur :</p>
                     </div>
                     {device.name == "" ? (
                         <div className="col-span-2">
-                            <div className="py-[1rem]">
-                                <Skeleton className="w-full h-[1.75rem]"/>
-                            </div>
                             <div className="py-[1rem]">
                                 <Skeleton className="w-full h-[1.75rem]"/>
                             </div>
@@ -73,12 +72,6 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                         <div className="col-span-2">
                             <details className='flex flex-col collapse collapse-arrow'>
                                 <summary className="font-medium collapse-title">{device.name}</summary>
-                                <p className="text-sm lg:text-sm mx-2 collapse-content">
-                                    Hello
-                                </p>
-                            </details>
-                            <details className='flex flex-col collapse collapse-arrow'>
-                                <summary className="font-medium collapse-title">128GB</summary>
                                 <p className="text-sm lg:text-sm mx-2 collapse-content">
                                     Hello
                                 </p>
@@ -104,7 +97,8 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                     <Switch.Root
                         className="relative h-[25px] w-[42px] cursor-default rounded-full bg-gray-600 self-center shadow-[0_2px_10px] shadow-blackA4 outline-none focus:shadow-[0_0_0_2px] focus:shadow-black data-[state=checked]:bg-blue-600"
                         id="airplane-mode"
-                        checked={true}
+                        defaultChecked={device.active}
+                        onChange={() => {setActive(!active); console.log(active)}}
                     >
                         <Switch.Thumb className="block size-[21px] translate-x-0.5 rounded-full bg-white shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[19px]" />
                     </Switch.Root>

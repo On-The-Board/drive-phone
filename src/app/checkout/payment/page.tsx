@@ -13,6 +13,7 @@ import emailjs from "@emailjs/browser"
 import { getSession, useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
 import { Router } from "next/router"
+import { Skeleton } from "@/components/ui/skeleton"
 
 
 
@@ -50,11 +51,15 @@ export default function Payment(){
     const [dpmCheckerLink, setDpmCheckerLink] = useState("");
     const [confirmed, setConfirmed] = useState(false);
     const [posted, setPosted] = useState(false)
+    const [workforce, setWorkforce] = useState<any>()
+    const [deposit, setDeposit] = useState<any>()
 
     const fetchData = async() => {
         const {data} = await axios.post("/api/stripe/create-payment-intent", {
             data: { amount: 89 },})
-            setClientSecret(data)
+
+        setClientSecret(data)
+        
     }
     useEffect(() => {
         fetchData()
@@ -93,11 +98,15 @@ export default function Payment(){
         const zipRes = localStorage.getItem("zipcode") || ""
         const dateRes = localStorage.getItem("dateRes") || ""
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
+        const wf = await fetch("/api/data/workforce").then((response) => response.json())
+        const dt = await fetch("/api/data/deposit").then((response) => response.json())
         setDevice(response)
         setAdress(adressRes)
         setDate(dateRes)
         setCity(cityRes)
         setZipcode(zipRes)
+        setWorkforce(wf)
+        setDeposit(dt)
     }
     useEffect(() => {
         fetchDevice()
@@ -108,8 +117,10 @@ export default function Payment(){
             userId: "4b6255cd-a38f-45bf-bb67-73e39b478d74",
             name: localStorage.getItem("name") + " " + localStorage.getItem("surname"),
             date: localStorage.getItem("dateRes"),
+            phone: localStorage.getItem("phone"),
             phoneId: localStorage.getItem("deviceId"),
             piecesId: "à",
+            phoneName: localStorage.getItem("deviceName"),
             address: localStorage.getItem("address"),
             city: localStorage.getItem("city"),
             zipCode: localStorage.getItem("zipcode"),
@@ -208,9 +219,9 @@ export default function Payment(){
                                 <p className="font-semibold">Adresse</p>
                                 <p className="text-end">{adress}<br /> {zipcode}, {city}</p>
                             </div>
-                            <div className={`flex flex-row py-3  ${confirmed ? "border-t border-t-white" : " border-b border-b-black"}`} id="pricing">
+                            <div className={`flex flex-row py-3 justify-between ${confirmed ? "border-t border-t-white" : " border-b border-b-black"}`} id="pricing">
                                 <p className="font-semibold">Total</p>
-                                <p></p>
+                                <p className="flex flex-row">{workforce ? ( workforce.decimal ): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
                             </div>
                         </div>
                         <div className={`mt-5 flex flex-col`} id="payment">
@@ -219,7 +230,7 @@ export default function Payment(){
                                     <>
                                         <div className="flex flex-row py-3 justify-between">
                                             <p className="font-semibold">Accompte</p>
-                                            <p></p>
+                                            <p className="flex flex-row">{workforce ? ( workforce.decimal / 100 * deposit.num ): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
                                         </div>
                                         <Elements options={options} stripe={stripePromise}>
                                             <CheckoutForm dpmCheckerLink={dpmCheckerLink} />

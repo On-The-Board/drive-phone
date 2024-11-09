@@ -52,6 +52,7 @@ export default function Nodeposit() {
             userId: "4b6255cd-a38f-45bf-bb67-73e39b478d74",
             name: localStorage.getItem("name") + " " + localStorage.getItem("surname"),
             date: localStorage.getItem("dateRes"),
+            phone: localStorage.getItem("phone"),
             phoneId: localStorage.getItem("deviceId"),
             phoneName: localStorage.getItem("deviceName"),
             piecesId: "à",
