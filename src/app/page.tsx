@@ -144,8 +144,6 @@ export default function Home() {
           id="my-video"
           className="video-js lg;pt-20 pt-12 px-2 lg:hidden"
           preload="auto"
-          autoPlay
-          loop
           controls
           width="100%"
         >
@@ -156,8 +154,6 @@ export default function Home() {
           id="my-video"
           className="video-js lg;pt-20 pt-12 px-2 lg:block hidden self-center mx-auto"
           preload="auto"
-          autoPlay
-          loop
           controls
         >
           <source src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" type="video/mp4" />
