@@ -2,10 +2,10 @@ import { prisma } from "@/lib/prisma"
 
 
 export default async function Params(){
-    const deposit = await prisma.data.findUnique({
+    const deposit:any = await prisma.data.findUnique({
         where:{id:"deposit"}
     })
-    const workforce = await prisma.data.findUnique({
+    const workforce:any = await prisma.data.findUnique({
         where:{id:"workforce"}
     })
 
