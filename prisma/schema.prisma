@@ -57,7 +57,7 @@ model Order {
   id        String  @id @unique
   userId    String?
   name      String
-  date      DateTime
+  date      DateTime @unique
   phone     String?
   phoneId   String
   phoneName String  @default("undefined")

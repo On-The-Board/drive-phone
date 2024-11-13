@@ -29,6 +29,15 @@ function classNames(...classes: any) {
 }
 
 export default function Calendar(){
+    const [meetings, setMeetings] = useState<any>([]);
+    const getMeetings = async () => {
+        const response = await fetch(`/api/orders`).then((response) => response.json());
+        setMeetings(response);
+    }
+    useEffect(() => {
+        getMeetings()
+    }, [])
+
     let today = startOfToday()
     let [selectedDay, setSelectedDay] = useState(today)
     let [selectedMeet, setSelectedMeet] = useState<Date>(new Date("05 October 2011 14:48 UTC"))
@@ -164,6 +173,18 @@ export default function Calendar(){
                                                 
                                                 >
                                                     {
+                                                        meetings.some((e: { date: string; }) => e.date === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 30), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 60), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 90), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 120), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 180), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 210), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")) ? (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => setMeetHours(morning)}
+                                                                className="btn btn-sm disabled:bg-white rounded-md line-through disabled:text-gray lg:px-10"
+                                                                disabled
+                                                            >
+                                                                <time dateTime={format(morning, 'dd-MM-yyyy')}>
+                                                                    {format(morning, 'h:mm')}
+                                                                </time>
+                                                            </button>
+                                                        ) : (
                                                         <button
                                                         type="button"
                                                         onClick={() => setMeetHours(morning) }
@@ -177,7 +198,7 @@ export default function Calendar(){
                                                             {format(morning, 'h:mm')}
                                                         </time>
                                                     </button>
-                                                    }
+                                                    )}
                                                     
                                                 </div>
                                             ))}
@@ -190,6 +211,18 @@ export default function Calendar(){
 
                                                 >
                                                     {
+                                                        meetings.some((e: { date: string; }) => e.date === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 30), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 60), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 90), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 120), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 180), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 210), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")) ? (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => setMeetHours(afternoon)}
+                                                                className="btn btn-sm disabled:bg-white rounded-md line-through disabled:text-gray lg:px-10"
+                                                                disabled
+                                                            >
+                                                                <time dateTime={format(afternoon, 'dd-MM-yyyy')}>
+                                                                    {format(afternoon, 'h:mm')}
+                                                                </time>
+                                                            </button>
+                                                        ) : (
                                                         <button
                                                             type="button"
                                                             onClick={() => setMeetHours(afternoon)}
@@ -203,7 +236,7 @@ export default function Calendar(){
                                                                 {format(afternoon, 'HH:mm')}
                                                             </time>
                                                         </button>
-                                                    }
+                                                    )}
                                                 </div>
                                             ))}
                                         </div>
@@ -215,6 +248,18 @@ export default function Calendar(){
 
                                                 >
                                                     {
+                                                        meetings.some((e: { date: string; }) => e.date === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 30), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 60), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 90), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 120), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 180), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 210), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")) ? (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => setMeetHours(evening)}
+                                                                className="btn btn-sm disabled:bg-white rounded-md line-through disabled:text-gray lg:px-10"
+                                                                disabled
+                                                            >
+                                                                <time dateTime={format(evening, 'dd-MM-yyyy')}>
+                                                                    {format(evening, 'h:mm')}
+                                                                </time>
+                                                            </button>
+                                                        ) : (
                                                         <button
                                                             type="button"
                                                             onClick={() => setMeetHours(evening)}
@@ -228,7 +273,7 @@ export default function Calendar(){
                                                                 {format(evening, 'HH:mm')}
                                                             </time>
                                                         </button>
-                                                    }
+                                                    )}
                                                 </div>
                                             ))}
                                         </div>

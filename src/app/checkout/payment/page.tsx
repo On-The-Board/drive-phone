@@ -91,12 +91,14 @@ export default function Payment(){
     const [city, setCity] = useState("")
     const [zipcode, setZipcode] = useState("")
     const [date, setDate] = useState("")
+    const [email, setEmail] = useState("")
     const fetchDevice = async() => {
         const deviceId = localStorage.getItem("deviceId")
         const adressRes = localStorage.getItem("address") || ""
         const cityRes = localStorage.getItem("city") || ""
         const zipRes = localStorage.getItem("zipcode") || ""
         const dateRes = localStorage.getItem("dateRes") || ""
+        const mailRes = localStorage.getItem("mail") || ""
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
         const wf = await fetch("/api/data/workforce").then((response) => response.json())
         const dt = await fetch("/api/data/deposit").then((response) => response.json())
@@ -107,6 +109,7 @@ export default function Payment(){
         setZipcode(zipRes)
         setWorkforce(wf)
         setDeposit(dt)
+        setEmail(mailRes)
     }
     useEffect(() => {
         fetchDevice()
@@ -179,10 +182,14 @@ export default function Payment(){
           });
       }
 
-    if(confirmed && !posted) {
+      function sendOrder() {
         postOrder()
         sendEmail()
         setPosted(true)
+      }
+
+    if(confirmed && !posted && email != "") {
+        sendOrder()
     }
 
     const noDeposit = async () => {
@@ -199,10 +206,13 @@ export default function Payment(){
                             <div className="w-full flex flex-col items-center pt-16">
                                 {SuccessIcon}
                                 <p className="pt-6">Commande Validée</p>
-                                <div className="flex flex-col pt-16 w-full">
-                                    Email :
-                                    <input type="text" placeholder="john@doe.com" className="bg-transparent h-8 border-b border-b-white outline-none" />
-                                </div >
+                                {email == "" ? 
+                                    <div className="flex flex-col pt-16 w-full">
+                                        Email :
+                                        <input type="text" placeholder="john@doe.com" className="bg-transparent h-8 border-b border-b-white outline-none" onChange={(e) => setEmail(e.target.value)}/>
+                                        <button className="text-white " onClick={() => sendOrder()}>Envoyer la facture</button>
+                                    </div > : <p className="pt-16">Facture envoyé à {email}</p>
+                                }
                             </div> : null
                         }
 
