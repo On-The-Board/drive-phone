@@ -69,7 +69,7 @@ export default function Home() {
         <div className="w-full bg-white bg-opacity-45 h-[26rem] rounded-md mt-24 self-center flex flex-col lg:hidden px-8">
           <Image src={rp} alt="reparation smartphone" className="w-full h-fit pt-8 self-center"/>
           <h1 className="self-center py-4">Réparation Smartphone</h1>
-          <p className="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati ipsum expedita omnis optio molestiae laboriosam mollitia ea, eligendi excepturi amet, repellat sed natus in neque vero vitae, disti...</p>
+          <p className="text-xs">Vous avez un problème avec votre smartphone ? Pas de panique ! Drive Phone vous propose un service de réparation de smartphones à domicile, sur Lyon et ses alentours. <br />Profitez de notre expertise pour redonner vie à votre appareil, dans le confort de votre maison. </p>
         </div>
         <div className="rounded-t-full bg-white w-16 h-8 self-center mt-12 flex align-middle">
           <Image src={arrowD} alt="" className="m-auto pt-1"/>
