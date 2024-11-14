@@ -16,14 +16,27 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
     }
     const deviceId = params.Id
     const [device, setDevice] = useState<iDevice>({id: "", brand_id: "", name: "", img: "", description: ""})
+    interface iPiece {
+        id: string
+        name:  string
+        category:  string
+        phoneIds:   string[]
+        price:  number
+        stock:  number
+    }
+    const [pieces, setPieces] = useState<any>([])
     const fetchDevice = async() => {
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
+        const res = await fetch(`/api/pieces/${deviceId}`).then((response) => response.json())
         setDevice(response)
+        console.log(res)
+        setPieces(res)
     }
     useEffect(() => {
         fetchDevice()
     }, [])
-    const pieces = [
+    
+    const piece = [
         {category: "Face avant", name: "Ecran", price: "163,79"},
         {category: "Face avant", name: "Caméra avant", price: "163,79"},
         {category: "Face avant", name: "Capteur Face ID", price: "163,79"},
@@ -61,7 +74,7 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                         ))}
                     </div>
                     <div className="text-black px-5 pt-5 overflow-auto h-fit pb-16 self-center lg:w-full w-full">
-                        {pieces.filter((piece) => piece.category == view).map((piece) => (
+                        {pieces.filter((piece: iPiece) => piece.category == view).map((piece: iPiece) => (
                             <div className="flex flex-row border-b h-10 items-center justify-between" key={piece.name}>
                                 <div>
                                     <p>{piece.name}</p>

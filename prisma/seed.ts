@@ -1,36 +1,27 @@
 import { PrismaClient } from "@prisma/client";
+import {v4 as uuidv4} from "uuid"
 
 const prisma = new PrismaClient();
 
 async function main() {
-    const delet = await prisma.brand.createMany({
+    const delet = await prisma.piece.createMany({
         data:
             [
-                { id: 'spice-phones-68', name: 'Spice', devices: 120 },
-                { id: 't_mobile-phones-55', name: 'T-Mobile', devices: 66 },
-                { id: 'tcl-phones-123', name: 'TCL', devices: 75 },
-                { id: 'tecno-phones-120', name: 'Tecno', devices: 146 },
-                { id: 'tel_me_-phones-21', name: 'Tel.Me.', devices: 7 },
-                { id: 'telit-phones-16', name: 'Telit', devices: 30 },
-                { id: 'thuraya-phones-49', name: 'Thuraya', devices: 1 },
-                { id: 'toshiba-phones-44', name: 'Toshiba', devices: 35 },
-                { id: 'ulefone-phones-124', name: 'Ulefone', devices: 99 },
-                { id: 'umidigi-phones-135', name: 'Umidigi', devices: 66 },
-                { id: 'unnecto-phones-91', name: 'Unnecto', devices: 30 },
-                { id: 'vertu-phones-39', name: 'Vertu', devices: 17 },
-                { id: 'verykool-phones-70', name: 'verykool', devices: 139 },
-                { id: 'vivo-phones-98', name: 'vivo', devices: 471 },
-                { id: 'vk_mobile-phones-37', name: 'VK Mobile', devices: 31 },
-                { id: 'vodafone-phones-53', name: 'Vodafone', devices: 87 },
-                { id: 'wiko-phones-96', name: 'Wiko', devices: 100 },
-                { id: 'wnd-phones-51', name: 'WND', devices: 5 },
-                { id: 'xcute-phones-43', name: 'XCute', devices: 4 },
-                { id: 'xiaomi-phones-80', name: 'Xiaomi', devices: 405 },
-                { id: 'xolo-phones-85', name: 'XOLO', devices: 81 },
-                { id: 'yezz-phones-78', name: 'Yezz', devices: 113 },
-                { id: 'yota-phones-99', name: 'Yota', devices: 3 },
-                { id: 'yu-phones-100', name: 'YU', devices: 13 },
-                { id: 'zte-phones-62', name: 'ZTE', devices: 384 }
+                {id: uuidv4(), category: "Face avant", name: "Ecran", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Face avant", name: "Caméra avant", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Face avant", name: "Capteur Face ID", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Face arrière", name: "Vitre arrière", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Face arrière", name: "Caméra", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Face arrière", name: "Flash", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Contour", name: "Nettoyage Port Lightning", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Contour", name: "Boutons Volume", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Contour", name: "Boutons Marche/Arret", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Contour", name: "Micro", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Intérieur", name: "CPU (Processeur)", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Intérieur", name: "Batterie", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Intérieur", name: "Carte Mère", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+        {id: uuidv4(), category: "Intérieur", name: "Capteur GPS", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]},
+                // { id: 'zte-phones-62', name: 'ZTE', devices: 384 }
             ]
     })
     return(delet)

@@ -34,14 +34,10 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                 <div className="px-12 text-black text-lg font-semibold grid grid-cols-3 lg:self-center">
                     <div className="col-start-1 col-end-2">
                         <p className="py-[1rem]">Model :</p>
-                        <p className="py-[1rem]">Stockage :</p>
                         <p className="py-[1rem]">Couleur :</p>
                     </div>
                     {device.name == "" ? (
                         <div className="col-span-2">
-                            <div className="py-[1rem]">
-                                <Skeleton className="w-full h-[1.75rem]"/>
-                            </div>
                             <div className="py-[1rem]">
                                 <Skeleton className="w-full h-[1.75rem]"/>
                             </div>
@@ -53,12 +49,6 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                         <div className="col-span-2">
                             <details className='flex flex-col collapse collapse-arrow'>
                                 <summary className="font-medium collapse-title">{device.name}</summary>
-                                <p className="text-sm lg:text-sm mx-2 collapse-content">
-                                    Hello
-                                </p>
-                            </details>
-                            <details className='flex flex-col collapse collapse-arrow'>
-                                <summary className="font-medium collapse-title">128GB</summary>
                                 <p className="text-sm lg:text-sm mx-2 collapse-content">
                                     Hello
                                 </p>
