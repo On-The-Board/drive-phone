@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { fr } from "date-fns/locale"
 import { format, parseISO } from "date-fns"
 import emailjs from "@emailjs/browser"
+import { Skeleton } from "@/components/ui/skeleton"
+
 
 
 
@@ -28,6 +30,9 @@ export default function Nodeposit() {
     const [zipcode, setZipcode] = useState("")
     const [date, setDate] = useState("")
     const [email, setEmail] = useState("")
+    const [workforce, setWorkforce] = useState<any>()
+    const [selectedPieces, setSelectedPieces] = useState<any>([])
+    let [sum, setSum] = useState(0)
     const fetchDevice = async() => {
         const deviceId = localStorage.getItem("deviceId")
         const adressRes = localStorage.getItem("address") || ""
@@ -35,6 +40,7 @@ export default function Nodeposit() {
         const zipRes = localStorage.getItem("zipcode") || ""
         const dateRes = localStorage.getItem("dateRes") || ""
         const mailRes = localStorage.getItem("mail") || ""
+        const piecesRes = JSON.parse(localStorage.getItem("prices")  || "")
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
         setDevice(response)
         setAdress(adressRes)
@@ -42,11 +48,12 @@ export default function Nodeposit() {
         setCity(cityRes)
         setZipcode(zipRes)
         setEmail(mailRes)
+        setSelectedPieces(piecesRes)
     }
     useEffect(() => {
         fetchDevice()
     }, [])
-
+    selectedPieces.forEach((element: any) => { sum += (element) });
     const postOrder = async () => {
         let body = {
             userId: "4b6255cd-a38f-45bf-bb67-73e39b478d74",
@@ -137,7 +144,7 @@ export default function Nodeposit() {
                 </div>
                 <div className={"flex flex-row py-3 border-t border-t-white"} id="pricing">
                     <p className="font-semibold">Total</p>
-                    <p></p>
+                    <p className="flex flex-row">{workforce ? ( workforce.decimal + sum ): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
                 </div>
             </div>
             <div className='w-full flex justify-center items-center pt-16 fixed bottom-16 left-0'>

@@ -62,6 +62,8 @@ export default function Checkout(){
     const [zip, setZip] = useState("")
     const [town, setTown] = useState("")
     const [workforce, setWorkforce] = useState<any>()
+    const [selectedPieces, setSelectedPieces] = useState<any>([])
+    let [sum, setSum] = useState(0)
     const [deposit, setDeposit] = useState<any>()
     const fetchDevice = async() => {
         const deviceId = localStorage.getItem("deviceId")
@@ -69,6 +71,7 @@ export default function Checkout(){
         const dateRes = localStorage.getItem("dateRes") || ""
         const zipRes = localStorage.getItem("zipcode") || ""
         const townRes = localStorage.getItem("city") || ""
+        const piecesRes = JSON.parse(localStorage.getItem("prices")  || "")
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
         const wf = await fetch("/api/data/workforce").then((response) => response.json())
         const dt = await fetch("/api/data/deposit").then((response) => response.json())
@@ -80,11 +83,13 @@ export default function Checkout(){
         setTown(townRes)
         setWorkforce(wf)
         setDeposit(dt)
+        setSelectedPieces(piecesRes)
     }
     useEffect(() => {
         fetchDevice()
     }, [])
-
+    selectedPieces.forEach((element: any) => { sum += (element) });
+    
     const [name, setName] = useState("")
     const [surname, setSurname] = useState("")
     const [phone, setPhone] = useState("")
@@ -215,7 +220,7 @@ export default function Checkout(){
                         </div>
                         <div className="flex flex-row py-3  border-b border-b-black justify-between" id="pricing">
                             <p className="font-semibold">Total</p>
-                            <p className="flex flex-row">{workforce ? ( workforce.decimal ): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
+                            <p className="flex flex-row">{workforce ? ( workforce.decimal + sum ): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
                         </div>
                     </div>
                 </div>

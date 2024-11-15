@@ -29,29 +29,12 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
         const res = await fetch(`/api/pieces/${deviceId}`).then((response) => response.json())
         setDevice(response)
-        console.log(res)
         setPieces(res)
     }
     useEffect(() => {
         fetchDevice()
     }, [])
     
-    const piece = [
-        {category: "Face avant", name: "Ecran", price: "163,79"},
-        {category: "Face avant", name: "Caméra avant", price: "163,79"},
-        {category: "Face avant", name: "Capteur Face ID", price: "163,79"},
-        {category: "Face arrière", name: "Vitre arrière", price: "163,79"},
-        {category: "Face arrière", name: "Caméra", price: "163,79"},
-        {category: "Face arrière", name: "Flash", price: "163,79"},
-        {category: "Contour", name: "Nettoyage Port Lightning", price: "163,79"},
-        {category: "Contour", name: "Boutons Volume", price: "163,79"},
-        {category: "Contour", name: "Boutons Marche/Arret", price: "163,79"},
-        {category: "Contour", name: "Micro", price: "163,79"},
-        {category: "Intérieur", name: "CPU (Processeur)", price: "163,79"},
-        {category: "Intérieur", name: "Batterie", price: "163,79"},
-        {category: "Intérieur", name: "Carte Mère", price: "163,79"},
-        {category: "Intérieur", name: "Capteur GPS", price: "163,79"},
-    ]
     const focus = [
         "Face avant",
         "Face arrière",
@@ -60,6 +43,26 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
     ]
 
     const [view, setView] = useState(focus[0])
+    const [selectedPieces, setSelectedPieces] = useState<any>([])
+    const [prices, setPrices] = useState<any>([])
+    const [ready, setReady] = useState(false)
+
+    async function addPiece(piece: any) {
+        if (selectedPieces.includes(piece.id)){
+            const index = selectedPieces.indexOf(piece.id)
+            selectedPieces.splice(index, 1)
+            setSelectedPieces(selectedPieces)
+            const indexPrice = prices.indexOf(piece.price)
+            prices.splice(index, 1)
+            setPrices(prices)
+        }else {
+            selectedPieces.push(piece.id)
+            setSelectedPieces(selectedPieces)
+            prices.push(piece.price)
+            setPrices(prices)
+        }
+        selectedPieces.length > 0 ? setReady(true) : setReady(false)
+    }
     return(
         <>
             <Navbar back={true}/>
@@ -75,23 +78,22 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                     </div>
                     <div className="text-black px-5 pt-5 overflow-auto h-fit pb-16 self-center lg:w-full w-full">
                         {pieces.filter((piece: iPiece) => piece.category == view).map((piece: iPiece) => (
-                            <div className="flex flex-row border-b h-10 items-center justify-between" key={piece.name}>
+                            <label htmlFor={piece.id} className="flex flex-row border-b h-10 items-center justify-between" key={piece.name}>
                                 <div>
                                     <p>{piece.name}</p>
                                 </div>
                                 <div className="flex flex-row">
                                     <p>{piece.price}€</p>
-                                    <input type="checkbox" className="ml-2 accent-blue-600"/>
+                                    <input type="checkbox" defaultChecked={selectedPieces.includes(piece.id) ? true : false} id={piece.id} className="ml-2 accent-blue-600" onChange={(e) => addPiece(piece)}/>
                                 </div>
-                            </div>
+                            </label>
                         ))}
                     </div>
                 </div>
                 <div className='w-full flex justify-center items-center fixed bottom-16 left-0'>
-                    <a href={`/calendar`} className="text-blue-600 self-center align-middle flex text-lg font-semibold">
-                        <button>
+                    <a href={`/calendar`} className={`${ ready ? "text-blue-600 self-center align-middle flex text-lg font-semibold" : "text-gray-500 self-center align-middle flex text-lg font-semibold" }`}>
+                        <button disabled={!ready} onClick={() => {localStorage.setItem("pieces", JSON.stringify(selectedPieces)); localStorage.setItem("prices", JSON.stringify(prices))}}>
                             Valider
-                            <img src="/icons/arrow_left.png" alt="" />
                         </button>
                     </a>
                 </div>
