@@ -90,7 +90,7 @@ export default function Nodeposit() {
         
         // Create a new object that contains dynamic template params
         const templateParams = {
-          to_name: email,
+          to_email: email,
           from_name: "digitaldashotb@gmail.com",
           message: "test",
         };

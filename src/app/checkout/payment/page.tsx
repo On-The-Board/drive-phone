@@ -14,6 +14,7 @@ import { getSession, useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
 import { Router } from "next/router"
 import { Skeleton } from "@/components/ui/skeleton"
+import {sendEmail} from "@/utils/email"
 
 
 
@@ -175,32 +176,21 @@ export default function Payment(){
         }
     }
 
-    const sendEmail = () => {
-        const serviceId = "service_6tywyep";
-        const templateId = "template_ma19u8t";
-        const publicKey = "QVOsrAGVv4ZGCPv77";
-        
-        // Create a new object that contains dynamic template params
-        const templateParams = {
-          to_name: "habib.hadjadj89@gmail.com",
-          from_name: "digitaldashotb@gmail.com",
-          message: "test",
-        };
-        
-        // Send the email using EmailJS
-        emailjs
-          .send(serviceId, templateId, templateParams, publicKey)
-          .then((response) => {
-            console.log("Email sent successfully!", response);
-          })
-          .catch((error) => {
-            console.error("Error sending email:", error);
-          });
-      }
+    const sendMail = async () =>{
+        try {
+
+            sendEmail({to: email, from: "digitaldashotb@gmail.com", subject: "Commande Drive Phone",message: "Merci pour votre commande !", img: device.img})
+            console.log('Email sent successfully! WTF');
+        }
+         catch (error) {
+         console.error('Error sending email:', error);
+        // Handle error
+         }
+    }
 
       function sendOrder() {
         postOrder()
-        sendEmail()
+        sendMail()
         setPosted(true)
       }
 
