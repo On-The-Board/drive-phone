@@ -5,8 +5,8 @@ const brevo = require('@getbrevo/brevo');
 export async function sendEmail({ to, from, subject, message, img }) {
     let apiInstance = new brevo.TransactionalEmailsApi();
     
-    let apiKey = apiInstance.authentications['apiKey'];
-    apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
+    let apiKey = apiInstance.authentications['api-key'];
+    apiKey.apiKey = "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";
 
 
     const sendSmtpEmail = new brevo.SendSmtpEmail();
