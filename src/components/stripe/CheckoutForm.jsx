@@ -28,7 +28,7 @@ export default function CheckoutForm({dpmCheckerLink}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "https:/localhost:3000/checkout/payment",
+        return_url: "https://drive-phone.vercel.app/checkout/payment",
       },
     });
 
