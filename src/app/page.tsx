@@ -124,15 +124,15 @@ export default function Home() {
           </div>
           <p className="pt-12  lg:pt-8 leading-5 text-blue-600 lg:text-center lg:text-2xl">Suivez-nous <br className="lg:hidden"/>sur les réseaux sociaux</p>
           <div className="flex flex-row justify-between pt-16">
-            <a href="" className="text-blue-600 text-sm w-full flex flex-col text-center">
+            <a href="https://www.instagram.com/drv.phone/?utm_source=ig_web_button_share_sheet" className="text-blue-600 text-sm w-full flex flex-col text-center">
               <Image src={insta} alt="" width={40} className="self-center pb-2"/>
               @drv.phone
             </a>
-            <a href="" className="text-blue-600 text-sm w-full flex flex-col text-center">
+            <a href="https://www.snapchat.com/add/drive_phone?share_id=uZMlzMXlkFI&locale=fr-FR" className="text-blue-600 text-sm w-full flex flex-col text-center">
               <Image src={snap} alt="" width={40} className="self-center pb-2"/>
               @drive_phone
             </a>
-            <a href="" className="text-blue-600 text-sm w-full flex flex-col text-center">
+            <a href="https://www.tiktok.com/@drive.phone7?is_from_webapp=1&sender_device=pc" className="text-blue-600 text-sm w-full flex flex-col text-center">
               <Image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAERUlEQVR4nO2aTYgcRRTH26zGGDXqyUyMGTNdb3ZNNB48KIqo54gfyCQBJbvzqm1QEBET8Qv24Aeo5CIBESSIHjzoyYsQiOA3mE1y0IjZIBtW4+6817NRN3GjJml53VUznXEnOxPH7W6YPzRDdVdXvV/Xx3tVNY7TV199nZeUR/copD1K83HQHKZ5KeRZsQWQNnYHgfxS2sZDOyjNL3bcEtFLyCcBeduQTwUnZQ35VBBbIpsi2zpoGdD0iQHZ5mRMSvPTcVejPQtnRp6VzMXh2konYyoO11bG3Yt+XzCz7YtORgWd2vd/gADS7n8NXOQvndFwSc5A+MR8M5Dr1dfnC0TzH1JmwT+6XNIK6RVTz1O5bJGCASnr6Q2g6Qxomtzw8NSluW0RESB/YBzc+92MFcgCyOrK5CX23lo9fbXSdMQ4uI8GkVflAWQu9k0Ty5L3SyMEoHnctMxxQHoPPPbdkfq1uQIRDSJfrjS9bh0xxFA/ZnWwRzGSenz84jhNuxXyZwJh86iHghVlTZuNjzmRD5CmU/x43WO1y2y+gn90eaZBlKY/pcx1lXBpsg6z1jiksPbgnaPhhamDlPyZNUrzM0rzp0rTz8bwDxcCUcgHmlB0DJC+TgVEplOleUdjndByNUCQ/pL0zX54UbIOSSukJ5TmibMXT3Rk0UAkpFZI35iveUb6O1SDrVCt3TQPyN+Slu7Trg6Ju8rI9yskdHVNLQpI1JeRx8xUOQEe3XGuMjoB6VTQSxCFtNP05cN2ASZGAtIWhfROaxmg6VSUroQDmQEpjRBIn5evPDgyfaPcE08Mmve3jJGpTIOo5g7L25KOp0w62JxKCaEa3JJcKgPS6ahMExxmBeSAPHeR747Smp40A/5gMro9u0wJ2aXM8IIsgczKc7uOEN8RgVVpU/syMwZSHJ5YZp7PJfKPn3PZOhouiScGOh2lK+GAacFTqYGI7BZqc9nKX0TvVIMHnHlUwvoNxvDJxmZbPJ5+cdIEAU3fyvOyrt0epZGeM1PxmPXcDVXCgWjPNgZ50+TfaPzP5+mCIL1qDHlD0iV/5gpA+smEFntd5HtBB9e7Ht9nPb9CqisvWG0+xLtxHcGzqYK4Xn298QtzZW9qrdwTf2Jh5rmmlBfc2sgn7yKfvA5niqmCiAB5l8m3z85epmVeAE1fyQovHjv0/JpHf71KnheHj12pNP1gWnOHc56CXoKI0QrpewtjW6adyj4PNfIjjyU3IboV9Dr6FeMTMHMyZtxHardZI+XX1XyXQn7LhvESxnS6W7JoIM3uxLtsCGKv1lMuE5vtbOf5UwdJ+gql6TVA+s7uYckqT8IZpfllCTSdHgkWc83e7TZoN4JO7ZNDFMmYhSO3VsHW4BrjXH9zFlLDEyNvd/J89AYmhDCHodv/6yzTCw0ir4ogujkMFckRcBsvnZ/jaSuhjv4wkNiTzd0fBvrqqy/H6h/Z+wojRao/LgAAAABJRU5ErkJggg==" alt="" width={40} height={40} className="self-center pb-2"/>
               @drive.phone7
             </a>
