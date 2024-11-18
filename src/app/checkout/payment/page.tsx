@@ -61,6 +61,7 @@ export default function Payment(){
     const [confirmed, setConfirmed] = useState(false);
     const [posted, setPosted] = useState(false)
     const [workforce, setWorkforce] = useState<Workforce>({id: "", name: "", text: "", num: 0, decimal: 0})
+    const [delivery, setDelivery] = useState<Workforce>({id: "", name: "", text: "", num: 0, decimal: 0})
     const [deposit, setDeposit] = useState<any>()
     
     // Create PaymentIntent as soon as the page loads
@@ -87,6 +88,7 @@ export default function Payment(){
     const [date, setDate] = useState("")
     const [email, setEmail] = useState("")
     const [selectedPieces, setSelectedPieces] = useState<any>([])
+    const [sku, setSku] = useState<number>()
     let [sum, setSum] = useState(0)
     const fetchDevice = async() => {
         const deviceId = localStorage.getItem("deviceId")
@@ -99,15 +101,18 @@ export default function Payment(){
         const piecesRes = JSON.parse(localStorage.getItem("prices")  || "")
         const wf = await fetch("/api/data/workforce").then((response) => response.json())
         const dt = await fetch("/api/data/deposit").then((response) => response.json())
+        const dl = await fetch("/api/data/delivery").then((response) => response.json())
         setDevice(response)
         setAdress(adressRes)
         setDate(dateRes)
         setCity(cityRes)
         setZipcode(zipRes)
         setWorkforce(wf)
+        setDelivery(dl)
         setDeposit(dt)
         setEmail(mailRes)
         setSelectedPieces(piecesRes)
+        setSku(Math.floor(100000 + Math.random() * 900000))
     }
     useEffect(() => {
         fetchDevice()
@@ -123,7 +128,7 @@ export default function Payment(){
     }
     useEffect(() => {
         if (workforce.decimal != 0 && sum != 0){
-            fetchData(((workforce.decimal + sum) / 100) * deposit.num)
+            fetchData(((workforce.decimal + sum + delivery.num) / 100) * deposit.num)
         }
     }, [workforce, sum]);
     useEffect(() => {
@@ -132,21 +137,23 @@ export default function Payment(){
           ) ? true : false);
     });
 
+
     const postOrder = async () => {
         let body = {
             userId: "4b6255cd-a38f-45bf-bb67-73e39b478d74",
+            sku: sku,
             name: localStorage.getItem("name") + " " + localStorage.getItem("surname"),
             date: localStorage.getItem("dateRes"),
             phone: localStorage.getItem("phone"),
             phoneId: localStorage.getItem("deviceId"),
-            piecesId: "à",
+            piecesId: localStorage.getItem("pieces"),
             phoneName: localStorage.getItem("deviceName"),
             address: localStorage.getItem("address"),
             city: localStorage.getItem("city"),
             zipCode: localStorage.getItem("zipcode"),
             status: "in process",
-            total: 120.00,
-            subtotal: 90.00
+            total:  workforce.decimal + sum + delivery.num,
+            subtotal: parseFloat(((( workforce.decimal + sum + delivery.num) / 100) * (100 - deposit.num )).toFixed(2))
 
         }
         try {
@@ -155,22 +162,6 @@ export default function Payment(){
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(body)
             })
-            // await prisma.order.create({
-            //     data: {
-            //         id: "test",
-            //         userId: "4b6255cd-a38f-45bf-bb67-73e39b478d74",
-            //         name: localStorage.getItem("name") + " " + localStorage.getItem("surname"),
-            //         date: localStorage.getItem("dateRes") || "",
-            //         phoneId: localStorage.getItem("deviceId") || "",
-            //         piecesId: ["à"],
-            //         address: localStorage.getItem("address") || "",
-            //         zipCode: localStorage.getItem("zipcode") || "",
-            //         city: localStorage.getItem("city") || "",
-            //         status: "in process",
-            //         total: 120.00,
-            //         subtotal: 90.00
-            //     },
-            // })
         } catch (error) {
             console.error(error)
         }
@@ -179,7 +170,7 @@ export default function Payment(){
     const sendMail = async () =>{
         try {
 
-            sendEmail({to: email, from: "digitaldashotb@gmail.com", subject: "Commande Drive Phone",message: "Merci pour votre commande !", img: device.img})
+            sendEmail({to: email, from: "digitaldashotb@gmail.com", subject: "Commande Drive Phone",message: "Merci pour votre commande !", img: device.img, date: format(date, "dd MMMM, HH:mm", {locale: fr}), phoneName: device.name, name: localStorage.getItem("surname"), price: (workforce.decimal + sum + delivery.num).toFixed(2), sku: sku, adress: adress +" "+ zipcode +" "+ city })
             console.log('Email sent successfully! WTF');
         }
          catch (error) {
@@ -198,10 +189,10 @@ export default function Payment(){
         sendOrder()
     }
 
-    const noDeposit = async () => {
-        setConfirmed(true)
-        redirect(`/nodeposit`)
-    }
+    // const noDeposit = async () => {
+    //     setConfirmed(true)
+    //     redirect(`/nodeposit`)
+    // }
 
     return(
         <>{confirmed ? null :
@@ -237,7 +228,7 @@ export default function Payment(){
                             </div>
                             <div className={`flex flex-row py-3 justify-between ${confirmed ? "border-t border-t-white" : " border-b border-b-black"}`} id="pricing">
                                 <p className="font-semibold">Total</p>
-                                <p className="flex flex-row">{workforce ? ( workforce.decimal + sum ): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
+                                <p className="flex flex-row">{workforce ? ( workforce.decimal + sum + delivery.num ): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
                             </div>
                         </div>
                         <div className={`mt-5 flex flex-col`} id="payment">
@@ -246,12 +237,12 @@ export default function Payment(){
                                     <>
                                         <div className="flex flex-row py-3 justify-between">
                                             <p className="font-semibold">Accompte</p>
-                                            <p className="flex flex-row">{workforce ? ((( workforce.decimal + sum) / 100) * deposit.num ).toFixed(2): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
+                                            <p className="flex flex-row">{workforce ? ((( workforce.decimal + sum + delivery.num)  / 100) * deposit.num ).toFixed(2): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
                                         </div>
                                         <Elements options={options} stripe={stripePromise}>
                                             <CheckoutForm dpmCheckerLink={dpmCheckerLink} />
                                         </Elements>
-                                        {user?.role == "master" ? <a href="/checkout/nodeposit" className="w-full text-center mt-10 text-blue-600 font-semibold" onClick={() => noDeposit()}>Continuer sans accompte</a> : null}
+                                        {user?.role == "master" ? <a href="/checkout/nodeposit" className="w-full text-center mt-10 text-blue-600 font-semibold">Continuer sans accompte</a> : null}
                                     </>
                             )}
                         </div>

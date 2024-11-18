@@ -55,6 +55,7 @@ model Piece {
 
 model Order {
   id        String  @id @unique
+  sku       Int?
   userId    String?
   name      String
   date      DateTime @unique

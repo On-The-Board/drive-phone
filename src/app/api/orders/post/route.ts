@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma"
 import { NextApiRequest, NextApiResponse } from "next"
 import { NextResponse, NextRequest } from "next/server";
-import { uuid } from "uuidv4";
+import { v4 } from "uuid";
 
 export const POST = async(request: Request) => {
 
@@ -9,6 +9,7 @@ export const POST = async(request: Request) => {
     try {
         const body = await request.json();
         const { userId,
+            sku,
             name, 
             date,
             phone,
@@ -21,12 +22,13 @@ export const POST = async(request: Request) => {
             status,
             total,
             subtotal} = body
-        const id = uuid()
+        const id = v4()
 
         const result = await prisma.order.create({
             data: {
                 id,
                 userId,
+                sku,
                 name,
                 date,
                 phoneId,
