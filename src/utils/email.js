@@ -17,8 +17,8 @@ export async function sendEmail({ to, from, subject, message, img }) {
     sendSmtpEmail.params = {"img": img}
   
     try {
-      await sendinblueClient.sendTransacEmail(sendSmtpEmail);
-      console.log('Email sent successfully! WTF2');
+      await apiInstance.sendTransacEmail(sendSmtpEmail)
+      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
     } catch (error) {
       console.error('Error sending email:', error);
       throw error;
