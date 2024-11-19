@@ -27,7 +27,7 @@ export default function CheckoutForm({dpmCheckerLink}) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/checkout/payment",
+        return_url: "https://drive-phone.vercel.app/checkout/payment",
       },
     });
 

@@ -64,23 +64,23 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         selectedPieces.length > 0 ? setReady(true) : setReady(false)
     }
     return(
-        <>
+        <main className="h-screen overflow-hidden">
             <Navbar back={true}/>
-            <main className="h-screen flex flex-col lg:flex-row lg:mx-[20vw]">
-                { device.img == "" ? <div className="p-20 pb-16 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <div className="w-full lg:w-[70%] flex"><img src={device.img} alt=""  className="p-20 pb-16 pt-36 lg:w-[20vw] w-full lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/></div>}
+            <div className="flex flex-col lg:flex-row lg:mx-[20vw]">
+                { device.img == "" ? <div className="p-20 pb-12 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <div className="w-full lg:w-[70%] flex"><img src={device.img} alt=""  className="p-20 pb-12 pt-36 lg:w-[20vw] w-full lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/></div>}
                 <div className="flex flex-col w-full lg:flex-col lg:self-center lg:w-[30%]">
-                    <div className="flex flex-row overflow-x-auto whitespace-nowrap w-full px-36 h-fit self-center">
+                    <div className="flex flex-row pb-4 overflow-x-auto whitespace-nowrap w-full px-36 h-fit self-center">
                         {focus.map((title) => (
                             <p key={title} id={title} className={`text-black px-5 ${view == title ? "font-semibold justify-center" : "text-gray-500 text-sm"}`} onClick={() => {setView(title)}}>
                                 {title}
                             </p>
                         ))}
                     </div>
-                    <div className="text-black px-5 pt-5 overflow-auto h-fit pb-16 self-center lg:w-full w-full">
+                    <div className="text-black px-5 pt-5 overflow-scroll h-fit max-h-44 lg:max-h-fit pb-16 self-center lg:w-full w-full">
                         {pieces.filter((piece: iPiece) => piece.category == view).map((piece: iPiece) => (
-                            <label htmlFor={piece.id} className="flex flex-row border-b h-10 items-center justify-between" key={piece.name}>
+                            <label htmlFor={piece.id} className="flex flex-row border-b h-10 items-center justify-between my-4" key={piece.name}>
                                 <div>
-                                    <p>{piece.name}</p>
+                                    <p className="leading-5">{piece.name}</p>
                                 </div>
                                 <div className="flex flex-row">
                                     <p>{piece.price}€</p>
@@ -97,8 +97,8 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                         </button>
                     </a>
                 </div>
-            </main>
-        </>
+            </div>
+        </main>
     )
 }
 

@@ -84,6 +84,9 @@ export function Pieces(){
                     <input type="text"  placeholder="Rechercher..." className="w-full bg-white border-b border-b-black placeholder:text-black Shadow p-2" onChange={(e) => searchClient(e)}/>
                 </div> */}
             </div>
+            <div id="filters" className="w-full flex flex-row">
+
+            </div>
             <div className="flex flex-col gap-5 Shadow mt-5 rounded-xl p-5">
                 <ul>
                     <li className='my-2 flex justify-between items-center'>
@@ -97,12 +100,22 @@ export function Pieces(){
                     </li>
                     {iencli.map(c => (
                         <li className='my-2 flex mt-5 justify-between items-center border-b' onClick={() => {document.getElementById(c.id).showModal(); setPname(c.name); setPcategory(c.category); setPprice(c.price); setPstock(c.stock); setPpId(c.phoneIds)}}>
-                            <div className="flex flex-row lg:grid lg:grid-cols-5 gap-y-2 lg:gap-y-0 justify-between w-full text-sm lg:text-base">
-                                <p className="flex flex-row"><img src={devices.filter((d) => d.id == c.phoneIds).map((d) => d.img)} width={50} height={50} alt=""  className="hidden lg:flex w-5 mr-5 py-2"/>{devices.filter((d) => d.id == c.phoneIds).map((d) => d.name)}</p>
-                                <p>{c.name}</p>
+                            <div className="flex lg:grid lg:grid-cols-5 gap-y-2 gap-x-2 lg:gap-y-0 lg:justify-between w-full text-sm lg:text-base">
+                                <p className="hidden lg:flex flex-row content-center"><img src={devices.filter((d) => d.id == c.phoneIds).map((d) => d.img)} width={50} height={50} alt=""  className="flex w-5 mr-5 py-2"/>{devices.filter((d) => d.id == c.phoneIds).map((d) => d.name)}</p>
+                                <p className="hidden lg:flex content-center">{c.name}</p>
                                 <p className="hidden lg:flex flex-row gap-2">{c.category}</p>
-                                {c.stock <= 5 ? <p className="text-red-600">{c.stock} !</p> : <p>{c.stock}</p>}
-                                <p className="overflow-x-scroll">{c.price}€</p>
+                                {c.stock <= 5 ? <p className="text-red-600 content-center hidden lg:flex">{c.stock} !</p> : <p className="hidden lg:flex">{c.stock}</p>}
+                                <p className="overflow-x-scroll hidden lg:flex">{c.price}€</p>
+                                <div className="lg:hidden">
+                                    <img src={devices.filter((d) => d.id == c.phoneIds).map((d) => d.img)} width={80} height={80} alt=""  className="flex w-10 mr-5 py-2"/>
+                                </div>
+                                <div className="lg:hidden flex flex-col text-start h-full">
+                                    <p className="content-center w-[70vw]">{c.name + " "}<span className="text-blue-600"> {devices.filter((d) => d.id == c.phoneIds).map((d) => d.name)}</span></p>
+                                    <div className="flex flex-row gap-2 pt-1">
+                                        {c.stock <= 5 ? <p className="bg-gray-200 rounded-sm text-xs p-0.5 text-red-600 content-center">stock: {c.stock}!</p> : <p className="bg-gray-200 rounded-sm text-xs p-0.5">stock: {c.stock}</p>}
+                                        <p className="bg-gray-200 rounded-sm text-xs p-0.5">{c.price}€</p>
+                                    </div>
+                                </div>
                             </div>
                             <dialog id={c.id} className="modal">
                                         <div className="modal-box bg-white gap-y-3 flex flex-col">
