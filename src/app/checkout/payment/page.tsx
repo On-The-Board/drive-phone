@@ -251,8 +251,7 @@ export default function Payment(){
                     <a href="/" className="text-white self-center align-middle flex text-lg font-semibold">
                         <button>
                             Retour à l'accueil
-                            <img src="/icons/arrow_left.png" alt="" />
-                        </button>
+                            </button>
                     </a>
                 </div> : null}
             </main>

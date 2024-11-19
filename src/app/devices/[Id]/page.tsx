@@ -30,8 +30,8 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         <>
             <Navbar back={true}/>
             <main className="h-screen flex flex-col lg:flex-row lg:mx-[20vw]">
-                { device.img == "" ? <div className="p-20 pb-16 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <img src={device.img} alt=""  className="p-20 pb-16 pt-36 lg:w-[20vw] lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/>}
-                <div className="px-12 text-black text-lg font-semibold grid grid-cols-3 lg:self-center">
+                { device.img == "" ? <div className="p-20 pb-16 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <img src={device.img} alt=""  className="p-20 pb-16 pt-36 w-80 mx-auto lg:w-[20vw] lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/>}
+                <div className="px-12 h-full content-center pb-16 text-black text-lg font-semibold grid grid-cols-3 lg:self-center">
                     <div className="col-start-1 col-end-2">
                         <p className="py-[1rem]">Model :</p>
                         <p className="py-[1rem]">Couleur :</p>
@@ -62,12 +62,11 @@ const Device: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                         </div>
                     )}
                 </div>
-                <div className='w-full flex justify-center items-center pt-16 fixed bottom-16 left-0'>
+                <div className='w-full flex justify-center items-center pt-16 fixed bottom-[5vh] left-0'>
                     <a href={`/pieces/${deviceId}`} className="text-blue-600 self-center align-middle flex text-lg font-semibold">
                         <button onClick={() => {localStorage.setItem("deviceId", deviceId); localStorage.setItem("deviceName", device.name)}}>
                             Valider
-                            <img src="/icons/arrow_left.png" alt="" />
-                        </button>
+                            </button>
                     </a>
                 </div>
             </main>

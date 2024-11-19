@@ -36,11 +36,10 @@ export default function GPS(){
                     </div>
                 </div>
             </div>
-            <div className='w-full flex justify-center items-center fixed bottom-16 left-0'>
+            <div className='w-full flex justify-center items-center fixed bottom-[5vh] left-0'>
                 <a href={`${isIdentified ? "/checkout" : ""}`} className={`${!isIdentified ? "text-gray-500 cursor-not-allowed self-center align-middle flex text-lg font-semibold" : "text-blue-600 self-center align-middle flex text-lg font-semibold"}`}>
                     <button>
                         Valider
-                        <img src="/icons/arrow_left.png" alt="" />
                     </button>
                 </a>
             </div>

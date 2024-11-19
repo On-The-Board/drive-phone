@@ -155,8 +155,7 @@ export default function Checkout(){
                     <a href="/checkout/payment" className={`${!isIdentified ? "text-gray-500 self-center align-middle flex text-lg font-semibold" : "text-blue-600 self-center align-middle flex text-lg font-semibold"}`}>
                         <button onClick={() => setStep(step + 1)} disabled={!isIdentified}>
                             Valider
-                            <img src="/icons/arrow_left.png" alt="" />
-                        </button>
+                            </button>
                     </a>
                 </div>
             )

@@ -67,7 +67,7 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         <main className="h-screen overflow-hidden">
             <Navbar back={true}/>
             <div className="flex flex-col lg:flex-row lg:mx-[20vw]">
-                { device.img == "" ? <div className="p-20 pb-12 pt-36 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <div className="w-full lg:w-[70%] flex"><img src={device.img} alt=""  className="p-20 pb-12 pt-36 lg:w-[20vw] w-full lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/></div>}
+                { device.img == "" ? <div className="p-20 pb-12 pt-16 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <div className="w-full lg:w-[70%] flex"><img src={device.img} alt=""  className="p-20 pb-12 pt-16 w-80 lg:w-[20vw] mx-auto lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/></div>}
                 <div className="flex flex-col w-full lg:flex-col lg:self-center lg:w-[30%]">
                     <div className="flex flex-row pb-4 overflow-x-auto whitespace-nowrap w-full px-36 h-fit self-center">
                         {focus.map((title) => (
@@ -90,7 +90,7 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                         ))}
                     </div>
                 </div>
-                <div className='w-full flex justify-center items-center fixed bottom-16 left-0'>
+                <div className='w-full flex justify-center items-center fixed bottom-[5vh] left-0'>
                     <a href={`/calendar`} className={`${ ready ? "text-blue-600 self-center align-middle flex text-lg font-semibold" : "text-gray-500 self-center align-middle flex text-lg font-semibold" }`}>
                         <button disabled={!ready} onClick={() => {localStorage.setItem("pieces", JSON.stringify(selectedPieces)); localStorage.setItem("prices", JSON.stringify(prices))}}>
                             Valider

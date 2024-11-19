@@ -189,7 +189,7 @@ export default function Calendar(){
                                                         type="button"
                                                         onClick={() => setMeetHours(morning) }
                                                         className={classNames(
-                                                            isEqual(morning, selectedMeet) ? ('btn btn-sm text-white bg-blue-600  hover:bg-blue-200 hover:text-black  border-none font-semibold rounded-md lg:px-10 self-center w-full'):
+                                                            isEqual(morning, selectedMeet) ? ('btn btn-sm text-white bg-blue-600  hover:bg-blue-600 hover:text-white  border-none font-semibold rounded-md lg:px-10 self-center w-full'):
                                                             ('btn btn-sm rounded-md text-black bg-white Shadow hover:bg-gray-200 border-none lg:px-10 self-center w-full font-normal')
                                                             
                                                         )}
@@ -227,7 +227,7 @@ export default function Calendar(){
                                                             type="button"
                                                             onClick={() => setMeetHours(afternoon)}
                                                             className={classNames(
-                                                                isEqual(afternoon, selectedMeet) ? ('btn btn-sm text-white bg-blue-600  hover:bg-blue-200 hover:text-black  border-none font-semibold rounded-md lg:px-10 self-center w-full'):
+                                                                isEqual(afternoon, selectedMeet) ? ('btn btn-sm text-white bg-blue-600  hover:bg-blue-600 hover:text-white  border-none font-semibold rounded-md lg:px-10 self-center w-full'):
                                                                 ('btn btn-sm rounded-md text-black bg-white Shadow hover:bg-gray-200 border-none lg:px-10 self-center w-full font-normal')
 
                                                             )}
@@ -264,7 +264,7 @@ export default function Calendar(){
                                                             type="button"
                                                             onClick={() => setMeetHours(evening)}
                                                             className={classNames(
-                                                                isEqual(evening, selectedMeet) ? ('btn btn-sm text-white bg-blue-600 hover:bg-blue-200 hover:text-black border-none font-semibold rounded-md lg:px-10 self-center w-full'):
+                                                                isEqual(evening, selectedMeet) ? ('btn btn-sm text-white bg-blue-600 hover:bg-blue-600 hover:text-white border-none font-semibold rounded-md lg:px-10 self-center w-full'):
                                                                 ('btn btn-sm rounded-md text-black bg-white Shadow hover:bg-gray-200 border-none lg:px-10 self-center w-full font-normal')
 
                                                             )}
@@ -282,12 +282,11 @@ export default function Calendar(){
                             
                         </section>
                         )))}
-                    <div className='w-full flex justify-center items-center pt-16 fixed bottom-16 left-0'>
+                    <div className='w-full flex justify-center items-center pt-16 fixed bottom-[5vh] bg-white left-0'>
                         <a href={`/gps`} className={selectedMeet.toISOString() == "2011-10-05T14:48:00.000Z" ? ("text-gray-500 self-center align-middle flex text-lg font-semibold"):("text-blue-600 self-center align-middle flex text-lg font-semibold")}>
                             <button disabled={selectedMeet.toISOString() == "2011-10-05T14:48:00.000Z" ? (true) : (false)} onClick={() => localStorage.setItem("dateRes", selectedMeet.toISOString())}>
                                 Valider
-                                <img src="/icons/arrow_left.png" alt="" />
-                            </button>
+                                    </button>
                         </a>
                     </div>
                 </div>
