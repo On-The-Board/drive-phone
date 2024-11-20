@@ -170,7 +170,7 @@ export default function Payment(){
     const sendMail = async () =>{
         try {
 
-            sendEmail({to: email, from: "digitaldashotb@gmail.com", subject: "Commande Drive Phone",message: "Merci pour votre commande !", img: device.img, date: format(date, "dd MMMM, HH:mm", {locale: fr}), phoneName: device.name, name: localStorage.getItem("surname"), price: (workforce.decimal + sum + delivery.num).toFixed(2), sku: sku, adress: adress +" "+ zipcode +" "+ city })
+            sendEmail({to: email, from: "contact@drivephone.fr", subject: "Commande Drive Phone",message: "Merci pour votre commande !", img: device.img, date: format(date, "dd MMMM, HH:mm", {locale: fr}), phoneName: device.name, name: localStorage.getItem("surname"), price: (workforce.decimal + sum + delivery.num).toFixed(2), sku: sku, adress: adress +" "+ zipcode +" "+ city })
             console.log('Email sent successfully! WTF');
         }
          catch (error) {

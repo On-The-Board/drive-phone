@@ -7,7 +7,7 @@ export async function sendEmail({ to, from, subject, message, img, date, phoneNa
     let apiInstance = new brevo.TransactionalEmailsApi();
     
     let apiKey = apiInstance.authentications['apiKey'];
-    apiKey.apiKey = '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';
+    apiKey.apiKey = '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';
     
     const sendSmtpEmail = new brevo.SendSmtpEmail();
     sendSmtpEmail.sender = { name: from, email: from };
