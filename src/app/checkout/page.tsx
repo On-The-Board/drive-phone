@@ -198,7 +198,7 @@ export default function Checkout(){
                             <input type="phone" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setPhone(e.target.value); Identify(); localStorage.setItem("phone", e.target.value)}}/>
                         </div>
                         <div className="col-span-2 flex flex-col pt-5">
-                            <label htmlFor="">Email</label>
+                            <label htmlFor="">Email *</label>
                             <input type="email" className="outline-none border-b border-b-black bg-white" onBlur={() => Identify()} onChange={(e) => {setMail(e.target.value); Identify(); localStorage.setItem("mail", e.target.value)}}/>
                         </div>
                     </div>
