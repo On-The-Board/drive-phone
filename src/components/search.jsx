@@ -23,11 +23,18 @@ export default function Search(props){
 
     const [data, setData] = useState()
     const result = async() =>{
-        const data = await gsmarena.catalog.getBrands();
+        const data = await gsmarena.catalog.getBrand('xiaomi-phones-80');
         console.log(util.inspect(data, { maxArrayLength: null }))
         setData(data);
     } 
     result();
+    const post = async() => {
+        const res = await prisma.device.createMany({
+            data: {
+                
+            }
+        })
+    }
 
     return(
         <div className={`w-full border-b border-b-blue-600 flex flex-row ${input != "" ? "pl-6" : null}`}>
