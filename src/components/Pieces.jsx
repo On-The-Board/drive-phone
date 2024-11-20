@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 import magnifier from "@/icons/magnifier.svg";
 import circle_cross from "@/icons/circle_cross.svg";
 import Image from "next/image";
-import { prisma } from "@/lib/prisma";
 
 export function Pieces(){
+    const [search, setSearch] = useState("");
     const [pieces, setPieces] = useState([])
     const [iencli, setIencli] = useState([])
     const [devices, setDevices] = useState([])
@@ -27,6 +27,7 @@ export function Pieces(){
     const [value, setValue] = useState("")
     function searchClient(e){
         if(e.target.value.length > 0){
+            setSearch(e.target.value)
             setIencli(pieces.filter((el) => el.name.toLowerCase().includes(e.target.value.toLowerCase()) || el.phoneIds[0].includes(e.target.value.toLowerCase().replace(" ", "_")) || el.category.toLowerCase().includes(e.target.value.toLowerCase())))
         }else{
             setIencli(pieces)
@@ -87,7 +88,7 @@ export function Pieces(){
             <div id="filters" className="w-full flex flex-row">
 
             </div>
-            <div className="flex flex-col gap-5 Shadow mt-5 rounded-xl p-5">
+            <div className={search == "" ? "hidden" : "flex flex-col gap-5 Shadow mt-5 rounded-xl p-5"}>
                 <ul>
                     <li className='my-2 flex justify-between items-center'>
                         <div className="hidden lg:grid grid-cols-5 justify-between w-full border-b">
@@ -117,7 +118,7 @@ export function Pieces(){
                                     </div>
                                 </div>
                             </div>
-                            <dialog id={c.id} className="modal">
+                            {/* <dialog id={c.id} className="modal">
                                         <div className="modal-box bg-white gap-y-3 flex flex-col">
                                             <div className="w-full">
                                                 <p className="w-full">Nom : <input type="text" defaultValue={c.name}className="w-fit bg-white" onChange={(e) => setPname(e.target.value)}/></p>
@@ -141,7 +142,7 @@ export function Pieces(){
                                         <form method="dialog" className="modal-backdrop">
                                             <button>close</button>
                                         </form>
-                                    </dialog>
+                                    </dialog> */}
                         </li>
                     ))}
                 </ul>
