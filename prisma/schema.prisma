@@ -9,8 +9,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
+}
+
+enum crdb_internal_region {
+  aws_eu_central_1 @map("aws-eu-central-1")
 }
 
 model Brand {
@@ -35,13 +39,6 @@ model User {
   username String
   password String
   role    String @default("client")
-}
-
-model Repair {
-  id       String   @id @unique
-  date     DateTime
-  position Float[]
-  active   Boolean  @default(true)
 }
 
 model Piece {
