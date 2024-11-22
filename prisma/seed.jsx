@@ -36,7 +36,7 @@ async function main() {
     //             {id: uuidv4(), category: "Intérieur", name: "Vibreur", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]}, 
     //     ]
     // })
-    const data = await gsmarena.catalog.getBrand('apple-phones-48')
+    // const data = await gsmarena.catalog.getBrand('apple-phones-48')
     
     // Post Devices
     // {data.forEach(async (device) => {
@@ -48,19 +48,19 @@ async function main() {
     // })}
 
     //Post Pieces
-    {data.forEach(async (device) => {
-        const response = await prisma.piece.createMany({
-            data: [
-                {id: uuidv4(), category: "Face avant", name: "Ecran", price: 163.79, phoneIds: [device.id]},
-                {id: uuidv4(), category: "Face arrière", name: "Vitre", price: 163.79, phoneIds: [device.id]},
-                {id: uuidv4(), category: "Face arrière", name: "Camera", price: 163.79, phoneIds: [device.id]},
-                {id: uuidv4(), category: "Contour", name: "Connecteur de Charge", price: 163.79, phoneIds: [device.id]},
-                {id: uuidv4(), category: "Intérieur", name: "Batterie", price: 163.79, phoneIds: [device.id]},
-            ]
-        })
-    // Done: Apple, Samsung, Xiaomi, Huawei
-    return(response)
-    })}
+    // {data.forEach(async (device) => {
+    //     const response = await prisma.piece.createMany({
+    //         data: [
+    //             {id: uuidv4(), category: "Face avant", name: "Ecran", price: 163.79, phoneIds: [device.id]},
+    //             {id: uuidv4(), category: "Face arrière", name: "Vitre", price: 163.79, phoneIds: [device.id]},
+    //             {id: uuidv4(), category: "Face arrière", name: "Camera", price: 163.79, phoneIds: [device.id]},
+    //             {id: uuidv4(), category: "Contour", name: "Connecteur de Charge", price: 163.79, phoneIds: [device.id]},
+    //             {id: uuidv4(), category: "Intérieur", name: "Batterie", price: 163.79, phoneIds: [device.id]},
+    //         ]
+    //     })
+    // // Done: Apple, Samsung, Xiaomi, Huawei
+    // return(response)
+    // })}
 
     // {data.forEach(async (device) => {
     //     const response = await prisma.brand.create({
@@ -76,6 +76,18 @@ async function main() {
     //         })}
     //     }
     // })
+
+    //  Post Data
+    // const res = await prisma.data.createMany({
+    //     data: [
+    //         {id: "deposit", name: "deposit", text: null, num: 25, decimal: null},
+    //         {id: "workforce", name: "workforce", text: null, num: null, decimal: 50.0},
+    //         {id: "min-delivery", name: "min-delivery", text: null, num: 20, decimal: null},
+
+
+    //     ]
+    // })
+    // return(res)
 }
 main()
     .then(() => prisma.$disconnect())

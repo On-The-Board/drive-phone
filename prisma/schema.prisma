@@ -38,7 +38,7 @@ model User {
   phone    String @unique
   username String
   password String
-  role    String @default("master")
+  role    String @default("client")
 }
 
 model Piece {
