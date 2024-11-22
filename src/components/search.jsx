@@ -23,7 +23,7 @@ export default function Search(props){
 
     const [data, setData] = useState()
     const result = async() =>{
-        const data = await gsmarena.catalog.getBrand('xiaomi-phones-80');
+        const data = await gsmarena.catalog.getBrands();
         console.log(util.inspect(data, { maxArrayLength: null }))
         setData(data);
     } 

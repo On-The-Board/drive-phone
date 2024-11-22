@@ -5,6 +5,7 @@ import Image from "next/image";
 interface SearchbarProps {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  setValue2: React.Dispatch<React.SetStateAction<any>>;
   callback?: Function;
   placeholder?: string;
 }
@@ -14,7 +15,7 @@ export default function Searchbar(props: SearchbarProps) {
     <div className="relative h-12 lg:h-16 lg:mx-auto lg:w-[60vw] lg:mt-12">
       <input
         value={props.value}
-        onChange={(e) => props.setValue(e.target.value)}
+        onChange={(e) => {props.setValue(e.target.value); props.setValue2(e.target.value.split(' '))}}
         placeholder={props.placeholder}
         className="h-full w-full lg:max-w-[60vw] rounded-full bg-white border-2 shadow-md text-black p-5 pr-12 outline-none"
       />
