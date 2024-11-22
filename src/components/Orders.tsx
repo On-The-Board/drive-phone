@@ -16,6 +16,7 @@ interface iDevice {
 export default function Orders(){
     const [meetings, setMeetings] = useState<any>([]);
     const [filteredMeetings, setFilteredMeetings] = useState<any>([]);
+    const [splited, setSplited] = useState("");
 
     const getMeetings = async () => {
         const response = await fetch(`/api/orders`).then((response) => response.json());
@@ -72,7 +73,7 @@ export default function Orders(){
                 </div>
             </div>
             <div className="px-5">
-                <Search value={search} setValue={setSearch} placeholder="Rechercher une Commande"/>
+                <Search value={search} setValue={setSearch} setValue2={setSplited} placeholder="Rechercher une Commande"/>
             </div>
             <div className="pt-5">
                 <ul className="">

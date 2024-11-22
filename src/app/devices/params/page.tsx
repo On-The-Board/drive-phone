@@ -16,6 +16,8 @@ import Navbar from "@/components/navbar/navbar"
 
 export default function Devices () {
     const [search, setSearch] = useState("");
+    const [splited, setSplited] = useState("");
+
     const [data, setData] = useState<any>([])
 
     const fetchData = async () => {
@@ -34,7 +36,7 @@ export default function Devices () {
         <>
             <Navbar back={true}/>
             <main className="bg-white flex flex-col justify-center pt-16 px-5">
-                <Search value={search} setValue={setSearch} placeholder="Rechercher un SmartPhone"/>
+                <Search value={search} setValue={setSearch} setValue2={setSplited} placeholder="Rechercher un SmartPhone"/>
                 <div className={`grid grid-cols-2 lg:grid-cols-3 justify-center pt-8 lg:mx-[20vw] ${search == "" ? " transition delay-200 hidden" : null}`}>
                     {search != "" ? data.filter((device: any) => device.name.toLowerCase().includes(search.toLowerCase())).map((device: any) => (
                         <a className="text-black justify-center flex flex-col p-8" href={`/devices/params/${device.id}`}>
