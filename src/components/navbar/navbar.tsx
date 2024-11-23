@@ -58,7 +58,6 @@ export default function Navbar(props: NavbarProps) {
               {user?.role == "client" ? <>
                 <a href="/api/auth/signin" className="btn btn-ghost bg-blue-600 text-white hover:text-blue-600 hover:bg-white hover:border-blue-600"><li>Mon Compte</li></a>
                 <a href="/devices" className="btn btn-ghost hover:bg-petrole"><li>Prendre rendez-vous</li></a>
-                <a href="/notices" className="btn btn-ghost hover:bg-petrole"><li>Avis Clients</li></a>
               </> : user?.role == "master" ? <>
                 <a href="/devices" className="btn btn-ghost hover:bg-petrole"><li>Prendre rendez-vous</li></a>
                 <a href="/schedules" className="btn btn-ghost hover:bg-petrole mt-5"><li>Planing</li></a>
@@ -66,15 +65,13 @@ export default function Navbar(props: NavbarProps) {
                 <a href="/pieces/params" className="btn btn-ghost hover:bg-petrole mt-5"><li>Pièces</li></a>
                 <a href="/devices/params" className="btn btn-ghost hover:bg-petrole"><li>Appareils</li></a>
                 <a href="/users" className="btn btn-ghost hover:bg-petrole mt-5"><li>Clients</li></a>
-                <a href="/notices" className="btn btn-ghost hover:bg-petrole"><li>Avis Clients</li></a>
-                <a href="/accounting" className="btn btn-ghost hover:bg-petrole mt-5"><li>Compta</li></a>
+                <a href="/accounting" className="btn btn-ghost hover:bg-petrole "><li>Comptabilité</li></a>
                 <a href="/settings" className="btn btn-ghost hover:bg-petrole mt-auto"><li>Parametres</li></a>
                 <a onClick={() => signOut()} className="btn btn-ghost hover:bg-petrole text-red-600"><li>Déconnexion</li></a>
 
               </> : <>
                 <a href="/api/auth/signin" className="btn btn-ghost bg-blue-600 text-white hover:text-blue-600 hover:bg-white hover:border-blue-600"><li>Connexion</li></a>
                 <a href="/devices" className="btn btn-ghost hover:bg-petrole"><li>Prendre rendez-vous</li></a>
-                <a href="/notices" className="btn btn-ghost hover:bg-petrole"><li>Avis Clients</li></a>
               </>
               }
           </ul>
