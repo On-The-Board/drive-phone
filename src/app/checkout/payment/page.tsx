@@ -235,19 +235,18 @@ export default function Payment(){
                             {clientSecret && confirmed ? 
                                 null : clientSecret == "" ? <></> : (
                                     <>
-                                        <div className="flex flex-row py-3 justify-between">
-                                            <p className="font-semibold">Accompte</p>
+                                        <div className="flex flex-row py-3 justify-between pb-[5vh]">
+                                            <p className="font-semibold">Accompte {"(" + deposit.num + "%)"}</p>
                                             <p className="flex flex-row">{workforce ? ((( workforce.decimal + sum + delivery.num)  / 100) * deposit.num ).toFixed(2): <div><Skeleton className="w-full h-[1.75rem]"/></div>} €</p>
                                         </div>
                                         <Elements options={options} stripe={stripePromise}>
-                                            <CheckoutForm dpmCheckerLink={dpmCheckerLink} />
+                                            <CheckoutForm dpmCheckerLink={dpmCheckerLink} user={user}/>
                                         </Elements>
-                                        {user?.role == "master" ? <a href="/checkout/nodeposit" className="w-full text-center mt-10 text-blue-600 font-semibold">Continuer sans accompte</a> : null}
                                     </>
                             )}
                         </div>
                     </div>
-                    {confirmed ? <div className='w-full flex justify-center items-center pt-16 fixed bottom-16 left-0'>
+                    {confirmed ? <div className='w-full flex justify-center items-center pt-16 fixed bottom-[5vh] left-0'>
                     <a href="/" className="text-white self-center align-middle flex text-lg font-semibold">
                         <button>
                             Retour à l'accueil

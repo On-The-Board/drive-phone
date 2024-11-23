@@ -57,13 +57,13 @@ export default function Calendar(){
     mornings.sort()
     let afternoons = eachHourOfInterval({
         start: addHours(selectedDay, 14),
-        end: addHours(selectedDay, 16),
+        end: addHours(selectedDay, 17),
     })
     afternoons.forEach((afternoon) => afternoons.push(addMinutes(afternoon, 30)))
     afternoons.sort()
     let evenings = eachHourOfInterval({
-        start: addHours(selectedDay, 17),
-        end: addHours(selectedDay, 18),
+        start: addHours(selectedDay, 18),
+        end: addHours(selectedDay, 22),
     })
     evenings.forEach((evening) => evenings.push(addMinutes(evening, 30)))
     evenings.sort()
@@ -85,7 +85,7 @@ export default function Calendar(){
     return(
         <>
             <Navbar back={true}/>
-            <main className='px-10 w-full h-screen lg:w-[60vw] lg:mx-auto content-center'>
+            <main className='px-10 pt-16 w-full h-screen lg:w-[60vw] lg:mx-auto content-center'>
                 <div className="flex flex-col lg:mx-[15vw]">
                     <div className="flex items-center ">
                         <button
@@ -282,12 +282,15 @@ export default function Calendar(){
                             
                         </section>
                         )))}
-                    <div className='w-full flex justify-center items-center pt-16 fixed bottom-[5vh] bg-white left-0'>
+                    <div className='w-full flex justify-center items-center pt-14 fixed bottom-[5vh] bg-white left-0'>
                         <a href={`/gps`} className={selectedMeet.toISOString() == "2011-10-05T14:48:00.000Z" ? ("text-gray-500 self-center align-middle flex text-lg font-semibold"):("text-blue-600 self-center align-middle flex text-lg font-semibold")}>
                             <button disabled={selectedMeet.toISOString() == "2011-10-05T14:48:00.000Z" ? (true) : (false)} onClick={() => localStorage.setItem("dateRes", selectedMeet.toISOString())}>
                                 Valider
-                                    </button>
+                            </button>
                         </a>
+                    </div>
+                    <div className='w-full bg-white fixed bottom-0 left-0 h-[5vh]'>
+
                     </div>
                 </div>
             </main>

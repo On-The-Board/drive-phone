@@ -80,6 +80,7 @@ model Accesorie {
   id  String @id @unique
   name  String
   phoneId String
+  img     String
   price   Int
   stock   Int
 }

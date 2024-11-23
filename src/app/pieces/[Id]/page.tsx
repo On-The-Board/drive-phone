@@ -77,7 +77,7 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                         ))} */}
                         <a href="tel:0761707524" className="text-blue-600 leading-3">Besoin d'aide ? <br /><span className="text-sm">Contactez nous au 07 61 70 75 24</span></a>
                     </div>
-                    <div className="text-black px-5 pt-5 overflow-scroll h-fit max-h-44 lg:max-h-fit pb-16 self-center lg:w-full w-full">
+                    <div className="text-black px-5 pt-5 overflow-scroll h-fit max-h-48 lg:max-h-fit pb-16 self-center lg:w-full w-full">
                         {pieces.filter((piece: iPiece) => piece).map((piece: iPiece) => (
                             <label htmlFor={piece.id} className="flex flex-row border-b h-10 items-center justify-between my-4" key={piece.name}>
                                 <div>

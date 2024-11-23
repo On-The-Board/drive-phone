@@ -68,22 +68,19 @@ export function Pieces(){
     return(
         <div className="text-black px-3 lg:px-36 pt-16 lg:pt-24 max-w-screen">
             <div className="flex flex-row w-full justify-between">
-            <div className="relative h-12 lg:h-16 lg:mx-auto w-full lg:w-[60vw] lg:mt-12">
-                <input
-                    onChange={(e) => searchClient(e)}
-                    placeholder={"Rechercher ..."}
-                    className="h-full w-full lg:max-w-[60vw] rounded-full bg-white border-2 shadow-md text-black p-5 pr-12 outline-none"
-                />
-                <Image
-                    src={value ? circle_cross : magnifier}
-                    alt="Search button"
-                    className={`absolute right-1 h-12 w-12 top-0 lg:top-[15%] p-4 ${value ? "" : "pointer-events-none"}`}
-                    onClick={value ? () => setValue("") : () => {}}
-                />
+                <div className="relative h-12 lg:h-16 lg:mx-auto w-full lg:w-[60vw] lg:mt-12">
+                    <input
+                        onChange={(e) => searchClient(e)}
+                        placeholder={"Rechercher ..."}
+                        className="h-full w-full lg:max-w-[60vw] rounded-full bg-white border-2 shadow-md text-black p-5 pr-12 outline-none"
+                    />
+                    <Image
+                        src={value ? circle_cross : magnifier}
+                        alt="Search button"
+                        className={`absolute right-1 h-12 w-12 top-0 lg:top-[15%] p-4 ${value ? "" : "pointer-events-none"}`}
+                        onClick={value ? () => setValue("") : () => {}}
+                    />
                 </div>
-                {/* <div className="flex w-full">
-                    <input type="text"  placeholder="Rechercher..." className="w-full bg-white border-b border-b-black placeholder:text-black Shadow p-2" onChange={(e) => searchClient(e)}/>
-                </div> */}
             </div>
             <div id="filters" className="w-full flex flex-row">
 
@@ -100,7 +97,7 @@ export function Pieces(){
                         </div>
                     </li>
                     {iencli.map(c => (
-                        <li className='my-2 flex mt-5 justify-between items-center border-b' onClick={() => {document.getElementById(c.id).showModal(); setPname(c.name); setPcategory(c.category); setPprice(c.price); setPstock(c.stock); setPpId(c.phoneIds)}}>
+                        <li className='my-2 flex mt-5 justify-between items-center border-b' onClick={() => {setPname(c.name); setPcategory(c.category); setPprice(c.price); setPstock(c.stock); setPpId(c.phoneIds)}}>
                             <div className="flex lg:grid lg:grid-cols-5 gap-y-2 gap-x-2 lg:gap-y-0 lg:justify-between w-full text-sm lg:text-base">
                                 <p className="hidden lg:flex flex-row content-center"><img src={devices.filter((d) => d.id == c.phoneIds).map((d) => d.img)} width={50} height={50} alt=""  className="flex w-5 mr-5 py-2"/>{devices.filter((d) => d.id == c.phoneIds).map((d) => d.name)}</p>
                                 <p className="hidden lg:flex content-center">{c.name}</p>
@@ -118,31 +115,6 @@ export function Pieces(){
                                     </div>
                                 </div>
                             </div>
-                            {/* <dialog id={c.id} className="modal">
-                                        <div className="modal-box bg-white gap-y-3 flex flex-col">
-                                            <div className="w-full">
-                                                <p className="w-full">Nom : <input type="text" defaultValue={c.name}className="w-fit bg-white" onChange={(e) => setPname(e.target.value)}/></p>
-                                            </div>
-                                            <div className="w-full">
-                                                <p className="w-full">Category : <input type="text" defaultValue={c.category} className="w-fit bg-white" onChange={(e) => setPcategory(e.target.value)}/></p>
-                                            </div>
-                                            <div className="w-full">
-                                                <p className="w-full">Telephones : <input type="text" defaultValue={c.phoneIds} className="w-fit bg-white" onChange={(e) => setPpId(e.target.value)}/></p>
-                                            </div> 
-                                            <div className="w-full">
-                                                <p className="w-full inline-block">Prix : <input type="text" defaultValue={c.price} className="w-fit bg-white" onChange={(e) => setPprice(e.target.value)}/>€</p>
-                                            </div>
-                                            <div className="w-full">
-                                                <p className="w-full inline-block">Stock : <input type="text" defaultValue={c.stock} className="w-fit bg-white" onChange={(e) => setPstock(e.target.value)}/></p>
-                                            </div>
-                                            <div className="flex justify-end">
-                                                <button className="btn btn-sm bg-petrole text-white hover:bg-white hover:border hover:border-petrole hover:text-petrole" onClick={() => {updateData(c);}}>Valider</button>
-                                            </div>
-                                        </div>
-                                        <form method="dialog" className="modal-backdrop">
-                                            <button>close</button>
-                                        </form>
-                                    </dialog> */}
                         </li>
                     ))}
                 </ul>

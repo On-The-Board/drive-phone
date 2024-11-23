@@ -145,6 +145,8 @@ export default function Home() {
           className="video-js lg;pt-20 pt-12 px-2 lg:hidden"
           preload="auto"
           controls
+          autoPlay
+          muted
           width="100%"
         >
           <source src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" type="video/mp4" />
@@ -155,6 +157,8 @@ export default function Home() {
           className="video-js lg;pt-20 pt-12 px-2 lg:block hidden self-center mx-auto"
           preload="auto"
           controls
+          autoPlay
+          muted
         >
           <source src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" type="video/mp4" />
           <track src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" />
