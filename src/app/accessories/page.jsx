@@ -27,10 +27,10 @@ export default function Accessories() {
         router.refresh(router.asPathName)
     }
     const [value, setValue] = useState("")
-    function searchClient(e: any){
+    function searchClient(e){
         if(e.target.value.length > 0){
             setSearch(e.target.value)
-            setIencli(pieces.filter((el: any) => el.name.toLowerCase().includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.phoneIds[0].includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.category.toLowerCase().includes(e.target.value.toLowerCase())))
+            setIencli(pieces.filter((el) => el.name.toLowerCase().includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.phoneIds[0].includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.category.toLowerCase().includes(e.target.value.toLowerCase())))
         }else{
             setIencli(pieces)
         }
