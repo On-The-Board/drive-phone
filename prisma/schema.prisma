@@ -75,3 +75,11 @@ model Data {
   num   Int?
   decimal Float?
 }
+
+model Accesorie {
+  id  String @id @unique
+  name  String
+  phoneId String
+  price   Int
+  stock   Int
+}

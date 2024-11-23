@@ -28,7 +28,7 @@ export function Pieces(){
     function searchClient(e){
         if(e.target.value.length > 0){
             setSearch(e.target.value)
-            setIencli(pieces.filter((el) => el.name.toLowerCase().includes(e.target.value.toLowerCase()) || el.phoneIds[0].includes(e.target.value.toLowerCase().replace(" ", "_")) || el.category.toLowerCase().includes(e.target.value.toLowerCase())))
+            setIencli(pieces.filter((el) => el.name.toLowerCase().includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.phoneIds[0].includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.category.toLowerCase().includes(e.target.value.toLowerCase())))
         }else{
             setIencli(pieces)
         }
