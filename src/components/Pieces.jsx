@@ -44,6 +44,19 @@ export function Pieces(){
     const [Pstock, setPstock] = useState(0)
     const [PpId, setPpId] = useState([])
 
+    const brandFilter = async (e) => {
+        const brand_id = e.target.value
+        const devices_id = devices.filter(d => d.brand_id == brand_id)
+
+        const pieces_id =[pieces.filter( p =>
+            devices_id.filter(d => p.phoneIds[0] == d.id )
+            
+        )]
+        setIencli(pieces_id)
+
+        console.log(pieces_id) 
+    } 
+
     const updateData = async (el) => {
         let body = {
             id: el.id,
@@ -86,24 +99,24 @@ export function Pieces(){
                 </div>
             </div>
             <div id="filters" className="w-full justify-between flex flex-row pt-10">
-                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => console.log(e.target.value)}>
+                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => setIencli(pieces.filter(i => i.name == e.target.value))}>
                     <option value="">Piece</option>
-                    <option value="">Ecran</option>
-                    <option value="">Vitre Arrière</option>
-                    <option value="">Camera</option>
-                    <option value="">Conncteur de Charge</option>
-                    <option value="">Batterie</option>
+                    <option value="Ecran">Ecran</option>
+                    <option value="Vitre">Vitre Arrière</option>
+                    <option value="Camera">Camera</option>
+                    <option value="Connecteur de Charge">Conncteur de Charge</option>
+                    <option value="Batterie">Batterie</option>
                 </select>
-                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => console.log(e.target.value)}>
+                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => {setIencli(pieces.filter(i => devices.filter(d => d.brand_id == e.target.value).includes(i.phoneIds[0]))); console.log(pieces.filter(p => p.phoneIds[0] == devices.filter(d => d.brand_id == e.target.value))); console.log(pieces); brandFilter(e)}}>
                     <option value="">Marque</option>
                     {brands.map(b => (
-                        <option>{b.name}</option>
+                        <option value={b.id}>{b.name}</option>
                     ))}
                 </select>
-                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => console.log(e.target.value)}>
+                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => setIencli(pieces.filter(p => p.phoneIds[0] == e.target.value))}>
                     <option value="">Model</option>
-                    {brands.map(b => (
-                        <option>{b.name}</option>
+                    {devices.map(b => (
+                        <option value={b.id}>{b.name}</option>
                     ))}
                 </select>
             </div>

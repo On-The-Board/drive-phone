@@ -36,7 +36,7 @@ async function main() {
     //             {id: uuidv4(), category: "Intérieur", name: "Vibreur", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]}, 
     //     ]
     // })
-    // const data = await gsmarena.catalog.getBrand('apple-phones-48')
+    const data = await gsmarena.catalog.getBrand('apple-phones-48')
     
     // Post Devices
     // {data.forEach(async (device) => {
@@ -61,6 +61,19 @@ async function main() {
     // // Done: Apple, Samsung, Xiaomi, Huawei
     // return(response)
     // })}
+
+    // Post Accessories
+    {data.forEach(async (device) => {
+        const response = await prisma.accesorie.createMany({
+            data: [
+                {id: uuidv4(),  name: "Coque", price: 163.79, phoneId: device.id, stock: 0, img: ""},
+                {id: uuidv4(),  name: "Vitre Protection", price: 163.79, phoneId: device.id, stock: 0, img: ""},
+                {id: uuidv4(),  name: "Chargeur", price: 163.79, phoneId: device.id, stock: 0, img: ""},
+            ]
+        })
+    // Done: Apple, Samsung, Xiaomi, Huawei
+    return(response)
+    })}
 
     // {data.forEach(async (device) => {
     //     const response = await prisma.brand.create({

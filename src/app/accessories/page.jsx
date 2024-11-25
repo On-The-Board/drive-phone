@@ -30,7 +30,7 @@ export default function Accessories() {
     function searchClient(e){
         if(e.target.value.length > 0){
             setSearch(e.target.value)
-            setIencli(pieces.filter((el) => el.name.toLowerCase().includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.phoneIds[0].includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.category.toLowerCase().includes(e.target.value.toLowerCase())))
+            setIencli(pieces.filter((el) => el.name.toLowerCase().includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.phoneId.includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.category.toLowerCase().includes(e.target.value.toLowerCase())))
         }else{
             setIencli(pieces)
         }
@@ -55,12 +55,17 @@ export default function Accessories() {
                         />
                     </div>
                 </div>
-                <div className="grid grid-cols-2 mt-5">
+                <div className="flex flex-col">
+                <div className={ "grid grid-cols-2 lg:grid-cols-3 justify-center pt-8 lg:mx-[20vw]"}>
+
                     {iencli.map(c => (
-                        <div>
-                            <img src={c.img} alt="" />
-                        </div>
+                        <a className="text-black justify-center flex flex-col p-8" href={`/accessories/${c.id}`}>
+                            <img src={devices.filter((d) => d.id == c.phoneId).map((d) => d.img)} alt={c.name} className="lg:w-56 lg:mx-auto"/>
+                            <h2 className="text-center text-sm pt-5">{c.name + " " + devices.filter((d) => d.id == c.phoneId).map((d) => d.name)}</h2>
+                        </a>
                     ))}
+
+            </div>
                 </div>
             </div>
         </main>

@@ -83,4 +83,5 @@ model Accesorie {
   img     String
   price   Int
   stock   Int
+  description String @default("Description de l'Accessoire")
 }
