@@ -3,30 +3,16 @@ import Navbar from "@/components/navbar/navbar";
 import { useEffect, useState } from "react";
 
 
-export default function Piece({ params }: { params: { Id: string } }){
-    interface iPiece {
-        id: string
-        name:  string
-        category:  string
-        phoneIds:   string[]
-        price:  number
-        stock:  number
-        description: string
-    }
-    interface iDevice {
-        id: string
-        brand_id: string
-        name: string
-        img: string
-        description: string
-    }
-    const [piece, setPiece] = useState<iPiece>({id: "", name: "", category: "", phoneIds: [], price: 0, stock: 0, description: ""})
-    const [device, setDevice] = useState<iDevice>()
-    const [pName, setPName] = useState<any>()
-    const [pCategory, setPCategory] = useState<any>()
-    const [pStock, setPStock] = useState<any>()
-    const [pPrice, setPPrice] = useState<any>()
-    const [p, setP] = useState<any>()
+export default function Piece({ params }){
+    
+    const [piece, setPiece] = useState({id: "", name: "", category: "", phoneIds: [], price: 0, stock: 0, description: ""})
+    const [device, setDevice] = useState()
+    const [pName, setPName] = useState()
+    const [pCategory, setPCategory] = useState()
+    const [pStock, setPStock] = useState()
+    const [pPrice, setPPrice] = useState()
+    const [pDescription, setPDescription] = useState()
+    const [pId, setPId] = useState()
     const [ready, setReady] = useState(false)
 
 
@@ -37,10 +23,12 @@ export default function Piece({ params }: { params: { Id: string } }){
             setPiece(p)
             const dev = await fetch(`/api/devices/${p.phoneId}`).then((response) => response.json())
             setDevice(dev)
+            setPId(p.id)
             setPName(p.name)
             setPCategory(p.category)
             setPStock(p.stock)
             setPPrice(p.price)
+            setPDescription(p.description)
         } catch (error) {
             console.error(error)
         }
@@ -48,6 +36,20 @@ export default function Piece({ params }: { params: { Id: string } }){
     useEffect(() => {
         fetchDevice()
     }, [])
+
+    const updateAccessorie = async (id, price, stock, description, phoneId, img, name) => {
+        let body = {
+            id, price, stock, description, phoneId, img, name
+        }
+
+            await fetch(`/api/accessories/update`, {
+                method: 'PATCH',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+
+        
+    }
 
     return(
         <main>
@@ -65,21 +67,21 @@ export default function Piece({ params }: { params: { Id: string } }){
                     </div>
                     <div className="flex flex-col col-span-2 h-fit">
                         <label htmlFor="" className="text-sm">Description</label>
-                        <input type="text" defaultValue={piece?.description} onChange={e => setPStock(e.target.value)} className="outline-none border-b border-b-black bg-white"  />
+                        <input type="text" defaultValue={piece?.description} onChange={e => {setPDescription(e.target.value); setReady(true)}} className="outline-none border-b border-b-black bg-white"  />
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="" className="text-sm">Stock</label>
-                        <input type="text" defaultValue={piece?.stock} onChange={e => setPStock(e.target.value)} className={`${piece.stock >= 5 ? "outline-none border-b border-b-black bg-white" : "outline-none border-b border-b-black bg-white text-red-600"}`} />
+                        <input type="text" defaultValue={piece?.stock} onChange={e => {setPStock(e.target.value); setReady(true)}} className={`${piece.stock >= 5 ? "outline-none border-b border-b-black bg-white" : "outline-none border-b border-b-black bg-white text-red-600"}`} />
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="" className="text-sm">Prix (€)</label>
-                        <input type="text" defaultValue={piece?.price} onChange={e => setPPrice(e.target.value)} className="outline-none border-b border-b-black bg-white"  />
+                        <input type="text" defaultValue={piece?.price} onChange={e => {setPPrice(e.target.value); setReady(true)}} className="outline-none border-b border-b-black bg-white"  />
                     </div>
                 </div>
             </div>
             <div className='w-full flex justify-center items-center fixed bottom-[5vh] left-0 bg-white'>
                 <div className={`${ ready ? "text-blue-600 self-center align-middle flex text-lg font-semibold" : "text-gray-500 self-center align-middle flex text-lg font-semibold" }`}>
-                    <button disabled={!ready}>
+                    <button disabled={!ready} onClick={() => updateAccessorie(piece.id, parseInt(pPrice), parseInt(pStock), pDescription, piece.phoneId, device.img, piece.name)}>
                         Valider
                     </button>
                 </div>

@@ -48,6 +48,20 @@ export default function Piece({ params }: { params: { Id: string } }){
         fetchDevice()
     }, [])
 
+    const updatePiece = async (id: any, price: any, stock: any, name: any, category: any) => {
+        let body = {
+            id, price, stock, name
+        }
+
+            await fetch(`/api/pieces/update`, {
+                method: 'PATCH',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+
+        
+    }
+
     return(
         <main>
             <Navbar back={true}/>
@@ -56,7 +70,7 @@ export default function Piece({ params }: { params: { Id: string } }){
                 <div className="grid grid-cols-2 pt-10 gap-4 lg:gap-10 p-5">
                     <div className="flex flex-col">
                         <label htmlFor="" className="text-sm">Nom</label>
-                        <input type="text" defaultValue={piece?.name} onChange={e => setPName(e.target.value)} className="outline-none border-b border-b-black bg-white" />
+                        <input type="text" defaultValue={piece?.name} onChange={e => {setPName(e.target.value); setReady(true)}} className="outline-none border-b border-b-black bg-white" />
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="" className="text-sm">Model</label>
@@ -64,21 +78,21 @@ export default function Piece({ params }: { params: { Id: string } }){
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="" className="text-sm">Catégorie</label>
-                        <input type="text" defaultValue={piece?.category} onChange={e => setPCategory(e.target.value)} className="outline-none border-b border-b-black bg-white" />
+                        <input type="text" defaultValue={piece?.category} onChange={e => {setPCategory(e.target.value); setReady(true)}} className="outline-none border-b border-b-black bg-white" />
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="" className="text-sm">Stock</label>
-                        <input type="text" defaultValue={piece?.stock} onChange={e => setPStock(e.target.value)} className={`${piece.stock >= 5 ? "outline-none border-b border-b-black bg-white" : "outline-none border-b border-b-black bg-white text-red-600"}`} />
+                        <input type="text" defaultValue={piece?.stock} onChange={e => {setPStock(e.target.value); setReady(true)}} className={`${piece.stock >= 5 ? "outline-none border-b border-b-black bg-white" : "outline-none border-b border-b-black bg-white text-red-600"}`} />
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="" className="text-sm">Prix (€)</label>
-                        <input type="text" defaultValue={piece?.price} onChange={e => setPPrice(e.target.value)} className="outline-none border-b border-b-black bg-white"  />
+                        <input type="text" defaultValue={piece?.price} onChange={e => {setPPrice(e.target.value); setReady(true)}} className="outline-none border-b border-b-black bg-white"  />
                     </div>
                 </div>
             </div>
             <div className='w-full flex justify-center items-center fixed bottom-[5vh] left-0 bg-white'>
                 <div className={`${ ready ? "text-blue-600 self-center align-middle flex text-lg font-semibold" : "text-gray-500 self-center align-middle flex text-lg font-semibold" }`}>
-                    <button disabled={!ready}>
+                    <button disabled={!ready} onClick={() => updatePiece(piece.id, parseInt(pPrice), parseInt(pStock), pName, pCategory)}>
                         Valider
                     </button>
                 </div>
