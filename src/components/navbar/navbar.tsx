@@ -68,7 +68,7 @@ export default function Navbar(props: NavbarProps) {
                 <a href="/accounting" className="btn btn-ghost hover:bg-petrole "><li>Comptabilité</li></a>
                 <a href="/pieces/params" className="btn btn-ghost hover:bg-petrole mt-5"><li>Pièces</li></a>
                 <a href="/devices/params" className="btn btn-ghost hover:bg-petrole"><li>Appareils</li></a>
-                <a href="/accessories" className="btn btn-ghost hover:bg-petrole"><li>Accessoires</li></a>
+                <a href="/accessories/params" className="btn btn-ghost hover:bg-petrole"><li>Accessoires</li></a>
                 <a href="/settings" className="btn btn-ghost hover:bg-petrole mt-auto"><li>Parametres</li></a>
                 <a onClick={() => signOut()} className="btn btn-ghost hover:bg-petrole text-red-600"><li>Déconnexion</li></a>
 
