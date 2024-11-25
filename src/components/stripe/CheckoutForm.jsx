@@ -49,7 +49,7 @@ export default function CheckoutForm({dpmCheckerLink, user}) {
         <PaymentElement id="payment-element" options={paymentElementOptions} />
         {/* Show any error or success messages */}
         {message && <div id="payment-message" className="pt-5 text-center">{message}</div>}
-        {user.role == "master" ? <a href="/checkout/nodeposit" className="w-full text-center mt-10 text-blue-600 font-semibold pb-[15vh]">Continuer sans accompte</a> : null}
+        {/* {user.role == "master" ? <a href="/checkout/nodeposit" className="w-full text-center mt-10 text-blue-600 font-semibold pb-[15vh]">Continuer sans accompte</a> : null} */}
         <div className="justify-center items-center pt-16 fixed bottom-[5vh] left-0 flex w-full">
           <button disabled={isLoading || !stripe || !elements} id="submit" className="self-center align-middle bg-blue-600 text-white w-full rounded-md py-3 mx-5 font-semibold">
             <span id="button-text">

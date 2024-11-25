@@ -44,7 +44,8 @@ export default function Calendar(){
     let [endMeet, setEndMeet] = useState(addMinutes(selectedDay, 30))
     let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
     let firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())
-    
+    let now = new Date
+
     let days = eachDayOfInterval({
         start: firstDayCurrentMonth,
         end: endOfMonth(firstDayCurrentMonth),
@@ -160,13 +161,13 @@ export default function Calendar(){
                         ))}
                     </div>
                     {selectedDay < today?(<></>):(
-                            isMonday(selectedDay)?(<p className='font-semibold text-petrole text-center'>fermé le Lundi</p>):(
-                            isSunday(selectedDay)?(<p className='font-semibold text-petrole text-center'>fermé le Dimanche</p>):(
+                            
                         <section className=" pt-5 pb-16 ">
                             <div className='flex w-full justify-center'>
                                     <div className="grid grid-cols-3 gap-10 lg:gap-36 w-full">
                                         <div className=''>
-                                            {mornings.map((morning) => (
+                                            {mornings.map((morning) => morning < now ? null : (
+                                                
                                                 <div
                                                     key={morning.toString()}
                                                     className='py-2 flex'
@@ -204,7 +205,7 @@ export default function Calendar(){
                                             ))}
                                         </div>
                                         <div className=''>
-                                            {afternoons.map((afternoon) => (
+                                            {afternoons.map((afternoon) => afternoon < now ? null : (
                                                 <div
                                                     key={afternoon.toString()}
                                                     className='py-2'
@@ -241,7 +242,7 @@ export default function Calendar(){
                                             ))}
                                         </div>
                                         <div className=''>
-                                            {evenings.map((evening) => (
+                                            {evenings.map((evening) => evening < now ? null :(
                                                 <div
                                                     key={evening.toString()}
                                                     className='py-2'
@@ -281,7 +282,7 @@ export default function Calendar(){
                             </div>
                             
                         </section>
-                        )))}
+                        )}
                     <div className='w-full flex justify-center items-center pt-14 fixed bottom-[5vh] bg-white left-0'>
                         <a href={`/gps`} className={selectedMeet.toISOString() == "2011-10-05T14:48:00.000Z" ? ("text-gray-500 self-center align-middle flex text-lg font-semibold"):("text-blue-600 self-center align-middle flex text-lg font-semibold")}>
                             <button disabled={selectedMeet.toISOString() == "2011-10-05T14:48:00.000Z" ? (true) : (false)} onClick={() => localStorage.setItem("dateRes", selectedMeet.toISOString())}>

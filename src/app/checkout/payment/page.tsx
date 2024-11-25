@@ -36,7 +36,6 @@ export default function Payment(){
         phone: string,
         email?: string,
         username: string,
-        role: string,
       }
 
     interface Workforce {
