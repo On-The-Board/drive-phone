@@ -11,6 +11,7 @@ export default function Piece({ params }: { params: { Id: string } }){
         phoneIds:   string[]
         price:  number
         stock:  number
+        description: string
     }
     interface iDevice {
         id: string
@@ -19,7 +20,7 @@ export default function Piece({ params }: { params: { Id: string } }){
         img: string
         description: string
     }
-    const [piece, setPiece] = useState<iPiece>({id: "", name: "", category: "", phoneIds: [], price: 0, stock: 0})
+    const [piece, setPiece] = useState<iPiece>({id: "", name: "", category: "", phoneIds: [], price: 0, stock: 0, description: ""})
     const [device, setDevice] = useState<iDevice>()
     const [pName, setPName] = useState<any>()
     const [pCategory, setPCategory] = useState<any>()
