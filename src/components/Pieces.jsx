@@ -9,13 +9,16 @@ export function Pieces(){
     const [search, setSearch] = useState("");
     const [pieces, setPieces] = useState([])
     const [iencli, setIencli] = useState([])
+    const [brands, setBrands] = useState([])
     const [devices, setDevices] = useState([])
     const getPieces = async () => {
         const response = await fetch(`/api/pieces`).then((response) => response.json());
         const res = await fetch("/api/devices").then((response) => response.json());
+        const brds = await fetch("/api/brands").then((response) => response.json());
         setPieces(response);
-        setIencli(response)
+        setIencli(response.slice(0,20))
         setDevices(res)
+        setBrands(brds)
     }
     useEffect(() => {
         getPieces()
@@ -28,9 +31,9 @@ export function Pieces(){
     function searchClient(e){
         if(e.target.value.length > 0){
             setSearch(e.target.value)
-            setIencli(pieces.filter((el) => el.name.toLowerCase().includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.phoneIds[0].includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.category.toLowerCase().includes(e.target.value.toLowerCase())))
+            setIencli(pieces.filter((el) => el.name.toLowerCase().includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.phoneIds[0].includes(e.target.value.toLowerCase().replaceAll(" ", "_")) || el.category.toLowerCase().includes(e.target.value.toLowerCase())).slice(0, 31))
         }else{
-            setIencli(pieces)
+            setIencli(pieces.slice(0,31))
         }
         refreshData()
     }
@@ -70,7 +73,7 @@ export function Pieces(){
             <div className="flex flex-row w-full justify-between">
                 <div className="relative h-12 lg:h-16 lg:mx-auto w-full lg:w-[60vw] lg:mt-12">
                     <input
-                        onChange={(e) => searchClient(e)}
+                        onChange={(e) => {searchClient(e); console.log(e.target.value)}}
                         placeholder={"Rechercher ..."}
                         className="h-full w-full lg:max-w-[60vw] rounded-full bg-white border-2 shadow-md text-black p-5 pr-12 outline-none"
                     />
@@ -82,10 +85,29 @@ export function Pieces(){
                     />
                 </div>
             </div>
-            <div id="filters" className="w-full flex flex-row">
-
+            <div id="filters" className="w-full justify-between flex flex-row pt-10">
+                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => console.log(e.target.value)}>
+                    <option value="">Piece</option>
+                    <option value="">Ecran</option>
+                    <option value="">Vitre Arrière</option>
+                    <option value="">Camera</option>
+                    <option value="">Conncteur de Charge</option>
+                    <option value="">Batterie</option>
+                </select>
+                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => console.log(e.target.value)}>
+                    <option value="">Marque</option>
+                    {brands.map(b => (
+                        <option>{b.name}</option>
+                    ))}
+                </select>
+                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => console.log(e.target.value)}>
+                    <option value="">Model</option>
+                    {brands.map(b => (
+                        <option>{b.name}</option>
+                    ))}
+                </select>
             </div>
-            <div className={search == "" ? "hidden" : "flex flex-col gap-5 Shadow mt-5 rounded-xl p-5"}>
+            <div className={ "flex flex-col gap-5 Shadow mt-5 rounded-xl p-5"}>
                 <ul>
                     <li className='my-2 flex justify-between items-center'>
                         <div className="hidden lg:grid grid-cols-5 justify-between w-full border-b">
@@ -97,7 +119,7 @@ export function Pieces(){
                         </div>
                     </li>
                     {iencli.map(c => (
-                        <li className='my-2 flex mt-5 justify-between items-center border-b' onClick={() => {setPname(c.name); setPcategory(c.category); setPprice(c.price); setPstock(c.stock); setPpId(c.phoneIds)}}>
+                        <a href={`/pieces/params/${c.id}`} className='my-2 flex mt-5 justify-between items-center border-b' onClick={() => {setPname(c.name); setPcategory(c.category); setPprice(c.price); setPstock(c.stock); setPpId(c.phoneIds)}}>
                             <div className="flex lg:grid lg:grid-cols-5 gap-y-2 gap-x-2 lg:gap-y-0 lg:justify-between w-full text-sm lg:text-base">
                                 <p className="hidden lg:flex flex-row content-center"><img src={devices.filter((d) => d.id == c.phoneIds).map((d) => d.img)} width={50} height={50} alt=""  className="flex w-5 mr-5 py-2"/>{devices.filter((d) => d.id == c.phoneIds).map((d) => d.name)}</p>
                                 <p className="hidden lg:flex content-center">{c.name}</p>
@@ -115,7 +137,7 @@ export function Pieces(){
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </a>
                     ))}
                 </ul>
             </div>

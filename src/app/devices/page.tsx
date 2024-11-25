@@ -29,17 +29,13 @@ export default function Devices () {
     ]
 
     const fetchData = async () => {
-        const result = await fetch(`/api/devices`).then((response) => response.json());
+        const result = await fetch(`/api/devices/validated`).then((response) => response.json());
         setData(result)
     }
     useEffect(() => {
         fetchData()
     }, [])
 
-    const plugin = React.useRef(
-        Autoplay({ delay: 3000, stopOnInteraction: true })
-    )
-    const tab = ["https://images.daisycon.io/mobile-device/?width=2000&height=2000&color=ffffff&mobile_device_brand=apple&mobile_device_model=iphone+14+128gb&mobile_device_color=silver", "https://images.daisycon.io/mobile-device/?width=2000&height=2000&color=ffffff&mobile_device_brand=google&mobile_device_model=pixel+7+128gb&mobile_device_color=silver", "https://images.daisycon.io/mobile-device/?width=2000&height=2000&color=ffffff&mobile_device_brand=samsung&mobile_device_model=galaxy+s20+ultra+128gb&mobile_device_color=silver"]
     return(
         <>
             <Navbar back={true}/>
