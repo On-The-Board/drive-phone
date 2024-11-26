@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/*.jsx", "src/app/api/stripe/create-payment-intent.js", "src/utils/mailgun.js", "src/app/accessories/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/*.jsx", "src/app/api/stripe/create-payment-intent.js", "src/utils/mailgun.js", "src/app/accessories/page.jsx", "src/app/api/accessories/update/route.js", "src/app/accessories/params/[Id]/page.jsx"],
   "exclude": ["node_modules"]
 }
