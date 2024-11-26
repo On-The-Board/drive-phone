@@ -99,7 +99,7 @@ export default function Piece({ params }){
             </div>
             <div className='w-full flex justify-center items-center fixed bottom-[5vh] left-0 bg-white'>
                 <div className={`${ ready ? "text-blue-600 self-center align-middle flex text-lg font-semibold" : "text-gray-500 self-center align-middle flex text-lg font-semibold" }`}>
-                    <button disabled={!ready} onClick={() => updateAccessorie(piece.id, parseInt(pPrice), parseInt(pStock), pDescription, piece.phoneId, device.img, piece.name)}>
+                    <button disabled={!ready} onClick={() => updateAccessorie(piece.id, parseInt(pPrice), parseInt(pStock), pDescription, piece.phoneId, [device.img], piece.name)}>
                         Valider
                     </button>
                 </div>

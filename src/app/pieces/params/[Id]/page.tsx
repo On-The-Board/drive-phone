@@ -63,11 +63,12 @@ export default function Piece({ params }: { params: { Id: string } }){
     }
 
     const deletePiece = async (id:any) => {
+        let body = {id}
 
         await fetch(`/api/pieces/delete`, {
             method: 'DELETE',
             headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify(id)
+            body: JSON.stringify(body)
         })
     }
 
