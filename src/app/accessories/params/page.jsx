@@ -56,7 +56,7 @@ export default function Accessories() {
                     </div>
                 </div>
                 <div id="filters" className="w-full justify-between flex flex-row pt-10">
-                <select name="" id="" className="mx-auto bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => {e.target.value == "" ? setIencli(pieces) : setIencli(pieces.filter(i => i.name == e.target.value))}}>
+                <select name="" id="" className=" bg-white w-[30vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => {e.target.value == "" ? setIencli(pieces) : setIencli(pieces.filter(i => i.name == e.target.value))}}>
                     <option value="">Accessoire</option>
                     <option value="Coque">Coque</option>
                     <option value="Vitre Protection">Vitre Protection</option>

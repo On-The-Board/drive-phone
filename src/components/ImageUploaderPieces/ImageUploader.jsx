@@ -170,10 +170,10 @@ import './ImageUploader.scss';
                                         <div className='flex flex-col'>
                                             <label htmlFor="">Model</label>
                                             <select type='text' className='bg-white border-b border-b-black' onChange={(e) => setPhoneId([e.target.value])} required>
-                                               {devices.map(d => {
+                                               {devices.map(d => (
                                                    <option value={d.id}>{d.name}</option>    
 
-                                               })}
+                                               ))}
                                             </select>
                                         </div>
                                         

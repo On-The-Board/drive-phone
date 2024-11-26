@@ -62,6 +62,15 @@ export default function Piece({ params }: { params: { Id: string } }){
         
     }
 
+    const deletePiece = async (id:any) => {
+
+        await fetch(`/api/pieces/delete`, {
+            method: 'DELETE',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(id)
+        })
+    }
+
     return(
         <main>
             <Navbar back={true}/>
@@ -89,6 +98,11 @@ export default function Piece({ params }: { params: { Id: string } }){
                         <input type="text" defaultValue={piece?.price} onChange={e => {setPPrice(e.target.value); setReady(true)}} className="outline-none border-b border-b-black bg-white"  />
                     </div>
                 </div>
+            </div>
+            <div className="w-full flex">
+                <button className="text-red-600 text-lg font-semibold mx-auto " onClick={() => deletePiece(piece?.id)}>
+                    Supprimer
+                </button>
             </div>
             <div className='w-full flex justify-center items-center fixed bottom-[5vh] left-0 bg-white'>
                 <div className={`${ ready ? "text-blue-600 self-center align-middle flex text-lg font-semibold" : "text-gray-500 self-center align-middle flex text-lg font-semibold" }`}>
