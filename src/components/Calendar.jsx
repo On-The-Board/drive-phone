@@ -25,6 +25,7 @@ import {
     startOfYear,
     endOfYear,
     isSameHour,
+    subMinutes,
 } from 'date-fns'
 import { fr } from 'date-fns/locale';
 import { Fragment, useState, useEffect } from 'react'
@@ -164,7 +165,7 @@ export default function Plan() {
             <div className='grid grid-rows-16 col-start-3 col-end-13 h-full'>
                 {selectedDayMeetings.length > 0 ? (
                     selectedDayMeetings.map((meet) => (
-                        <div className={classHour(meet.date, addMinutes(parseISO(meet.date), 90))}>
+                        <div className={classHour(subHours(meet.date, 1), subHours(addMinutes(parseISO(meet.date), 90), 1))}>
                             <DrawMeeting meeting={meet} key={meet.id} />
                         </div>
                     ))
@@ -903,10 +904,10 @@ function DrawMeeting({ meeting }) {
             <button className="btn w-full h-full flex flex-col rounded-lg bg-blue-600 border-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border-petrole hover:border" onClick={() => document.getElementById(meeting.id).showModal()}>
                 {meeting.name}
                 <time className='hidden lg:flex'>
-                    {format(date, "HH:mm")} - {format(addMinutes(date, 90), "HH:mm")}
+                    {format(subHours(date, 1), "HH:mm")} - {format(addMinutes(subHours(date, 1), 90), "HH:mm")}
                 </time>
                 <time className='lg:hidden flex'>
-                    {format(date, "HH:mm")}
+                    {format(subHours(date, 1), "HH:mm")}
                 </time>
             </button>
             <dialog id={meeting.id} className="modal">

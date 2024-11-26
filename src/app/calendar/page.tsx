@@ -20,6 +20,7 @@ import {
     startOfToday,
     isSunday,
     isMonday,
+    subMinutes,
 } from 'date-fns'
 import {fr} from 'date-fns/locale';
 import { Fragment, useState, useEffect } from 'react'
@@ -174,7 +175,7 @@ export default function Calendar(){
                                                 
                                                 >
                                                     {
-                                                        meetings.some((e: { date: string; }) => e.date === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 30), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 60), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 90), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 120), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 180), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 210), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(morning, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")) ? (
+                                                        meetings.some((e: { date: string; }) => e.date === format((morning), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(parseISO(e.date), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(addMinutes((morning), 30), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(e.date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(addMinutes(morning, 90), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")) ? (
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setMeetHours(morning)}
@@ -212,7 +213,7 @@ export default function Calendar(){
 
                                                 >
                                                     {
-                                                        meetings.some((e: { date: string; }) => e.date === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 30), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 60), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 90), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 120), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 180), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 210), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(afternoon, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")) ? (
+                                                        meetings.some((e: { date: string; }) => e.date === format((afternoon), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(parseISO(e.date), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(addMinutes((afternoon), 30), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(e.date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(addMinutes(afternoon, 90), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")) ? (
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setMeetHours(afternoon)}
@@ -249,7 +250,7 @@ export default function Calendar(){
 
                                                 >
                                                     {
-                                                        meetings.some((e: { date: string; }) => e.date === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 30), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 60), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 90), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 120), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 180), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(subHours(addMinutes(parseISO(e.date), 210), 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(subHours(evening, 2), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")) ? (
+                                                        meetings.some((e: { date: string; }) => e.date === format((evening), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(parseISO(e.date), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(addMinutes((evening), 30), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") || format(e.date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") === format(addMinutes(evening, 90), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")) ? (
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setMeetHours(evening)}

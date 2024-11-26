@@ -68,6 +68,9 @@ export default function Accessories() {
                         <option value={b.id}>{b.name}</option>
                     ))}
                 </select>
+                <a href="/accessories/params/add" className="rounded-full border-2 shadow-md w-10 h-10 content-center text-center text-xl">
+                    +
+                </a>
             </div>
                 <div className="flex flex-col">
                 <div className={ "flex flex-col gap-5 Shadow mt-5 rounded-xl p-5"}>

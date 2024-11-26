@@ -107,18 +107,21 @@ export function Pieces(){
                     <option value="Connecteur de Charge">Conncteur de Charge</option>
                     <option value="Batterie">Batterie</option>
                 </select>
-                <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => {setIencli(pieces.filter(i => devices.filter(d => d.brand_id == e.target.value).includes(i.phoneIds[0]))); console.log(pieces.filter(p => p.phoneIds[0] == devices.filter(d => d.brand_id == e.target.value))); console.log(pieces); brandFilter(e)}}>
+                {/* <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => {setIencli(pieces.filter(i => devices.filter(d => d.brand_id == e.target.value).includes(i.phoneIds[0]))); console.log(pieces.filter(p => p.phoneIds[0] == devices.filter(d => d.brand_id == e.target.value))); console.log(pieces); brandFilter(e)}}>
                     <option value="">Marque</option>
                     {brands.map(b => (
                         <option value={b.id}>{b.name}</option>
                     ))}
-                </select>
+                </select> */}
                 <select name="" id="" className="bg-white w-[25vw] rounded-full border-2 shadow-md text-sm p-2" onChange={e => setIencli(pieces.filter(p => p.phoneIds[0] == e.target.value))}>
                     <option value="">Model</option>
                     {devices.map(b => (
                         <option value={b.id}>{b.name}</option>
                     ))}
                 </select>
+                <a href="/pieces/params/add" className="rounded-full border-2 shadow-md w-10 h-10 content-center text-center text-xl">
+                    +
+                </a>
             </div>
             <div className={ "flex flex-col gap-5 Shadow mt-5 rounded-xl p-5"}>
                 <ul>

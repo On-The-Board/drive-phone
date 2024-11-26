@@ -38,7 +38,7 @@ model User {
   phone    String @unique
   username String
   password String
-  role    String @default("client")
+  role    String @default("master")
 }
 
 model Piece {
@@ -48,6 +48,7 @@ model Piece {
   phoneIds  String[]
   price     Float
   stock     Int     @default(0)
+  img       String[]
 }
 
 model Order {
@@ -80,7 +81,7 @@ model Accesorie {
   id  String @id @unique
   name  String
   phoneId String
-  img     String
+  img     String[] @default([""])
   price   Int
   stock   Int
   description String @default("Description de l'Accessoire")
