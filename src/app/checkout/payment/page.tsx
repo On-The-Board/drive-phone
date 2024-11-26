@@ -36,6 +36,7 @@ export default function Payment(){
         phone: string,
         email?: string,
         username: string,
+        role:   string
       }
 
     interface Workforce {
@@ -45,7 +46,7 @@ export default function Payment(){
         num: number,
         decimal: number
     }
-    const [user, setUser] = useState<UserProps>()
+    const [user, setUser] = useState<UserProps>({id: "", phone: "", email:"", username: "", role: "",})
     async function getUserSession() {
         const session = await getSession()
         const userSession = await fetch(`/api/user/${session?.user.id}`).then((response) => response.json())

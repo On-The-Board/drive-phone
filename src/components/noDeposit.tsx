@@ -4,6 +4,8 @@ import { fr } from "date-fns/locale"
 import { format, parseISO } from "date-fns"
 import emailjs from "@emailjs/browser"
 import { Skeleton } from "@/components/ui/skeleton"
+import {sendEmail} from "@/utils/email"
+
 
 
 
@@ -30,8 +32,11 @@ export default function Nodeposit() {
     const [zipcode, setZipcode] = useState("")
     const [date, setDate] = useState("")
     const [email, setEmail] = useState("")
-    const [workforce, setWorkforce] = useState<any>()
     const [selectedPieces, setSelectedPieces] = useState<any>([])
+    const [workforce, setWorkforce] = useState<any>()
+    const [delivery, setDelivery] = useState<any>({id: "", name: "", text: "", num: 0, decimal: 0})
+    const [deposit, setDeposit] = useState<any>()
+    const [sku, setSku] = useState<number>()
     let [sum, setSum] = useState(0)
     const fetchDevice = async() => {
         const deviceId = localStorage.getItem("deviceId")
@@ -42,6 +47,12 @@ export default function Nodeposit() {
         const mailRes = localStorage.getItem("mail") || ""
         const piecesRes = JSON.parse(localStorage.getItem("prices")  || "")
         const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
+        const wf = await fetch("/api/data/workforce").then((response) => response.json())
+        const dt = await fetch("/api/data/deposit").then((response) => response.json())
+        const dl = await fetch("/api/data/delivery").then((response) => response.json())
+        setWorkforce(wf)
+        setDelivery(dl)
+        setDeposit(dt)
         setDevice(response)
         setAdress(adressRes)
         setDate(dateRes)
@@ -49,6 +60,8 @@ export default function Nodeposit() {
         setZipcode(zipRes)
         setEmail(mailRes)
         setSelectedPieces(piecesRes)
+        setSku(Math.floor(100000 + Math.random() * 900000))
+
     }
     useEffect(() => {
         fetchDevice()
@@ -57,18 +70,19 @@ export default function Nodeposit() {
     const postOrder = async () => {
         let body = {
             userId: "4b6255cd-a38f-45bf-bb67-73e39b478d74",
+            sku: sku,
             name: localStorage.getItem("name") + " " + localStorage.getItem("surname"),
             date: localStorage.getItem("dateRes"),
             phone: localStorage.getItem("phone"),
             phoneId: localStorage.getItem("deviceId"),
             phoneName: localStorage.getItem("deviceName"),
-            piecesId: "à",
+            piecesId: localStorage.getItem("pieces"),
             address: localStorage.getItem("address"),
             city: localStorage.getItem("city"),
             zipCode: localStorage.getItem("zipcode"),
             status: "in process",
-            total: 120.00,
-            subtotal: 90.00
+            total: workforce.decimal + sum + delivery.num,
+            subtotal: parseFloat(((( workforce.decimal + sum + delivery.num) / 100) * (100 - deposit.num )).toFixed(2))
 
         }
         try {
@@ -83,32 +97,21 @@ export default function Nodeposit() {
         }
     }
 
-    const sendEmail = () => {
-        const serviceId = "service_6tywyep";
-        const templateId = "template_ma19u8t";
-        const publicKey = "QVOsrAGVv4ZGCPv77";
-        
-        // Create a new object that contains dynamic template params
-        const templateParams = {
-          to_email: email,
-          from_name: "digitaldashotb@gmail.com",
-          message: "test",
-        };
-        
-        // Send the email using EmailJS
-        emailjs
-          .send(serviceId, templateId, templateParams, publicKey)
-          .then((response) => {
-            console.log("Email sent successfully!", response);
-          })
-          .catch((error) => {
-            console.error("Error sending email:", error);
-          });
-      }
+    const sendMail = async () =>{
+        try {
+
+            sendEmail({to: email, from: "contact@drivephone.fr", subject: "Commande Drive Phone",message: "Merci pour votre commande !", img: device.img, date: format(date, "dd MMMM, HH:mm", {locale: fr}), phoneName: device.name, name: localStorage.getItem("surname"), price: (workforce.decimal + sum + delivery.num).toFixed(2), sku: sku, adress: adress +" "+ zipcode +" "+ city })
+            console.log('Email sent successfully! WTF');
+        }
+         catch (error) {
+         console.error('Error sending email:', error);
+        // Handle error
+         }
+    }
 
       function sendOrder() {
         postOrder()
-        sendEmail()
+        sendMail()
         setPosted(true)
       }
 
