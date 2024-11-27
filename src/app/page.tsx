@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <main className="text-white">
       <Navbar/>
-      <section className="px-5 z-10 bg-[url('../img/background.jpg')] h-screen bg-cover flex flex-col">
+      <section className="px-5 z-10 bg-[url('../img/background.jpg')] min-h-screen bg-cover flex flex-col">
         <div className="w-full lg:w-fit lg:mx-auto lg:h-full flex flex-row mt-16 lg:items-center">
           <Image src={bp} alt="tel cassé" className="w-56 lg:w-fit lg:h-[70vh] lg:mt-24 absolute lg:relative" />
           <div className="flex flex-col pt-16 ml-40 -center">

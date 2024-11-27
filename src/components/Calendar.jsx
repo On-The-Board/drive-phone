@@ -162,7 +162,7 @@ export default function Plan() {
                 <h2 className='col-start-3 col-end-4'>Idriss</h2>
             </div>
         PlanTable = 
-            <div className='grid grid-rows-24 col-start-3 col-end-13 h-full'>
+            <div className='grid grid-rows-25 col-start-3 col-end-13 h-full'>
                 {selectedDayMeetings.length > 0 ? (
                     selectedDayMeetings.map((meet) => (
                         <div className={classHour(subHours(meet.date, 1), subHours(addMinutes(parseISO(meet.date), 90), 1))}>
@@ -836,7 +836,7 @@ export default function Plan() {
                         </h2>
                         <ol className=" space-y-1 text-sm leading-6 text-gray-500">
                             <div className='grid grid-cols-12 pt-5'>
-                                <div className='grid grid-rows-24 col-start-1 col-end-3 h-full'>
+                                <div className='grid grid-rows-25 col-start-1 col-end-3 h-full'>
                                     {mornings.map((morning, idx) => (
                                         <p className={`row-start-${idx+1} row-end-${idx+2} border-b text-center `}>{format(morning, 'HH:mm' )}</p>
                                     ))}

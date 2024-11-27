@@ -11,7 +11,7 @@ const config: Config = {
 	gridTemplateRows: {
 		// Simple 16 row grid
 		'16': 'repeat(16, minmax(0, 1fr))',
-		'24': 'repeat(24, minmax(0, 1fr))',
+		'25': 'repeat(25, minmax(0, 1fr))',
 
   
 		// Complex site-specific row configuration
