@@ -71,11 +71,11 @@ export default function Home() {
           <h1 className="self-center py-4">Réparation Smartphone</h1>
           <p className="text-xs">Vous avez un problème avec votre smartphone ? Pas de panique ! Drive Phone vous propose un service de réparation de smartphones à domicile, sur Lyon et ses alentours. <br />Profitez de notre expertise pour redonner vie à votre appareil, dans le confort de votre maison. </p>
         </div>
-        <div className="rounded-t-full bg-white w-16 h-8 self-center mt-12 flex align-middle">
+        <div className="rounded-t-full bg-white w-16 h-8 self-center lg:absolute lg:bottom-0 mt-12 flex align-middle">
           <Image src={arrowD} alt="" className="m-auto pt-1"/>
         </div>
       </section>
-      <section className="h-screen bg-white overflow-hidden">
+      <section className="min-h-screen bg-white overflow-hidden">
         <div className="px-5">
           <div className="w-full mt-16 lg:mt-20 h-16 border-y border-y-blue-600 flex flex-row justify-between py-2">
             <div className="content-center h-full w-full">
@@ -123,7 +123,7 @@ export default function Home() {
             />
           </div>
           <p className="pt-12  lg:pt-8 leading-5 text-blue-600 lg:text-center lg:text-2xl">Suivez-nous <br className="lg:hidden"/>sur les réseaux sociaux</p>
-          <div className="flex flex-row justify-between pt-16">
+          <div className="flex flex-row justify-between h-full content-center pt-8  lg:pt-16">
             <a href="https://www.instagram.com/drv.phone/?utm_source=ig_web_button_share_sheet" className="text-blue-600 text-sm w-full flex flex-col text-center">
               <Image src={insta} alt="" width={40} className="self-center pb-2"/>
               @drv.phone
