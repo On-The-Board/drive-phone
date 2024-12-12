@@ -40,12 +40,23 @@ function classNames(...classes) {
 
 export default function Plan() {
     const router = useRouter()
-
+    if (apiRes.status === 200) {    
+        // "Cache-Control"-header needed for production to avoid Vercel's default 
+        // response caching mechanism        
+        res.setHeader(
+          "Cache-Control",
+          "no-cache, no-store, max-age=0, must-revalidate"
+        );}
 
     
     const [meetings, setMeetings] = useState([]);
     const getMeetings = async () => {
-        const response = await fetch(`/api/orders`).then((response) => response.json());
+        const response = await fetch(`/api/orders`, {
+            headers: { Authorization: `Bearer XYZ` },
+            next: {
+              revalidate: 60,
+            },
+        }).then((response) => response.json());
         setMeetings(response);
     }
     useEffect(() => {
@@ -56,7 +67,12 @@ export default function Plan() {
 
     const [scheduler, setScheduler] = useState([])
     const getScheduler = async () => {
-        const response = await fetch(`/api/scheduler`).then((response) => response.json());
+        const response = await fetch(`/api/scheduler`, {
+            headers: { Authorization: `Bearer XYZ` },
+            next: {
+              revalidate: 60,
+            },
+        }).then((response) => response.json());
         setScheduler(response);
         router.refresh()
 
