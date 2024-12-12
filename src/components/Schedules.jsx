@@ -39,6 +39,9 @@ function classNames(...classes) {
 }
 
 export default function Plan() {
+    const router = useRouter()
+
+
     
     const [meetings, setMeetings] = useState([]);
     const getMeetings = async () => {
@@ -47,6 +50,7 @@ export default function Plan() {
     }
     useEffect(() => {
       getMeetings()
+      router.refresh()
     }, [])
 
 
@@ -54,6 +58,8 @@ export default function Plan() {
     const getScheduler = async () => {
         const response = await fetch(`/api/scheduler`).then((response) => response.json());
         setScheduler(response);
+        router.refresh()
+
     }
     useEffect(() => {
         getScheduler()
@@ -190,7 +196,6 @@ export default function Plan() {
     }
     
 
-    const router = useRouter();
     const refreshData = () => {
         router.refresh(router.asPathName)
     }

@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma"
 import { format } from "date-fns";
 import { SetStateAction, useEffect, useState } from "react"
 import Search from "./searchbar";
+import { useRouter } from "next/navigation";
 
 interface iDevice {
     id: string
@@ -14,6 +15,7 @@ interface iDevice {
 }
 
 export default function Orders(){
+    const router = useRouter()
     const [meetings, setMeetings] = useState<any>([]);
     const [filteredMeetings, setFilteredMeetings] = useState<any>([]);
     const [splited, setSplited] = useState("");
@@ -25,6 +27,7 @@ export default function Orders(){
     }
     useEffect(() => {
       getMeetings()
+      router.refresh()
     }, [])
 
     const [selectedMeet, setSelectedMeet] = useState<any>("")
