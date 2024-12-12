@@ -36,44 +36,45 @@ async function main() {
     //             {id: uuidv4(), category: "Intérieur", name: "Vibreur", price: 163.79, phoneIds: ["apple_iphone_15_pro-12557"]}, 
     //     ]
     // })
-    const data = await gsmarena.catalog.getBrand('apple-phones-48')
+    const data = await gsmarena.catalog.getBrand('xiaomi-phones-80')
     
     // Post Devices
     // {data.forEach(async (device) => {
     //     const res = await prisma.device.create({
     //         data: 
-    //             {id: device.id, brand_id: 'xiaomi-phones-80', name: device.name, img: device.img, description: device.description },
+    //             {id: device.id, brand_id: 'oppo-phones-82', name: device.name, img: device.img, description: device.description },
     //         })
     //         return(res)
     // })}
+    // Done: Apple, Samsung, Xiaomi, Huawei, Oppo
 
     //Post Pieces
+    {data.forEach(async (device) => {
+        const response = await prisma.piece.createMany({
+            data: [
+                {id: uuidv4(), category: "Face avant", name: "Ecran", price: 163.79, phoneIds: [device.id]},
+                {id: uuidv4(), category: "Face arrière", name: "Vitre", price: 163.79, phoneIds: [device.id]},
+                {id: uuidv4(), category: "Face arrière", name: "Camera", price: 163.79, phoneIds: [device.id]},
+                {id: uuidv4(), category: "Contour", name: "Connecteur de Charge", price: 163.79, phoneIds: [device.id]},
+                {id: uuidv4(), category: "Intérieur", name: "Batterie", price: 163.79, phoneIds: [device.id]},
+            ]
+        })
+    
+    return(response)
+    })}
+
+    // Post Accessories
     // {data.forEach(async (device) => {
-    //     const response = await prisma.piece.createMany({
+    //     const response = await prisma.accesorie.createMany({
     //         data: [
-    //             {id: uuidv4(), category: "Face avant", name: "Ecran", price: 163.79, phoneIds: [device.id]},
-    //             {id: uuidv4(), category: "Face arrière", name: "Vitre", price: 163.79, phoneIds: [device.id]},
-    //             {id: uuidv4(), category: "Face arrière", name: "Camera", price: 163.79, phoneIds: [device.id]},
-    //             {id: uuidv4(), category: "Contour", name: "Connecteur de Charge", price: 163.79, phoneIds: [device.id]},
-    //             {id: uuidv4(), category: "Intérieur", name: "Batterie", price: 163.79, phoneIds: [device.id]},
+    //             {id: uuidv4(),  name: "Coque", price: 163.79, phoneId: device.id, stock: 0, img: ""},
+    //             {id: uuidv4(),  name: "Vitre Protection", price: 163.79, phoneId: device.id, stock: 0, img: ""},
+    //             {id: uuidv4(),  name: "Chargeur", price: 163.79, phoneId: device.id, stock: 0, img: ""},
     //         ]
     //     })
     // // Done: Apple, Samsung, Xiaomi, Huawei
     // return(response)
     // })}
-
-    // Post Accessories
-    {data.forEach(async (device) => {
-        const response = await prisma.accesorie.createMany({
-            data: [
-                {id: uuidv4(),  name: "Coque", price: 163.79, phoneId: device.id, stock: 0, img: ""},
-                {id: uuidv4(),  name: "Vitre Protection", price: 163.79, phoneId: device.id, stock: 0, img: ""},
-                {id: uuidv4(),  name: "Chargeur", price: 163.79, phoneId: device.id, stock: 0, img: ""},
-            ]
-        })
-    // Done: Apple, Samsung, Xiaomi, Huawei
-    return(response)
-    })}
 
     // {data.forEach(async (device) => {
     //     const response = await prisma.brand.create({
