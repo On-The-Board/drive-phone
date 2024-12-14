@@ -9,10 +9,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const devs = await fetch("https://www.drivephone.fr/api/devices")
     const devices: iDevice = await devs.json()
     const devicesEntries: MetadataRoute.Sitemap = devices.map(({id}) => ({
-        url: `https://www.drivephone.fr/devices/${id}`,
+        url: `<![CDATA[https://www.drivephone.fr/devices/${id}]]>`,
     }))
     const piecesEntries: MetadataRoute.Sitemap = devices.map(({id}) => ({
-        url: `https://www.drivephone.fr/pieces/${id}`,
+        url: `<![CDATA[https://www.drivephone.fr/pieces/${id}]]>`,
     }))
   return [
     {
