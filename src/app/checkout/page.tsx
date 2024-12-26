@@ -204,7 +204,6 @@ export default function Checkout(){
             return "flex opacity-1 -translate-y-96 transition duration-700"
         }
     }
-    console.log(localStorage.getItem("dateRes"))
 
     return(
         <>
