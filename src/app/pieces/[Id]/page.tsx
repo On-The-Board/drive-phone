@@ -16,6 +16,11 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
     }
     const deviceId = params.Id
     const [device, setDevice] = useState<iDevice>({id: "", brand_id: "", name: "", img: "", description: ""})
+    const [deviced, setDeviced] = useState(false)
+    if(!deviced){
+        localStorage.setItem("deviceId", deviceId)
+        setDeviced(true)
+    }
     interface iPiece {
         id: string
         name:  string

@@ -80,10 +80,30 @@ export default function Checkout(){
         const zipRes = localStorage.getItem("zipcode") || ""
         const townRes = localStorage.getItem("city") || ""
         const piecesRes = JSON.parse(localStorage.getItem("prices")  || "")
-        const response = await fetch(`/api/devices/${deviceId}`).then((response) => response.json())
-        const wf = await fetch("/api/data/workforce").then((response) => response.json())
-        const dt = await fetch("/api/data/deposit").then((response) => response.json())
-        const dl = await fetch("/api/data/delivery").then((response) => response.json())
+        const response = await fetch(`/api/devices/${deviceId}`, {
+            headers: { Authorization: `Bearer XYZ` },
+            next: {
+              revalidate: 60,
+            },
+        }).then((response) => response.json())
+        const wf = await fetch("/api/data/workforce", {
+            headers: { Authorization: `Bearer XYZ` },
+            next: {
+              revalidate: 60,
+            },
+        }).then((response) => response.json())
+        const dt = await fetch("/api/data/deposit", {
+            headers: { Authorization: `Bearer XYZ` },
+            next: {
+              revalidate: 60,
+            },
+        }).then((response) => response.json())
+        const dl = await fetch("/api/data/delivery", {
+            headers: { Authorization: `Bearer XYZ` },
+            next: {
+              revalidate: 60,
+            },
+        }).then((response) => response.json())
 
         setDevice(response)
         setAdress(adressRes)
@@ -184,6 +204,7 @@ export default function Checkout(){
             return "flex opacity-1 -translate-y-96 transition duration-700"
         }
     }
+    console.log(localStorage.getItem("dateRes"))
 
     return(
         <>
