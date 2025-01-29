@@ -51,9 +51,9 @@ export default function Home() {
     }
   ];
   return (
-    <main className="text-white">
+    <main className="text-white scroller no-scrollbar">
       <Navbar/>
-      <section className="px-5 z-10 bg-[url('../img/background.jpg')] min-h-screen bg-cover flex flex-col">
+      <section className="scroller-section px-5 z-10 bg-[url('../img/background.jpg')] min-h-screen bg-cover flex flex-col relative">
         <div className="w-full lg:w-fit lg:mx-auto lg:h-full flex flex-row mt-16 lg:items-center">
           <Image src={bp} alt="tel cassé" className="w-56 lg:w-fit lg:h-[70vh] lg:mt-24 absolute lg:relative" />
           <div className="flex flex-col pt-16 ml-40 -center">
@@ -75,7 +75,7 @@ export default function Home() {
           <Image src={arrowD} alt="" className="m-auto pt-1"/>
         </div>
       </section>
-      <section className="min-h-screen bg-white overflow-hidden">
+      <section className="scroller-section min-h-screen bg-white overflow-hidden">
         <div className="px-5">
           <div className="w-full mt-16 lg:mt-20 h-16 border-y border-y-blue-600 flex flex-row justify-between py-2">
             <div className="content-center h-full w-full">
@@ -139,7 +139,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-screen bg-blue-600 overflow-hidden content-center w-full ">
+      <section className="scroller-section h-screen bg-blue-600 overflow-hidden content-center w-full ">
         <video
           id="my-video"
           className="video-js lg;pt-20 pt-12 px-2 lg:hidden"
@@ -164,7 +164,9 @@ export default function Home() {
           <track src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" />
         </video>
       </section>
-      <Footer/>
+      <section className="scroller-section">
+        <Footer/>
+      </section>
     </main>
   );
 }

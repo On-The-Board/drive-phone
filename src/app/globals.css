@@ -90,6 +90,34 @@ body {
   }
 }
 
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+      display: none;
+  }
+ /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+}
+}
+
+.scroller {
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.sroller{
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.scroller-section {
+  scroll-snap-align: start;
+}
+
 
 .StartRow-1{
   grid-row-start: 1;
