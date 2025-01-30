@@ -44,7 +44,7 @@ export default function CheckoutForm({dpmCheckerLink, user}) {
 
   return (
     <>
-      <form id="payment-form" onSubmit={handleSubmit} className="mt-5 flex flex-col h-fit pb-[5vh]">
+      <form id="payment-form" onSubmit={handleSubmit} className="mt-5 flex flex-col h-full pb-[5vh] mb-24 no-scrollbar">
 
         <PaymentElement id="payment-element" options={paymentElementOptions} />
         {/* Show any error or success messages */}

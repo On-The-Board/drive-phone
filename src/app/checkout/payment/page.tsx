@@ -197,7 +197,7 @@ export default function Payment(){
     return(
         <>{confirmed ? null :
             <Navbar back={true}/>}
-            <main className={`${confirmed ? "bg-blue-600 h-screen text-white px-5 xl:px-[40vw]" : "h-screen px-5 xl:px-[40vw] text-black"}`}>
+            <main className={`${confirmed ? "bg-blue-600 h-screen text-white px-5 xl:px-[40vw]" : "min-h-screen px-5 xl:px-[40vw] text-black "}`}>
                     <div>
                         {confirmed ? 
                             <div className="w-full flex flex-col items-center pt-16">

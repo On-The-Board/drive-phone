@@ -8,6 +8,7 @@ import insta from "@/icons/instagram.png"
 import snap from "@/icons/snapchat.png"
 import fb from "@/icons/facebook.png"
 import arrowD from "@/icons/arrow_down.svg"
+import star from "@/icons/star.png"
 
 
 import { v4 as uuidv4 } from "uuid";
@@ -15,6 +16,8 @@ import Carousel_testimonials from "../components/carousel_testimonials";
 import Card_testimonials from "../components/card";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
+import { Carousel } from "@material-tailwind/react";
+
 
 
 export default function Home() {
@@ -54,26 +57,37 @@ export default function Home() {
     <main className="text-white scroller no-scrollbar">
       <Navbar/>
       <section className="scroller-section px-5 z-10 bg-[url('../img/background.jpg')] min-h-screen bg-cover flex flex-col relative">
-        <div className="w-full lg:w-fit lg:mx-auto lg:h-full flex flex-row mt-16 lg:items-center">
-          <Image src={bp} alt="tel cassé" className="w-56 lg:w-fit lg:h-[70vh] lg:mt-24 absolute lg:relative" />
-          <div className="flex flex-col pt-16 ml-40 -center">
-            <h1 className="font-bold text-lg lg:text-5xl text-end">TÉLÉPHONE CASSÉ ?</h1>
-            <p className="text-sm lg:text-3xl text-end leading-5 font-light lg:py-12">On se déplace chez vous <br className="lg:hidden" />pour <br className="hidden lg:flex"/> le réparer en toute <br className="lg:hidden" />tranquilité</p>
-            <a href="/devices" className="self-end">
-              <button className="w-20 lg:w-56 rounded-sm bg-white h-6 lg:h-12 mt-4 text-blue-600 text-xs lg:text-2xl hover:bg-blue-600 hover:border hover:border-white hover:text-white active:bg-blue-600 active:border active:border-white active:text-white">
+        <div className="w-full lg:w-fit lg:mx-auto lg:h-full flex flex-col lg:flex-row mt-16 lg:items-center">
+          <Image src={bp} alt="tel cassé" className="w-full mx-6 lg:mx-0 lg:w-fit lg:h-[70vh] lg:mt-24  lg:relative" />
+          <div className="flex flex-col lg:pt-16 lg:ml-40 -center">
+            <h1 className="font-bold text-3xl lg:text-5xl text-start lg:text-end">TÉLÉPHONE CASSÉ ?</h1>
+            <p className="text-xl lg:text-3xl text-start lg:text-end leading-5 font-light lg:py-12 pt-2 lg:pt-0">On se déplace chez vous <br className="lg:hidden" />pour <br className="hidden lg:flex"/> le réparer en toute <br className="lg:hidden" />tranquilité</p>
+            <a href="/devices" className=" self-center lg:self-end">
+              <button className="w-32 lg:w-56 rounded-sm bg-white h-8 lg:h-12 mt-8 lg:mt-4 font-medium text-blue-600 text-lg lg:text-2xl hover:bg-blue-600 hover:border hover:border-white hover:text-white active:bg-blue-600 active:border active:border-white active:text-white">
                 Réserver
               </button>
             </a>
           </div>
         </div>
-        <div className="w-full bg-white bg-opacity-45 h-[26rem] rounded-md mt-24 self-center flex flex-col lg:hidden px-8">
+        {/* <div className="w-full bg-white bg-opacity-45 h-[26rem] rounded-md mt-24 self-center flex flex-col lg:hidden px-8">
           <Image src={rp} alt="reparation smartphone" className="w-full h-fit pt-8 self-center"/>
           <h1 className="self-center py-4">Réparation Smartphone</h1>
           <p className="text-xs">Vous avez un problème avec votre smartphone ? Pas de panique ! Drive Phone vous propose un service de réparation de smartphones à domicile, sur Lyon et ses alentours. <br />Profitez de notre expertise pour redonner vie à votre appareil, dans le confort de votre maison. </p>
-        </div>
-        <div className="rounded-t-full bg-white w-16 h-8 self-center lg:absolute lg:bottom-0 mt-12 flex align-middle">
+        </div> */}
+        <div className="rounded-t-full bg-white w-16 h-8 self-center lg:absolute lg:bottom-0 mt-28 flex align-middle">
           <Image src={arrowD} alt="" className="m-auto pt-1"/>
         </div>
+      </section>
+      <section className="scroller-section min-h-screen bg-white overflow-hidden">
+          <div className="px-5 flex flex-col lg:flex-row content-center pt-16">
+            <div>
+            
+            </div>
+            <div >
+              <h3 className="text-blue-600 text-center text-lg font-medium">On se deplace dans Lyon et ses alentours <br />7/7J de 9h a 23h </h3>
+              <iframe width="80%" height="100%" className="h-80 rounded-lg self-center w-full pt-2 p-5 lg:p-10" allow="geolocation" src="https://umap.openstreetmap.fr/fr/map/anonymous-edit/1171317:wrscz99JdcaVebC1gWbtPnIShETvFWJswQqtx-Gv34E?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&captionControl=false"></iframe>
+            </div>
+          </div>
       </section>
       <section className="scroller-section min-h-screen bg-white overflow-hidden">
         <div className="px-5">
@@ -85,13 +99,14 @@ export default function Home() {
               <p className="text-blue-600 text-center font-semibold leading-4 text-sm">+13 000 <br />réparations</p>
             </div>
             <div className="content-center h-full w-full">
-              <p className="text-blue-600 text-center font-semibold leading-4 text-sm">5 ans <br /> d’experience</p>
+              <Image src={star} alt="star" className="w-4 lg:w-6 h-fit mx-auto"/>
+              <p className="text-blue-600 text-center font-semibold leading-4 pt-0 text-sm lg:text-lg">4.9/5</p>
             </div>
           </div>
         </div>
         <div className="bg-[url('../img/Rectangle_40.png')] lg:bg-[url('../img/Rectangle_80.png')] bg-no-repeat  h-full px-5 lg:px-64">
-          <p className="pt-14 leading-5 lg:hidden">Lisez <br />les avis des <br />précédents clients </p>
-          <p className="hidden lg:block text-blue-600 text-2xl text-center mt-6 pt-10">Lisez les avis des précédents clients</p>
+          <p className="pt-20 leading-5 lg:hidden">Avis des <br />précédents clients </p>
+          <p className="hidden lg:block text-blue-600 text-2xl text-center mt-6 pt-10">Avis des précédents clients</p>
           <div className="hidden xl:block xl:px-64">
             <Carousel_testimonials
               cards={cards}
@@ -122,7 +137,7 @@ export default function Home() {
               showArrows={false}
             />
           </div>
-          <p className="pt-12  lg:pt-8 leading-5 text-blue-600 lg:text-center lg:text-2xl">Suivez-nous <br className="lg:hidden"/>sur les réseaux sociaux</p>
+          <p className="pt-16  lg:pt-8 leading-5 text-blue-600 lg:text-center lg:text-2xl">Suivez-nous <br className="lg:hidden"/>sur les réseaux sociaux</p>
           <div className="flex flex-row justify-between h-full content-center pt-8  lg:pt-16">
             <a href="https://www.instagram.com/drv.phone/?utm_source=ig_web_button_share_sheet" className="text-blue-600 text-sm w-full flex flex-col text-center">
               <Image src={insta} alt="" width={40} className="self-center pb-2"/>

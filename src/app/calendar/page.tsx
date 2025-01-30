@@ -87,7 +87,7 @@ export default function Calendar(){
     return(
         <>
             <Navbar back={true}/>
-            <main className='px-10 pt-16 w-full h-screen lg:w-[60vw] lg:mx-auto content-center'>
+            <main className='px-10 pt-16 w-screen h-screen lg:w-[60vw] lg:mx-auto content-center'>
                 <div className="flex flex-col lg:mx-[15vw]">
                     <div className="flex items-center ">
                         <button

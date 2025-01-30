@@ -137,6 +137,7 @@ const config: Config = {
   	}
   },
   plugins: [require('daisyui'), 
-  require("tailwindcss-animate")],
+  require("tailwindcss-animate"),
+  require("@material-tailwind/react/utils/withMT")],
 };
 export default config;

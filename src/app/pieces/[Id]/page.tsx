@@ -69,9 +69,9 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
         selectedPieces.length > 0 ? setReady(true) : setReady(false)
     }
     return(
-        <main className="h-screen overflow-hidden">
+        <main className="h-screen overflow-hidden content-center">
             <Navbar back={true}/>
-            <div className="flex flex-col lg:flex-row lg:mx-[20vw]">
+            <div className="flex flex-col lg:flex-row lg:mx-[20vw] my-auto">
                 { device.img == "" ? <div className="p-20 pb-12 pt-16 flex w-full items-center"><Skeleton className="w-[170px] h-[304px] mx-auto rounded-lg"/></div> : <div className="w-full lg:w-[70%] flex"><img src={device.img} alt=""  className="p-20 pb-12 pt-16 w-80 lg:w-[20vw] mx-auto lg:h-fit lg:mx-auto lg:self-center lg:pt-0"/></div>}
                 <div className="flex flex-col w-full lg:flex-col lg:self-center lg:w-[30%]">
                     <div className="flex flex-row pb-4 overflow-x-auto whitespace-nowrap w-full px-10 h-fit">
@@ -82,7 +82,7 @@ const Pieces: NextPage<any> = ({ params }: { params: { Id: string } }) => {
                         ))} */}
                         <a href="tel:0761707524" className="text-blue-600 leading-3">Besoin d'aide ? <br /><span className="text-sm">Contactez nous au 07 61 70 75 24</span></a>
                     </div>
-                    <div className="text-black px-5 pt-5 overflow-scroll h-fit max-h-48 lg:max-h-fit pb-16 self-center lg:w-full w-full">
+                    <div className="no-scrollbar text-black px-5 pt-5 overflow-scroll h-fit max-h-48 lg:max-h-fit pb-16 self-center lg:w-full w-full">
                         {pieces.filter((piece: iPiece) => piece).map((piece: iPiece) => (
                             <label htmlFor={piece.id} className="flex flex-row border-b h-10 items-center justify-between my-4" key={piece.name}>
                                 <div>
