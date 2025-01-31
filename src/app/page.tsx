@@ -16,11 +16,18 @@ import Carousel_testimonials from "../components/carousel_testimonials";
 import Card_testimonials from "../components/card";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
-import { Carousel } from "@material-tailwind/react";
+import EmblaCarousel from '../components/embla/EmblaCarousel'
+import { EmblaOptionsType } from 'embla-carousel'
+import '../components/embla/embla.css'
+
 
 
 
 export default function Home() {
+  const OPTIONS: EmblaOptionsType = {}
+  const SLIDE_COUNT = 5
+  const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
+
   let cards = [
     {
       key: uuidv4(),
@@ -54,7 +61,7 @@ export default function Home() {
     }
   ];
   return (
-    <main className="text-white scroller no-scrollbar">
+    <main className="text-white scroller no-scrollbar overflow-x-hidden">
       <Navbar/>
       <section className="scroller-section px-5 z-10 bg-[url('../img/background.jpg')] min-h-screen bg-cover flex flex-col relative">
         <div className="w-full lg:w-fit lg:mx-auto lg:h-full flex flex-col lg:flex-row mt-16 lg:items-center">
@@ -78,16 +85,16 @@ export default function Home() {
           <Image src={arrowD} alt="" className="m-auto pt-1"/>
         </div>
       </section>
-      <section className="scroller-section min-h-screen bg-white overflow-hidden">
-          <div className="px-5 flex flex-col lg:flex-row content-center pt-16">
-            <div>
-            
-            </div>
-            <div >
-              <h3 className="text-blue-600 text-center text-lg font-medium">On se deplace dans Lyon et ses alentours <br />7/7J de 9h a 23h </h3>
-              <iframe width="80%" height="100%" className="h-80 rounded-lg self-center w-full pt-2 p-5 lg:p-10" allow="geolocation" src="https://umap.openstreetmap.fr/fr/map/anonymous-edit/1171317:wrscz99JdcaVebC1gWbtPnIShETvFWJswQqtx-Gv34E?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&captionControl=false"></iframe>
-            </div>
+      <section className="scroller-section min-h-screen bg-white overflow-hidden relative">
+        <div className="flex flex-col lg:flex-row content-center pt-16">
+          <div className="h-[35vh]">
+            <EmblaCarousel slides={SLIDES} options={OPTIONS} />
           </div>
+          <div className="">
+            <h3 className="text-blue-600 text-center text-lg font-medium mt-12 px-2">On se deplace dans Lyon et ses alentours <br />7/7J de 9h a 23h </h3>
+            <iframe width="100%" height="100%" className="h-[45vh] rounded-lg self-center w-[100vw] pt-7 pb-0 lg:p-10" allow="geolocation" src="https://umap.openstreetmap.fr/fr/map/anonymous-edit/1171317:wrscz99JdcaVebC1gWbtPnIShETvFWJswQqtx-Gv34E?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&captionControl=false"></iframe>
+          </div>
+        </div>
       </section>
       <section className="scroller-section min-h-screen bg-white overflow-hidden">
         <div className="px-5">
