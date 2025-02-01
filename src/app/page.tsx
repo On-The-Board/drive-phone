@@ -4,6 +4,10 @@ import Image from "next/image";
 import bp from "@/img/brokenPhone.png"
 import rp from "@/img/Reparateur.png"
 import random from "@/img/random.jpg"
+import issa from "@/img/issa.jpg"
+import nico from "@/img/Nicolas.jpg"
+import sophie from "@/img/sophie.png"
+import emma from "@/img/emma.png"
 import insta from "@/icons/instagram.png"
 import snap from "@/icons/snapchat.png"
 import fb from "@/icons/facebook.png"
@@ -32,31 +36,31 @@ export default function Home() {
     {
       key: uuidv4(),
       content: (
-        <Card_testimonials img={random} text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+        <Card_testimonials img={random} text="Super service ! Mon écran remplacé en 30 min, sans bouger de chez moi. 👌📱" name="Lucas Martin"/>
       )
     },
     {
       key: uuidv4(),
       content: (
-        <Card_testimonials img={random}  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+        <Card_testimonials img={sophie}  text="Réparateur pro et rapide. Mon iPhone fonctionne comme neuf. Merci ! 🔧✨" name="Sophie Dupont"/>
       )
     },
     {
       key: uuidv4(),
       content: (
-        <Card_testimonials img={random}  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+        <Card_testimonials img={issa}  text="Prix honnête, intervention efficace. Plus besoin d’aller en boutique ! 🙌" name="Issa Diakate"/>
       )
     },
     {
       key: uuidv4(),
       content: (
-        <Card_testimonials img={random}  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+        <Card_testimonials img={emma}  text="Très sympa et ponctuel. Mon téléphone est sauvé ! Je recommande. 👍" name="Emma Roussel"/>
       )
     },
     {
       key: uuidv4(),
       content: (
-        <Card_testimonials img={random}  text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eaque qui laboriosam" name="John Doe"/>
+        <Card_testimonials img={nico}  text="Réparation express et soignée, à domicile en plus ! Top service ! 🚀" name="Nicolas Pons"/>
       )
     }
   ];
@@ -91,7 +95,7 @@ export default function Home() {
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
           </div>
           <div className="">
-            <h3 className="text-blue-600 text-center text-lg font-medium mt-12 px-2">On se deplace dans Lyon et ses alentours <br />7/7J de 9h a 23h </h3>
+            <h3 className="text-blue-600 text-center text-lg font-medium mt-12 px-2">On se déplace dans Lyon et ses alentours <br />7/7J de 9h a 23h </h3>
             <iframe width="100%" height="100%" className="h-[45vh] rounded-lg self-center w-[100vw] pt-7 pb-0 lg:p-10" allow="geolocation" src="https://umap.openstreetmap.fr/fr/map/anonymous-edit/1171317:wrscz99JdcaVebC1gWbtPnIShETvFWJswQqtx-Gv34E?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&captionControl=false"></iframe>
           </div>
         </div>
