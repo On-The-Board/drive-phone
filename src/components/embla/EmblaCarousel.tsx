@@ -9,6 +9,12 @@ import {
   usePrevNextButtons
 } from './EmblaCarouselArrowButtons'
 import { DotButton, useDotButton } from './EmblaCarouselDotButton'
+import skill0 from "@/img/skill0.png"
+import skill1 from "@/img/skill1.png"
+import skill2 from "@/img/skill2.png"
+import skill3 from "@/img/skill3.png"
+import skill4 from "@/img/skill4.png"
+
 
 type PropType = {
   slides: number[]
@@ -31,13 +37,13 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   return (
     <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
+      <div className="embla__viewport px-5" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((index) => (
             <div className="embla__slide" key={index}>
               <img
                 className="embla__slide__img  "
-                src={`https://picsum.photos/600/350?v=${index}`}
+                src={`/skill${index}.png`}
                 alt="Your alt text"
               />
             </div>
