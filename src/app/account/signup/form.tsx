@@ -1,11 +1,12 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 
 
 
 export const SignUpForm = () => {
+    const router = useRouter();
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
@@ -25,7 +26,7 @@ export const SignUpForm = () => {
                     headers: { 'Content-type': 'application/json' },
                     body: JSON.stringify(body)
                 })
-                redirect("/login")
+                router.push("/account/login")
             } catch (error) {
                 console.error(error)
             }
@@ -39,7 +40,7 @@ export const SignUpForm = () => {
                         <h2 className="text-2xl font-semibold text-center pt-12">Mon Compte</h2>
                         <div className="flex flex-row justify-between w-full lg:w-1/2 mt-5">
                             <a href="./login"><h2 className="text-xl font-semibold text-nardo hover:text-petrole">Connexion</h2></a>
-                            <a href=""><h2 className="text-xl font-semibold hover:text-petrole">Inscription</h2></a>
+                            <a href=""><h2 className="text-xl font-semibold hover:text-petrole text-blue-600">Inscription</h2></a>
                         </div>
                         <div className="rounded-lg Shadow mt-5 flex flex-col p-8 gap-y-3 justify-self-center w-full lg:w-1/2 items-center">
                             <div className="w-full">
@@ -59,7 +60,7 @@ export const SignUpForm = () => {
                                 <input type="password" name="password" onChange={(e) => setPass(e.target.value)} className="border rounded-lg w-full p-2 bg-white" required />
                             </div>
                             <div className="pt-5">
-                                <button type="submit" value="" onClick={() => submitPost()} className="btn btn-sm lg:btn-md bg-petrole text-white border-petrole hover:bg-white hover:text-petrole hover:border hover:border-petrole" >S'inscrire</button>
+                                <button type="submit" value="" onClick={() => submitPost()} className="btn btn-sm lg:btn-md bg-petrole text-white border-none hover:bg-white hover:text-petrole hover:border hover:border-petrole bg-blue-600" >S'inscrire</button>
                             </div>  
                         </div>
             </section>

@@ -90,12 +90,12 @@ export default function Home() {
         </div>
       </section>
       <section className="scroller-section min-h-screen bg-white overflow-hidden relative">
-        <div className="flex flex-col lg:flex-row content-center pt-16">
+        <div className="flex flex-col lg:flex-row content-center pt-16 bg-[url('../img/background.jpg')] bg-cover">
           <div className="h-[35vh]">
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
           </div>
           <div className="">
-            <h3 className="text-blue-600 text-center text-lg font-medium mt-12 px-2">On se déplace dans Lyon et ses alentours <br />7/7J de 9h a 23h </h3>
+            <h3 className="text-white text-center text-lg font-semibold mt-12 px-2">On se déplace dans Lyon et ses alentours <br />7/7J de 9h a 23h </h3>
             <iframe width="100%" height="100%" className="h-[45vh] rounded-lg self-center w-[100vw] pt-7 pb-0 lg:p-10" allow="geolocation" src="https://umap.openstreetmap.fr/fr/map/anonymous-edit/1171317:wrscz99JdcaVebC1gWbtPnIShETvFWJswQqtx-Gv34E?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&captionControl=false"></iframe>
           </div>
         </div>

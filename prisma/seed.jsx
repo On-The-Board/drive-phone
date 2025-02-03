@@ -37,6 +37,12 @@ async function main() {
     //     ]
     // })
     const data = await gsmarena.catalog.getBrand('xiaomi-phones-80')
+
+    // apple-phones-48
+    // google-phones-107
+    // huawei-phones-58
+    // samsung-phones-9
+    // xiaomi-phones-80
     
     // Post Devices
     // {data.forEach(async (device) => {
@@ -57,7 +63,8 @@ async function main() {
                 {id: uuidv4(), category: "Face arrière", name: "Camera", price: 163.79, phoneIds: [device.id]},
                 {id: uuidv4(), category: "Contour", name: "Connecteur de Charge", price: 163.79, phoneIds: [device.id]},
                 {id: uuidv4(), category: "Intérieur", name: "Batterie", price: 163.79, phoneIds: [device.id]},
-            ]
+            ],
+            skipDuplicates: true,
         })
     
     return(response)
@@ -67,12 +74,12 @@ async function main() {
     // {data.forEach(async (device) => {
     //     const response = await prisma.accesorie.createMany({
     //         data: [
-    //             {id: uuidv4(),  name: "Coque", price: 163.79, phoneId: device.id, stock: 0, img: ""},
-    //             {id: uuidv4(),  name: "Vitre Protection", price: 163.79, phoneId: device.id, stock: 0, img: ""},
-    //             {id: uuidv4(),  name: "Chargeur", price: 163.79, phoneId: device.id, stock: 0, img: ""},
+    //             {id: uuidv4(),  name: "Coque", price: 163.79, phoneId: device.id, stock: 0, img: [""]},
+    //             {id: uuidv4(),  name: "Vitre Protection", price: 163.79, phoneId: device.id, stock: 0, img: [""]},
+    //             {id: uuidv4(),  name: "Chargeur", price: 163.79, phoneId: device.id, stock: 0, img: [""]},
     //         ]
     //     })
-    // // Done: Apple, Samsung, Xiaomi, Huawei
+    // Done: Apple, Samsung, Xiaomi, Huawei
     // return(response)
     // })}
 
