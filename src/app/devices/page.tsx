@@ -54,26 +54,6 @@ export default function Devices () {
                          </a>
                      ))}
                 </div>
-                {/* <Carousel
-                    plugins={[plugin.current]}
-                    className={`w-full max-w-xs lg:max-w-[30vw] self-center h-full pt-40 ${search != "" ? " transition delay-200 hidden" : null}`}
-                    onMouseEnter={plugin.current.stop}
-                    onMouseLeave={plugin.current.reset}
-                    >
-                    <CarouselContent>
-                        {Array.from({ length: 3 }).map((_, index) => (
-                        <CarouselItem key={index}>
-                            <div className="">
-                            <Card>
-                                <CardContent className="flex aspect-square items-center justify-center ">
-                                    <Image src={tab[index]} alt="phone" width={2000} height={2000} className="w-full"/>
-                                </CardContent>
-                            </Card>
-                            </div>
-                        </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                </Carousel> */}
             </main> 
         </>
     )

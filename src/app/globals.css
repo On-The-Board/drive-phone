@@ -102,7 +102,7 @@ body {
 }
 }
 
-.scroller {
+/* .scroller {
   height: 100vh;
   height: 100dvh;
   overflow-y: scroll;
@@ -116,7 +116,7 @@ body {
 
 .scroller-section {
   scroll-snap-align: start;
-}
+} */
 
 
 .StartRow-1{
@@ -309,7 +309,7 @@ body {
   grid-row-end: 31;
 }
 
-.scroller {
+/* .scroller {
   height: 100vh;
   height: 100dvh;
   overflow-y: scroll;
@@ -318,4 +318,4 @@ body {
 
 .scroller-section {
   scroll-snap-align: start;
-}
+} */

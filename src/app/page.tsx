@@ -24,14 +24,28 @@ import EmblaCarousel from '../components/embla/EmblaCarousel'
 import { EmblaOptionsType } from 'embla-carousel'
 import '../components/embla/embla.css'
 import { ArrowRight } from "lucide-react";
+import { prisma } from "@/lib/prisma";
 
 
 
 
-export default function Home() {
+export default async function Home() {
   const OPTIONS: EmblaOptionsType = {}
   const SLIDE_COUNT = 5
   const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
+  const data = await prisma.device.findMany({
+    where: {active: true}
+  })
+  const basic = [
+    "apple_iphone_15_pro-12557",
+    "apple_iphone_11-9848",
+    "apple_iphone_12-10509",
+    "xiaomi_redmi_note_12_pro-11955",
+    "samsung_galaxy_s20-10081",
+    "google_pixel_9_pro-13218"
+    
+]
+
 
   let cards = [
     {
@@ -79,7 +93,7 @@ export default function Home() {
         </div>
       </section>
       <section className="scroller-section text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
-        <h2 className="mt-36 text-center text-3xl lg:text-4xl font-bold text-black left-0 right-0 px-5 lg:px-auto ">Comment ça marche?</h2>
+        <h2 className="mt-36 lg:mt-24 2xl:mt-36 text-center text-3xl lg:text-4xl font-bold text-black left-0 right-0 px-5 lg:px-auto ">Comment ça marche?</h2>
         <div className="mt-auto flex flex-col lg:flex-row p-5 lg:px-24 overflow-x-scroll no-scrollbar gap-y-4 ">
           <div className="w-[90vw] lg:w-[20vw] lg:left-[10vw] flex flex-row lg:absolute bottom-[55dvh] top-[40dvh] lg:flex-col">
             <p className="text-3xl font-bold mr-2 lg:mr-0 ">1</p>
@@ -88,11 +102,11 @@ export default function Home() {
               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
             </div>
           </div>
-          <div className="w-[90vw] flex flex-row lg:flex-col lg:text-center lg:pb-10">
+          <div className="w-[90vw] flex flex-row lg:flex-col lg:text-center 2xl:pb-10">
             <p className="text-3xl font-bold mr-2 lg:mr-0 lg:text-center">2</p>
             <div>
               <p className="font-semibold lg:text-center">Commandez votre Réparation</p>
-              <p className="lg:px-[35vw]">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
+              <p className="lg:px-[30vw] 2xl:px-[35vw]">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
             </div>
           </div>
           <div className="w-[90vw] lg:w-[20vw] lg:right-[10vw] flex flex-row lg:absolute bottom-[55dvh] top-[40dvh] lg:flex-col">
@@ -104,69 +118,18 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="scroller-section min-h-screen bg-white overflow-hidden">
-        <div className="px-5">
-          <div className="w-full mt-16 lg:mt-20 h-16 border-y border-y-blue-600 flex flex-row justify-between py-2">
-            <div className="content-center h-full w-full">
-              <p className="text-blue-600 text-center font-semibold leading-4 text-sm">5 ans <br /> d’experience</p>
-            </div>
-            <div className="content-center h-full border-x border-x-blue-600 px-4 w-full">
-              <p className="text-blue-600 text-center font-semibold leading-4 text-sm">+13 000 <br />réparations</p>
-            </div>
-            <div className="content-center h-full w-full">
-              <Image src={star} alt="star" className="w-4 lg:w-6 h-fit mx-auto"/>
-              <p className="text-blue-600 text-center font-semibold leading-4 pt-0 text-sm lg:text-lg">4.9/5</p>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[url('../img/Rectangle_40.png')] lg:bg-[url('../img/Rectangle_80.png')] bg-no-repeat  h-full px-5 lg:px-64">
-          <p className="pt-20 leading-5 lg:hidden">Avis des <br />précédents clients </p>
-          <p className="hidden lg:block text-blue-600 text-2xl text-center mt-6 pt-10">Avis des précédents clients</p>
-          <div className="hidden xl:block xl:px-64">
-            <Carousel_testimonials
-              cards={cards}
-              height="550px"
-              width="100%"
-              margin="0 auto"
-              offset={200}
-              showArrows={false}
-            />
-          </div>
-          <div className="hidden lg:block xl:hidden">
-            <Carousel_testimonials
-              cards={cards}
-              height="300px"
-              width="100%"
-              margin="0 auto"
-              offset={200}
-              showArrows={false}
-            />
-          </div>
-          <div className="lg:hidden block">
-            <Carousel_testimonials
-              cards={cards}
-              height="300px"
-              width="100%"
-              margin="0 auto"
-              offset={200}
-              showArrows={false}
-            />
-          </div>
-          <p className="pt-16  lg:pt-8 leading-5 text-blue-600 lg:text-center lg:text-2xl">Suivez-nous <br className="lg:hidden"/>sur les réseaux sociaux</p>
-          <div className="flex flex-row justify-between h-full content-center pt-8  lg:pt-16">
-            <a href="https://www.instagram.com/drv.phone/?utm_source=ig_web_button_share_sheet" className="text-blue-600 text-sm w-full flex flex-col text-center">
-              <Image src={insta} alt="" width={40} className="self-center pb-2"/>
-              @drv.phone
+      <h2 className="text-center text-black text-3xl font-semibold mt-16 lg:mt-24">Séléctionner mon Smartphone</h2>
+      <section className=" min-h-screen bg-white overflow-x-scroll">
+        <div className="flex flex-row w-fit h-fit overflow-x-scroll gap-10 mt-6 lg:mt-8 px-24">
+          {data.filter((device: any) => (device.id.includes(basic[0]) || device.id.includes(basic[1]) || device.id.includes(basic[2]) || device.id.includes(basic[3]) || device.id.includes(basic[4]) || device.id.includes(basic[5]))).map((device: any) => (
+            <a className="text-black justify-center flex w-[20dvw] flex-col p-8" href={`/pieces/${device.id}`}>
+                <img src={device.img} alt={device.name} className="lg:w-56 lg:mx-auto"/>
+                <h2 className="text-center pt-5">{device.name}</h2>
             </a>
-            <a href="https://www.snapchat.com/add/drive_phone?share_id=uZMlzMXlkFI&locale=fr-FR" className="text-blue-600 text-sm w-full flex flex-col text-center">
-              <Image src={snap} alt="" width={40} className="self-center pb-2"/>
-              @drive_phone
-            </a>
-            <a href="https://www.tiktok.com/@drive.phone7?is_from_webapp=1&sender_device=pc" className="text-blue-600 text-sm w-full flex flex-col text-center">
-              <Image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAERUlEQVR4nO2aTYgcRRTH26zGGDXqyUyMGTNdb3ZNNB48KIqo54gfyCQBJbvzqm1QEBET8Qv24Aeo5CIBESSIHjzoyYsQiOA3mE1y0IjZIBtW4+6817NRN3GjJml53VUznXEnOxPH7W6YPzRDdVdXvV/Xx3tVNY7TV199nZeUR/copD1K83HQHKZ5KeRZsQWQNnYHgfxS2sZDOyjNL3bcEtFLyCcBeduQTwUnZQ35VBBbIpsi2zpoGdD0iQHZ5mRMSvPTcVejPQtnRp6VzMXh2konYyoO11bG3Yt+XzCz7YtORgWd2vd/gADS7n8NXOQvndFwSc5A+MR8M5Dr1dfnC0TzH1JmwT+6XNIK6RVTz1O5bJGCASnr6Q2g6Qxomtzw8NSluW0RESB/YBzc+92MFcgCyOrK5CX23lo9fbXSdMQ4uI8GkVflAWQu9k0Ty5L3SyMEoHnctMxxQHoPPPbdkfq1uQIRDSJfrjS9bh0xxFA/ZnWwRzGSenz84jhNuxXyZwJh86iHghVlTZuNjzmRD5CmU/x43WO1y2y+gn90eaZBlKY/pcx1lXBpsg6z1jiksPbgnaPhhamDlPyZNUrzM0rzp0rTz8bwDxcCUcgHmlB0DJC+TgVEplOleUdjndByNUCQ/pL0zX54UbIOSSukJ5TmibMXT3Rk0UAkpFZI35iveUb6O1SDrVCt3TQPyN+Slu7Trg6Ju8rI9yskdHVNLQpI1JeRx8xUOQEe3XGuMjoB6VTQSxCFtNP05cN2ASZGAtIWhfROaxmg6VSUroQDmQEpjRBIn5evPDgyfaPcE08Mmve3jJGpTIOo5g7L25KOp0w62JxKCaEa3JJcKgPS6ahMExxmBeSAPHeR747Smp40A/5gMro9u0wJ2aXM8IIsgczKc7uOEN8RgVVpU/syMwZSHJ5YZp7PJfKPn3PZOhouiScGOh2lK+GAacFTqYGI7BZqc9nKX0TvVIMHnHlUwvoNxvDJxmZbPJ5+cdIEAU3fyvOyrt0epZGeM1PxmPXcDVXCgWjPNgZ50+TfaPzP5+mCIL1qDHlD0iV/5gpA+smEFntd5HtBB9e7Ht9nPb9CqisvWG0+xLtxHcGzqYK4Xn298QtzZW9qrdwTf2Jh5rmmlBfc2sgn7yKfvA5niqmCiAB5l8m3z85epmVeAE1fyQovHjv0/JpHf71KnheHj12pNP1gWnOHc56CXoKI0QrpewtjW6adyj4PNfIjjyU3IboV9Dr6FeMTMHMyZtxHardZI+XX1XyXQn7LhvESxnS6W7JoIM3uxLtsCGKv1lMuE5vtbOf5UwdJ+gql6TVA+s7uYckqT8IZpfllCTSdHgkWc83e7TZoN4JO7ZNDFMmYhSO3VsHW4BrjXH9zFlLDEyNvd/J89AYmhDCHodv/6yzTCw0ir4ogujkMFckRcBsvnZ/jaSuhjv4wkNiTzd0fBvrqqy/H6h/Z+wojRao/LgAAAABJRU5ErkJggg==" alt="" width={40} height={40} className="self-center pb-2"/>
-              @drive.phone7
-            </a>
-          </div>
+          ))}
+          <a href="" className="my-auto text-black text-lg">
+            <button className="flex flex-row items-center">Voir tous les smartphones<ArrowRight className="ml-0 w-6"/></button>
+          </a>
         </div>
       </section>
       <section className="scroller-section h-screen bg-blue-600 overflow-hidden content-center w-full ">
