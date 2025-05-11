@@ -92,7 +92,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="scroller-section text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
+      <section className="scroller-section no-scrollbar text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
         <h2 className="mt-36 lg:mt-24 2xl:mt-36 text-center text-3xl lg:text-4xl font-bold text-black left-0 right-0 px-5 lg:px-auto ">Comment ça marche?</h2>
         <div className="mt-auto flex flex-col lg:flex-row p-5 lg:px-24 overflow-x-scroll no-scrollbar gap-y-4 ">
           <div className="w-[90vw] lg:w-[20vw] lg:left-[10vw] flex flex-row lg:absolute bottom-[55dvh] top-[40dvh] lg:flex-col">
@@ -119,7 +119,7 @@ export default async function Home() {
         </div>
       </section>
       <h2 className="text-center text-black text-3xl font-semibold mt-16 lg:mt-24">Séléctionner mon Smartphone</h2>
-      <section className=" min-h-screen bg-white overflow-x-scroll">
+      <section className="h-fit bg-white overflow-x-scroll">
         <div className="flex flex-row w-fit h-fit overflow-x-scroll gap-10 mt-6 lg:mt-8 px-24">
           {data.filter((device: any) => (device.id.includes(basic[0]) || device.id.includes(basic[1]) || device.id.includes(basic[2]) || device.id.includes(basic[3]) || device.id.includes(basic[4]) || device.id.includes(basic[5]))).map((device: any) => (
             <a className="text-black justify-center flex w-[20dvw] flex-col p-8" href={`/pieces/${device.id}`}>
@@ -127,35 +127,34 @@ export default async function Home() {
                 <h2 className="text-center pt-5">{device.name}</h2>
             </a>
           ))}
-          <a href="" className="my-auto text-black text-lg">
+          <a href="/devices" className="my-auto text-black text-lg">
             <button className="flex flex-row items-center">Voir tous les smartphones<ArrowRight className="ml-0 w-6"/></button>
           </a>
         </div>
       </section>
-      <section className="scroller-section h-screen bg-blue-600 overflow-hidden content-center w-full ">
-        <video
-          id="my-video"
-          className="video-js lg;pt-20 pt-12 px-2 lg:hidden"
-          preload="auto"
-          controls
-          autoPlay
-          muted
-          width="100%"
-        >
-          <source src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" type="video/mp4" />
-          <track src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" />
-        </video>
-        <video
-          id="my-video"
-          className="video-js lg;pt-20 pt-12 px-2 lg:block hidden self-center mx-auto"
-          preload="auto"
-          controls
-          autoPlay
-          muted
-        >
-          <source src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" type="video/mp4" />
-          <track src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" />
-        </video>
+      <section className=" text-black bg-[url('../img/bg3.png')] h-[65dvh]  w-screen bg-no-repeat bg-bottom lg:bg-cover flex flex-col relative">
+          <h2 className="text-center text-3xl font-semibold mt-24">Services professionnels recommandés par nos clients</h2>
+          <div className="w-1/2 grid grid-cols-2 pl-[25vw] pr-[5vw] content-center gap-y-10 text-3xl 2xl:text-4xl font-bold my-auto ">
+            <div>
+              <p className="">6,981+</p>
+              <p className="text-base">Clients satisfaits</p>
+            </div>
+            <div>
+              <p className="">867+</p>
+              <p className="text-base">Avis</p>
+            </div>
+            <div>
+              <p className="">9,128+</p>
+              <p className="text-base"></p>
+            </div>
+            <div>
+              <p className="">8,412+</p>
+              <p className="text-base"></p>
+            </div>
+          </div>
+      </section>
+      <section className="scroller-section h-[60vh] bg-blue-600 overflow-hidden content-center w-full ">
+        
       </section>
       <section className="scroller-section">
         <Footer/>
