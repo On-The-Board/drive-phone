@@ -69,6 +69,9 @@ async function main() {
     
     return(response)
     })}
+    // const response = await prisma.piece.deleteMany({})
+    
+    // return(response)
 
     // Post Accessories
     // {data.forEach(async (device) => {
