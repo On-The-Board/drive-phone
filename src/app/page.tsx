@@ -1,164 +1,81 @@
 import * as React from "react"
-
 import Image from "next/image";
-import bp from "@/img/brokenPhone.png"
-import rp from "@/img/Reparateur.png"
-import random from "@/img/random.jpg"
-import issa from "@/img/issa.jpg"
-import nico from "@/img/Nicolas.jpg"
-import sophie from "@/img/sophie.png"
-import emma from "@/img/emma.png"
-import insta from "@/icons/instagram.png"
-import snap from "@/icons/snapchat.png"
-import fb from "@/icons/facebook.png"
-import arrowD from "@/icons/arrow_down.svg"
-import star from "@/icons/star.png"
+import { Clock, Phone, Mail } from "lucide-react";
+import logo from "@/app/favicon.ico"
 
-
-import { v4 as uuidv4 } from "uuid";
-import Carousel_testimonials from "../components/carousel_testimonials";
-import Card_testimonials from "../components/card";
-import Navbar from "@/components/navbar/navbar";
-import Footer from "@/components/footer/footer";
-import EmblaCarousel from '../components/embla/EmblaCarousel'
-import { EmblaOptionsType } from 'embla-carousel'
-import '../components/embla/embla.css'
-import { ArrowRight } from "lucide-react";
-import { prisma } from "@/lib/prisma";
-
-
-
-
-export default async function Home() {
-  const OPTIONS: EmblaOptionsType = {}
-  const SLIDE_COUNT = 5
-  const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
-  const data = await prisma.device.findMany({
-    where: {active: true}
-  })
-  const basic = [
-    "apple_iphone_15_pro-12557",
-    "apple_iphone_11-9848",
-    "apple_iphone_12-10509",
-    "xiaomi_redmi_note_12_pro-11955",
-    "samsung_galaxy_s20-10081",
-    "google_pixel_9_pro-13218"
-    
-]
-
-
-  let cards = [
-    {
-      key: uuidv4(),
-      content: (
-        <Card_testimonials img={random} text="Super service ! Mon écran remplacé en 30 min, sans bouger de chez moi. 👌📱" name="Lucas Martin"/>
-      )
-    },
-    {
-      key: uuidv4(),
-      content: (
-        <Card_testimonials img={sophie}  text="Réparateur pro et rapide. Mon iPhone fonctionne comme neuf. Merci ! 🔧✨" name="Sophie Dupont"/>
-      )
-    },
-    {
-      key: uuidv4(),
-      content: (
-        <Card_testimonials img={issa}  text="Prix honnête, intervention efficace. Plus besoin d’aller en boutique ! 🙌" name="Issa Diakate"/>
-      )
-    },
-    {
-      key: uuidv4(),
-      content: (
-        <Card_testimonials img={emma}  text="Très sympa et ponctuel. Mon téléphone est sauvé ! Je recommande. 👍" name="Emma Roussel"/>
-      )
-    },
-    {
-      key: uuidv4(),
-      content: (
-        <Card_testimonials img={nico}  text="Réparation express et soignée, à domicile en plus ! Top service ! 🚀" name="Nicolas Pons"/>
-      )
-    }
-  ];
+export default function MaintenancePage() {
   return (
-    <main className="text-white scroller no-scrollbar overflow-x-hidden">
-      <Navbar/>
-      <section className="scroller-section items-center px-5 z-10 bg-[url('../img/background.png')] h-[100dvh] bg-[auto_120dvw] bg-no-repeat bg-bottom lg:bg-cover flex flex-col relative">
-        <div className="text-black text-center my-auto gap-y-4  flex flex-col pb-36 lg:pb-64">
-          <h2 className="text-sm lg:text-xl font-medium">Téléphone cassé? <br className="lg:hidden" /> On se déplace pour le réparer</h2>
-          <h1 className="font-bold text-2xl lg:text-6xl lg:pb-6">Réparation Smartphone <br />Givors, Lyon et alentours</h1>
-          <div className="flex flex-row mx-auto gap-6">
-            <a href="/devices"><button className="rounded-full bg-blue-600 p-6 py-2 text-white">Réserver</button></a>
-            <a href="/accessories" className="p-4 py-2 flex flex-row font-semibold group">Accessoires<ArrowRight className="ml-1 w-4 group-hover:translate-x-1 transition duration-300"/></a>
+    <main className="min-h-screen bg-white flex items-center justify-center p-4">
+      <div className="max-w-2xl mx-auto text-center text-blue-600">
+        {/* Logo/Header */}
+        <div className="mb-8">
+          <div className="mb-6">
+            <Image src={logo} alt="Drive Phone Logo" width={80} height={80} className="mx-auto" />
+          </div>
+          <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+        </div>
+
+        {/* Maintenance Icon */}
+        <div className="mb-8">
+          <div className="inline-flex items-center justify-center w-32 h-32 bg-blue-100 rounded-full mb-6">
+            <Clock className="w-16 h-16 text-blue-600" />
           </div>
         </div>
-      </section>
-      <section className="scroller-section no-scrollbar text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
-        <h2 className="mt-36 lg:mt-24 2xl:mt-36 text-center text-3xl lg:text-4xl font-bold text-black left-0 right-0 px-5 lg:px-auto ">Comment ça marche?</h2>
-        <div className="mt-auto flex flex-col lg:flex-row p-5 lg:px-24 overflow-x-scroll no-scrollbar gap-y-4 ">
-          <div className="w-[90vw] lg:w-[20vw] lg:left-[10vw] flex flex-row lg:absolute bottom-[55dvh] top-[40dvh] lg:flex-col">
-            <p className="text-3xl font-bold mr-2 lg:mr-0 ">1</p>
-            <div>
-              <p className="font-semibold ">Selectionnez votre Smartphone</p>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
-            </div>
+
+        {/* Main Message */}
+        <div className="mb-12">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">
+            Site en maintenance
+          </h2>
+          <p className="text-lg md:text-xl text-blue-700 mb-6">
+            Nous travaillons actuellement sur l'amélioration de notre site web pour vous offrir une meilleure expérience.
+          </p>
+          <div className="flex items-center justify-center gap-2 text-blue-700 mb-8">
+            <Clock className="w-5 h-5" />
+            <span>Retour prévu très bientôt</span>
           </div>
-          <div className="w-[90vw] flex flex-row lg:flex-col lg:text-center 2xl:pb-10">
-            <p className="text-3xl font-bold mr-2 lg:mr-0 lg:text-center">2</p>
-            <div>
-              <p className="font-semibold lg:text-center">Commandez votre Réparation</p>
-              <p className="lg:px-[30vw] 2xl:px-[35vw]">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
+        </div>
+
+        {/* Contact Information */}
+        <div className="bg-blue-50 rounded-2xl p-8 mb-8">
+          <h3 className="text-xl font-semibold mb-6">Besoin d'une réparation urgente ?</h3>
+          <div className="space-y-4">
+            <div className="flex items-center justify-center gap-3">
+              <Phone className="w-5 h-5" />
+              <span className="text-lg">07 61 70 75 24</span>
             </div>
-          </div>
-          <div className="w-[90vw] lg:w-[20vw] lg:right-[10vw] flex flex-row lg:absolute bottom-[55dvh] top-[40dvh] lg:flex-col">
-            <p className="text-3xl font-bold mr-2 lg:mr-0">3</p>
-            <div>
-              <p className="font-semibold ">Nous venons Réparer dans l'heure</p>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
+            <div className="flex items-center justify-center gap-3">
+              <Mail className="w-5 h-5" />
+              <span className="text-lg">contact@drive-phone.fr</span>
             </div>
           </div>
         </div>
-      </section>
-      <h2 className="text-center text-black text-3xl font-semibold mt-16 lg:mt-24">Séléctionner mon Smartphone</h2>
-      <section className="h-fit bg-white overflow-x-scroll">
-        <div className="flex flex-row w-fit h-fit overflow-x-scroll gap-10 mt-6 lg:mt-8 px-24">
-          {data.filter((device: any) => (device.id.includes(basic[0]) || device.id.includes(basic[1]) || device.id.includes(basic[2]) || device.id.includes(basic[3]) || device.id.includes(basic[4]) || device.id.includes(basic[5]))).map((device: any) => (
-            <a className="text-black justify-center flex w-[20dvw] flex-col p-8" href={`/pieces/${device.id}`}>
-                <img src={device.img} alt={device.name} className="lg:w-56 lg:mx-auto"/>
-                <h2 className="text-center pt-5">{device.name}</h2>
-            </a>
-          ))}
-          <a href="/devices" className="my-auto text-black text-lg">
-            <button className="flex flex-row items-center">Voir tous les smartphones<ArrowRight className="ml-0 w-6"/></button>
-          </a>
-        </div>
-      </section>
-      <section className=" text-black bg-[url('../img/bg3.png')] h-[65dvh]  w-screen bg-no-repeat bg-bottom lg:bg-cover flex flex-col relative">
-          <h2 className="text-center text-3xl font-semibold mt-24">Services professionnels recommandés par nos clients</h2>
-          <div className="w-1/2 grid grid-cols-2 pl-[25vw] pr-[5vw] content-center gap-y-10 text-3xl 2xl:text-4xl font-bold my-auto ">
-            <div>
-              <p className="">6,981+</p>
-              <p className="text-base">Clients satisfaits</p>
+
+        {/* Services Reminder */}
+        <div className="bg-blue-50 rounded-xl p-6">
+          <h4 className="text-lg font-semibold mb-4">Nos services</h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="bg-white rounded-lg p-4">
+              <h5 className="font-semibold mb-2">Réparation iPhone</h5>
+              <p className="text-blue-700">Écrans, batteries, connecteurs</p>
             </div>
-            <div>
-              <p className="">867+</p>
-              <p className="text-base">Avis</p>
+            <div className="bg-white rounded-lg p-4">
+              <h5 className="font-semibold mb-2">Réparation Samsung</h5>
+              <p className="text-blue-700">Tous modèles, pièces d'origine</p>
             </div>
-            <div>
-              <p className="">9,128+</p>
-              <p className="text-base"></p>
-            </div>
-            <div>
-              <p className="">8,412+</p>
-              <p className="text-base"></p>
+            <div className="bg-white rounded-lg p-4">
+              <h5 className="font-semibold mb-2">Service à domicile</h5>
+              <p className="text-blue-700">Lyon et alentours, 7j/7</p>
             </div>
           </div>
-      </section>
-      <section className="scroller-section h-[60vh] bg-blue-600 overflow-hidden content-center w-full ">
-        
-      </section>
-      <section className="scroller-section">
-        <Footer/>
-      </section>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-12 text-blue-600 text-sm">
+          <p>© 2024 Drive Phone - Réparation de smartphones à Lyon</p>
+          <p className="mt-2">Service de réparation mobile professionnel</p>
+        </div>
+      </div>
     </main>
   );
 }

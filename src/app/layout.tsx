@@ -9,8 +9,8 @@ import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Drive Phone - Réparation de Smartphone lyon",
-  description: "Vous avez un problème avec votre smartphone ? Pas de panique ! Drive Phone vous propose un service de réparation de smartphones à domicile, sur Lyon et ses alentours. Profitez de notre expertise pour redonner vie à votre appareil, dans le confort de votre maison. Réparation Smartphone Lyon, Réparation Téléphone Lyon, Réparation téléphone pas cher, Réparation IPhone lyon, Réparation Samsung Lyon",
+  title: "Drive Phone - Site en maintenance",
+  description: "Drive Phone - Site en maintenance. Service de réparation de smartphones à domicile sur Lyon et ses alentours. Contactez-nous pour une réparation urgente.",
 };
 
 export default function RootLayout({
