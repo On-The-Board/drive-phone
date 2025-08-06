@@ -89,42 +89,10 @@ export default function Home() {
           <Image src={arrowD} alt="" className="m-auto pt-1"/>
         </div>
       </section>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <section className="scroller-section text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <section className="scroller-section no-scrollbar text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
->>>>>>> parent of d78b726 (mode maintenance)
-=======
-      <section className="scroller-section no-scrollbar text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
->>>>>>> parent of d78b726 (mode maintenance)
-        <h2 className="mt-36 lg:mt-24 2xl:mt-36 text-center text-3xl lg:text-4xl font-bold text-black left-0 right-0 px-5 lg:px-auto ">Comment ça marche?</h2>
-=======
-        <h2 className="mt-36 text-center text-3xl lg:text-4xl font-bold text-black left-0 right-0 px-5 lg:px-auto ">Comment ça marche?</h2>
->>>>>>> parent of 463d6d8 (also landing)
-=======
-        <h2 className="mt-36 text-center text-3xl lg:text-4xl font-bold text-black left-0 right-0 px-5 lg:px-auto ">Comment ça marche?</h2>
->>>>>>> parent of 463d6d8 (also landing)
-=======
-        <h2 className="mt-36 text-center text-3xl lg:text-4xl font-bold text-black left-0 right-0 px-5 lg:px-auto ">Comment ça marche?</h2>
->>>>>>> parent of 463d6d8 (also landing)
-        <div className="mt-auto flex flex-col lg:flex-row p-5 lg:px-24 overflow-x-scroll no-scrollbar gap-y-4 ">
-          <div className="w-[90vw] lg:w-[20vw] lg:left-[10vw] flex flex-row lg:absolute bottom-[55dvh] top-[40dvh] lg:flex-col">
-            <p className="text-3xl font-bold mr-2 lg:mr-0 ">1</p>
-            <div>
-              <p className="font-semibold ">Selectionnez votre Smartphone</p>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
-            </div>
-=======
       <section className="scroller-section min-h-screen bg-white overflow-hidden relative">
         <div className="flex flex-col lg:flex-row content-center pt-16 bg-[url('../img/background.jpg')] bg-cover">
           <div className="h-[35vh]">
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
->>>>>>> parent of ef8cb41 (refonte landing)
           </div>
           <div className="">
             <h3 className="text-white text-center text-lg font-semibold mt-12 px-2">On se déplace dans Lyon et ses alentours <br />7/7J de 9h a 23h </h3>
@@ -132,38 +100,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <h2 className="text-center text-black text-3xl font-semibold mt-16 lg:mt-24">Séléctionner mon Smartphone</h2>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <section className=" min-h-screen bg-white overflow-x-scroll">
-=======
-      <section className="h-fit bg-white overflow-x-scroll">
->>>>>>> parent of d78b726 (mode maintenance)
-=======
-      <section className="h-fit bg-white overflow-x-scroll">
->>>>>>> parent of d78b726 (mode maintenance)
-        <div className="flex flex-row w-fit h-fit overflow-x-scroll gap-10 mt-6 lg:mt-8 px-24">
-          {data.filter((device: any) => (device.id.includes(basic[0]) || device.id.includes(basic[1]) || device.id.includes(basic[2]) || device.id.includes(basic[3]) || device.id.includes(basic[4]) || device.id.includes(basic[5]))).map((device: any) => (
-            <a className="text-black justify-center flex w-[20dvw] flex-col p-8" href={`/pieces/${device.id}`}>
-                <img src={device.img} alt={device.name} className="lg:w-56 lg:mx-auto"/>
-                <h2 className="text-center pt-5">{device.name}</h2>
-            </a>
-          ))}
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <a href="" className="my-auto text-black text-lg">
-=======
-          <a href="/devices" className="my-auto text-black text-lg">
->>>>>>> parent of d78b726 (mode maintenance)
-=======
-          <a href="/devices" className="my-auto text-black text-lg">
->>>>>>> parent of d78b726 (mode maintenance)
-            <button className="flex flex-row items-center">Voir tous les smartphones<ArrowRight className="ml-0 w-6"/></button>
-          </a>
-=======
       <section className="scroller-section min-h-screen bg-white overflow-hidden">
         <div className="px-5">
           <div className="w-full mt-16 lg:mt-20 h-16 border-y border-y-blue-600 flex flex-row justify-between py-2">
@@ -218,118 +154,6 @@ export default function Home() {
               <Image src={insta} alt="" width={40} className="self-center pb-2"/>
               @drv.phone
             </a>
-=======
-      <section className="scroller-section min-h-screen bg-white overflow-hidden">
-        <div className="px-5">
-          <div className="w-full mt-16 lg:mt-20 h-16 border-y border-y-blue-600 flex flex-row justify-between py-2">
-            <div className="content-center h-full w-full">
-              <p className="text-blue-600 text-center font-semibold leading-4 text-sm">5 ans <br /> d’experience</p>
-            </div>
-            <div className="content-center h-full border-x border-x-blue-600 px-4 w-full">
-              <p className="text-blue-600 text-center font-semibold leading-4 text-sm">+13 000 <br />réparations</p>
-            </div>
-            <div className="content-center h-full w-full">
-              <Image src={star} alt="star" className="w-4 lg:w-6 h-fit mx-auto"/>
-              <p className="text-blue-600 text-center font-semibold leading-4 pt-0 text-sm lg:text-lg">4.9/5</p>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[url('../img/Rectangle_40.png')] lg:bg-[url('../img/Rectangle_80.png')] bg-no-repeat  h-full px-5 lg:px-64">
-          <p className="pt-20 leading-5 lg:hidden">Avis des <br />précédents clients </p>
-          <p className="hidden lg:block text-blue-600 text-2xl text-center mt-6 pt-10">Avis des précédents clients</p>
-          <div className="hidden xl:block xl:px-64">
-            <Carousel_testimonials
-              cards={cards}
-              height="550px"
-              width="100%"
-              margin="0 auto"
-              offset={200}
-              showArrows={false}
-            />
-          </div>
-          <div className="hidden lg:block xl:hidden">
-            <Carousel_testimonials
-              cards={cards}
-              height="300px"
-              width="100%"
-              margin="0 auto"
-              offset={200}
-              showArrows={false}
-            />
-          </div>
-          <div className="lg:hidden block">
-            <Carousel_testimonials
-              cards={cards}
-              height="300px"
-              width="100%"
-              margin="0 auto"
-              offset={200}
-              showArrows={false}
-            />
-          </div>
-          <p className="pt-16  lg:pt-8 leading-5 text-blue-600 lg:text-center lg:text-2xl">Suivez-nous <br className="lg:hidden"/>sur les réseaux sociaux</p>
-          <div className="flex flex-row justify-between h-full content-center pt-8  lg:pt-16">
-            <a href="https://www.instagram.com/drv.phone/?utm_source=ig_web_button_share_sheet" className="text-blue-600 text-sm w-full flex flex-col text-center">
-              <Image src={insta} alt="" width={40} className="self-center pb-2"/>
-              @drv.phone
-            </a>
->>>>>>> parent of 463d6d8 (also landing)
-=======
-      <section className="scroller-section min-h-screen bg-white overflow-hidden">
-        <div className="px-5">
-          <div className="w-full mt-16 lg:mt-20 h-16 border-y border-y-blue-600 flex flex-row justify-between py-2">
-            <div className="content-center h-full w-full">
-              <p className="text-blue-600 text-center font-semibold leading-4 text-sm">5 ans <br /> d’experience</p>
-            </div>
-            <div className="content-center h-full border-x border-x-blue-600 px-4 w-full">
-              <p className="text-blue-600 text-center font-semibold leading-4 text-sm">+13 000 <br />réparations</p>
-            </div>
-            <div className="content-center h-full w-full">
-              <Image src={star} alt="star" className="w-4 lg:w-6 h-fit mx-auto"/>
-              <p className="text-blue-600 text-center font-semibold leading-4 pt-0 text-sm lg:text-lg">4.9/5</p>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[url('../img/Rectangle_40.png')] lg:bg-[url('../img/Rectangle_80.png')] bg-no-repeat  h-full px-5 lg:px-64">
-          <p className="pt-20 leading-5 lg:hidden">Avis des <br />précédents clients </p>
-          <p className="hidden lg:block text-blue-600 text-2xl text-center mt-6 pt-10">Avis des précédents clients</p>
-          <div className="hidden xl:block xl:px-64">
-            <Carousel_testimonials
-              cards={cards}
-              height="550px"
-              width="100%"
-              margin="0 auto"
-              offset={200}
-              showArrows={false}
-            />
-          </div>
-          <div className="hidden lg:block xl:hidden">
-            <Carousel_testimonials
-              cards={cards}
-              height="300px"
-              width="100%"
-              margin="0 auto"
-              offset={200}
-              showArrows={false}
-            />
-          </div>
-          <div className="lg:hidden block">
-            <Carousel_testimonials
-              cards={cards}
-              height="300px"
-              width="100%"
-              margin="0 auto"
-              offset={200}
-              showArrows={false}
-            />
-          </div>
-          <p className="pt-16  lg:pt-8 leading-5 text-blue-600 lg:text-center lg:text-2xl">Suivez-nous <br className="lg:hidden"/>sur les réseaux sociaux</p>
-          <div className="flex flex-row justify-between h-full content-center pt-8  lg:pt-16">
-            <a href="https://www.instagram.com/drv.phone/?utm_source=ig_web_button_share_sheet" className="text-blue-600 text-sm w-full flex flex-col text-center">
-              <Image src={insta} alt="" width={40} className="self-center pb-2"/>
-              @drv.phone
-            </a>
->>>>>>> parent of 463d6d8 (also landing)
             <a href="https://www.snapchat.com/add/drive_phone?share_id=uZMlzMXlkFI&locale=fr-FR" className="text-blue-600 text-sm w-full flex flex-col text-center">
               <Image src={snap} alt="" width={40} className="self-center pb-2"/>
               @drive_phone
@@ -339,17 +163,8 @@ export default function Home() {
               @drive.phone7
             </a>
           </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 463d6d8 (also landing)
-=======
->>>>>>> parent of 463d6d8 (also landing)
-=======
->>>>>>> parent of 463d6d8 (also landing)
         </div>
       </section>
-<<<<<<< HEAD
-<<<<<<< HEAD
       <section className="scroller-section h-screen bg-blue-600 overflow-hidden content-center w-full ">
         <video
           id="my-video"
@@ -374,36 +189,6 @@ export default function Home() {
           <source src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" type="video/mp4" />
           <track src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" />
         </video>
-=======
-=======
->>>>>>> parent of d78b726 (mode maintenance)
-      <section className=" text-black bg-[url('../img/bg3.png')] h-[65dvh]  w-screen bg-no-repeat bg-bottom lg:bg-cover flex flex-col relative">
-          <h2 className="text-center text-3xl font-semibold mt-24">Services professionnels recommandés par nos clients</h2>
-          <div className="w-1/2 grid grid-cols-2 pl-[25vw] pr-[5vw] content-center gap-y-10 text-3xl 2xl:text-4xl font-bold my-auto ">
-            <div>
-              <p className="">6,981+</p>
-              <p className="text-base">Clients satisfaits</p>
-            </div>
-            <div>
-              <p className="">867+</p>
-              <p className="text-base">Avis</p>
-            </div>
-            <div>
-              <p className="">9,128+</p>
-              <p className="text-base"></p>
-            </div>
-            <div>
-              <p className="">8,412+</p>
-              <p className="text-base"></p>
-            </div>
-          </div>
-      </section>
-      <section className="scroller-section h-[60vh] bg-blue-600 overflow-hidden content-center w-full ">
-        
-<<<<<<< HEAD
->>>>>>> parent of d78b726 (mode maintenance)
-=======
->>>>>>> parent of d78b726 (mode maintenance)
       </section>
       <section className="scroller-section">
         <Footer/>
