@@ -93,7 +93,11 @@ export default async function Home() {
         </div>
       </section>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <section className="scroller-section text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
+=======
+      <section className="scroller-section no-scrollbar text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
+>>>>>>> parent of d78b726 (mode maintenance)
 =======
       <section className="scroller-section no-scrollbar text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
 >>>>>>> parent of d78b726 (mode maintenance)
@@ -124,7 +128,11 @@ export default async function Home() {
       </section>
       <h2 className="text-center text-black text-3xl font-semibold mt-16 lg:mt-24">Séléctionner mon Smartphone</h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <section className=" min-h-screen bg-white overflow-x-scroll">
+=======
+      <section className="h-fit bg-white overflow-x-scroll">
+>>>>>>> parent of d78b726 (mode maintenance)
 =======
       <section className="h-fit bg-white overflow-x-scroll">
 >>>>>>> parent of d78b726 (mode maintenance)
@@ -136,7 +144,11 @@ export default async function Home() {
             </a>
           ))}
 <<<<<<< HEAD
+<<<<<<< HEAD
           <a href="" className="my-auto text-black text-lg">
+=======
+          <a href="/devices" className="my-auto text-black text-lg">
+>>>>>>> parent of d78b726 (mode maintenance)
 =======
           <a href="/devices" className="my-auto text-black text-lg">
 >>>>>>> parent of d78b726 (mode maintenance)
@@ -144,6 +156,7 @@ export default async function Home() {
           </a>
         </div>
       </section>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <section className="scroller-section h-screen bg-blue-600 overflow-hidden content-center w-full ">
         <video
@@ -170,6 +183,8 @@ export default async function Home() {
           <track src="https://firebasestorage.googleapis.com/v0/b/stagger-61882.appspot.com/o/Drive-Phone%2FVID-20241031-WA0000.mp4?alt=media&token=e646d258-d0b6-40fd-ac21-58dff948e385" />
         </video>
 =======
+=======
+>>>>>>> parent of d78b726 (mode maintenance)
       <section className=" text-black bg-[url('../img/bg3.png')] h-[65dvh]  w-screen bg-no-repeat bg-bottom lg:bg-cover flex flex-col relative">
           <h2 className="text-center text-3xl font-semibold mt-24">Services professionnels recommandés par nos clients</h2>
           <div className="w-1/2 grid grid-cols-2 pl-[25vw] pr-[5vw] content-center gap-y-10 text-3xl 2xl:text-4xl font-bold my-auto ">
@@ -193,6 +208,9 @@ export default async function Home() {
       </section>
       <section className="scroller-section h-[60vh] bg-blue-600 overflow-hidden content-center w-full ">
         
+<<<<<<< HEAD
+>>>>>>> parent of d78b726 (mode maintenance)
+=======
 >>>>>>> parent of d78b726 (mode maintenance)
       </section>
       <section className="scroller-section">
