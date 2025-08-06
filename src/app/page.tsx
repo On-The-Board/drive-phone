@@ -23,7 +23,6 @@ import Footer from "@/components/footer/footer";
 import EmblaCarousel from '../components/embla/EmblaCarousel'
 import { EmblaOptionsType } from 'embla-carousel'
 import '../components/embla/embla.css'
-import { ArrowRight } from "lucide-react";
 
 
 
@@ -68,16 +67,29 @@ export default function Home() {
   return (
     <main className="text-white scroller no-scrollbar overflow-x-hidden">
       <Navbar/>
-      <section className="scroller-section items-center px-5 z-10 bg-[url('../img/background.png')] h-[100dvh] bg-[auto_120dvw] bg-no-repeat bg-bottom lg:bg-cover flex flex-col relative">
-        <div className="text-black text-center my-auto gap-y-4  flex flex-col pb-36 lg:pb-64">
-          <h2 className="text-sm lg:text-xl font-medium">Téléphone cassé? <br className="lg:hidden" /> On se déplace pour le réparer</h2>
-          <h1 className="font-bold text-2xl lg:text-6xl lg:pb-6">Réparation Smartphone <br />Givors, Lyon et alentours</h1>
-          <div className="flex flex-row mx-auto gap-6">
-            <a href="/devices"><button className="rounded-full bg-blue-600 p-6 py-2 text-white">Réserver</button></a>
-            <a href="/accessories" className="p-4 py-2 flex flex-row font-semibold group">Accessoires<ArrowRight className="ml-1 w-4 group-hover:translate-x-1 transition duration-300"/></a>
+      <section className="scroller-section px-5 z-10 bg-[url('../img/background.jpg')] min-h-screen bg-cover flex flex-col relative">
+        <div className="w-full lg:w-fit lg:mx-auto lg:h-full flex flex-col lg:flex-row mt-16 lg:items-center">
+          <Image src={bp} alt="tel cassé" className="w-full mx-6 lg:mx-0 lg:w-fit lg:h-[70vh] lg:mt-24  lg:relative" />
+          <div className="flex flex-col lg:pt-16 lg:ml-40 -center">
+            <h1 className="font-bold text-3xl lg:text-5xl text-start lg:text-end">TÉLÉPHONE CASSÉ ?</h1>
+            <p className="text-xl lg:text-3xl text-start lg:text-end leading-5 font-light lg:py-12 pt-2 lg:pt-0">On se déplace chez vous <br className="lg:hidden" />pour <br className="hidden lg:flex"/> le réparer en toute <br className="lg:hidden" />tranquilité</p>
+            <a href="/devices" className=" self-center lg:self-end">
+              <button className="w-32 lg:w-56 rounded-sm bg-white h-8 lg:h-12 mt-8 lg:mt-4 font-medium text-blue-600 text-lg lg:text-2xl hover:bg-blue-600 hover:border hover:border-white hover:text-white active:bg-blue-600 active:border active:border-white active:text-white">
+                Réserver
+              </button>
+            </a>
           </div>
         </div>
+        {/* <div className="w-full bg-white bg-opacity-45 h-[26rem] rounded-md mt-24 self-center flex flex-col lg:hidden px-8">
+          <Image src={rp} alt="reparation smartphone" className="w-full h-fit pt-8 self-center"/>
+          <h1 className="self-center py-4">Réparation Smartphone</h1>
+          <p className="text-xs">Vous avez un problème avec votre smartphone ? Pas de panique ! Drive Phone vous propose un service de réparation de smartphones à domicile, sur Lyon et ses alentours. <br />Profitez de notre expertise pour redonner vie à votre appareil, dans le confort de votre maison. </p>
+        </div> */}
+        <div className="rounded-t-full bg-white w-16 h-8 self-center lg:absolute lg:bottom-0 mt-28 flex align-middle">
+          <Image src={arrowD} alt="" className="m-auto pt-1"/>
+        </div>
       </section>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <section className="scroller-section text-black bg-[url('../img/bg2.png')] h-[100dvh] bg-[auto_120dvw] w-screen bg-no-repeat bg-center lg:bg-cover flex flex-col relative overflow-hidden relative">
@@ -107,20 +119,16 @@ export default function Home() {
               <p className="font-semibold ">Selectionnez votre Smartphone</p>
               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
             </div>
+=======
+      <section className="scroller-section min-h-screen bg-white overflow-hidden relative">
+        <div className="flex flex-col lg:flex-row content-center pt-16 bg-[url('../img/background.jpg')] bg-cover">
+          <div className="h-[35vh]">
+            <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+>>>>>>> parent of ef8cb41 (refonte landing)
           </div>
-          <div className="w-[90vw] flex flex-row lg:flex-col lg:text-center lg:pb-10">
-            <p className="text-3xl font-bold mr-2 lg:mr-0 lg:text-center">2</p>
-            <div>
-              <p className="font-semibold lg:text-center">Commandez votre Réparation</p>
-              <p className="lg:px-[35vw]">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
-            </div>
-          </div>
-          <div className="w-[90vw] lg:w-[20vw] lg:right-[10vw] flex flex-row lg:absolute bottom-[55dvh] top-[40dvh] lg:flex-col">
-            <p className="text-3xl font-bold mr-2 lg:mr-0">3</p>
-            <div>
-              <p className="font-semibold ">Nous venons Réparer dans l'heure</p>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, ipsa </p>
-            </div>
+          <div className="">
+            <h3 className="text-white text-center text-lg font-semibold mt-12 px-2">On se déplace dans Lyon et ses alentours <br />7/7J de 9h a 23h </h3>
+            <iframe width="100%" height="100%" className="h-[45vh] rounded-lg self-center w-[100vw] pt-7 pb-0 lg:p-10" allow="geolocation" src="https://umap.openstreetmap.fr/fr/map/anonymous-edit/1171317:wrscz99JdcaVebC1gWbtPnIShETvFWJswQqtx-Gv34E?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&captionControl=false"></iframe>
           </div>
         </div>
       </section>
